@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pick Your Player</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>Pick Your Player</h1>
+  <p class="sub">Swipe, drag, or use ← → keys. 500 stars from 2000 onward. Press R for random.</p>
+  <div class="filters" id="filters"></div>
+  <div class="stage" id="stage"><div class="track" id="track"></div></div>
+  <div class="ctrl">
+    <button class="arrow" id="prev" aria-label="Previous">←</button>
+    <button class="pick" id="pick">Select player</button>
+    <button class="rand" id="rand">🎲 Random</button>
+    <button class="arrow" id="next" aria-label="Next">→</button>
+  </div>
+  <div class="count" id="count"></div>
+  <div class="panel" id="panel"><div class="badge" id="pb"></div><div><b id="pn"></b><span id="pd"></span><span id="pu"></span></div></div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

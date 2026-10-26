@@ -152,7 +152,6 @@ Ederson,br,GK,Man City,31
 David de Gea,es,GK,Man United,1
 Gianluigi Donnarumma,it,GK,PSG,99
 Jan Oblak,si,GK,Atlético,13`.split('\n').map(l=>{const[n,c,pos,club,num]=l.split(',');const[c1,c2]=CL[club];return{n,f:FL[c],pos,club,num,c1,c2}}));
-
 const UW=new Set(`Lionel Messi|Cristiano Ronaldo|Neymar Jr|Erling Haaland|Luka Modrić|Zinedine Zidane|Ronaldinho|Xavi Hernández|Andrés Iniesta|Thierry Henry|Kaká|Robert Lewandowski|Mohamed Salah|Kevin De Bruyne|Karim Benzema|Wayne Rooney|Steven Gerrard|Frank Lampard|Andrea Pirlo|Iker Casillas|Virgil van Dijk|Sergio Ramos|Vinícius Jr|Jude Bellingham|Luis Suárez|Didier Drogba|Samuel Eto'o|David Villa|Fernando Torres|Raúl|Andriy Shevchenko|Alessandro Del Piero|Filippo Inzaghi|Thomas Müller|Olivier Giroud|Carlos Tevez|Sadio Mané|Roberto Firmino|Phil Foden|Ángel Di María|Arjen Robben|Franck Ribéry|Gareth Bale|Pedro|Khvicha Kvaratskhelia|Paul Scholes|David Beckham|Ryan Giggs|Cesc Fàbregas|Xabi Alonso|Sergio Busquets|Toni Kroos|Bastian Schweinsteiger|N'Golo Kanté|Casemiro|Bernardo Silva|Joshua Kimmich|İlkay Gündoğan|Federico Valverde|Rodri|Clarence Seedorf|Gennaro Gattuso|Claude Makélélé|Roy Keane|Wesley Sneijder|Thiago Alcântara|James Rodríguez|Paolo Maldini|Alessandro Nesta|Carles Puyol|Gerard Piqué|John Terry|Rio Ferdinand|Nemanja Vidić|Philipp Lahm|Dani Alves|Marcelo|Roberto Carlos|Cafu|Lúcio|Thiago Silva|Marquinhos|Raphaël Varane|Trent Alexander-Arnold|Achraf Hakimi|Kyle Walker|Rúben Dias|Alphonso Davies|Jordi Alba|David Alaba|Ashley Cole|Antonio Rüdiger|Manuel Neuer|Petr Čech|Edwin van der Sar|Oliver Kahn|Thibaut Courtois|Alisson|Ederson|Gianluigi Donnarumma`.split('|'));
 P.forEach(p=>p.ucl=UW.has(p.n));
 const hs=s=>[...s].reduce((a,c)=>(a*31+c.charCodeAt(0))>>>0,7)%360;
@@ -513,92 +512,6 @@ Samuel Kuffour,gh,DF,Bayern,3,1
 Stefan Effenberg,de,MF,Bayern,11,1
 Giovane Élber,br,FW,Bayern,9,1
 Mehmet Scholl,de,MF,Bayern,7,1`.split('\n').map(l=>{const[n,c,pos,club,num,w]=l.split(',');const[c1,c2]=CL[club]||[`hsl(${hs(club)} 55% 38%)`,`hsl(${(hs(club)+30)%360} 60% 16%)`];return{n,f:FL[c]||iso(c),pos,club,num,c1,c2,ucl:w==='1'}}).filter(p=>!seen.has(p.n)&&seen.add(p.n)).slice(0,350));
-
-const COACHES = new Set([
-  'Álvaro Arbeloa', 'Anderson', 'Mikel Arteta', 'Xavi Hernández', 'Andrés Iniesta',
-  'Diego Simeone', 'Thierry Henry', 'Steven Gerrard', 'Frank Lampard', 'Wayne Rooney',
-  'Zinedine Zidane', 'Gianfranco Zola', 'Gennaro Gattuso', 'Pep Guardiola', 'Arne Slot',
-  'Jürgen Klopp', 'Aitor Karanka', 'Fabio Capello', 'Carlo Ancelotti', 'Marco van Basten'
-]);
-
-const LAST_PLAYED = {
-  'Álvaro Arbeloa': 2017,
-  'Anderson': 2015,
-  'Mikel Arteta': 2019,
-  'Xavi Hernández': 2015,
-  'Andrés Iniesta': 2018,
-  'Diego Simeone': 2018,
-  'Thierry Henry': 2012,
-  'Steven Gerrard': 2015,
-  'Frank Lampard': 2014,
-  'Wayne Rooney': 2021,
-  'Zinedine Zidane': 2006,
-  'Ronaldinho': 2011,
-  'Cafu': 2003,
-  'Roberto Carlos': 2007,
-  'Paolo Maldini': 2009,
-  'Luka Modrić': 2025,
-  'Cristiano Ronaldo': 2025,
-  'Lionel Messi': 2025,
-  'Neymar Jr': 2025,
-  'Kylian Mbappé': 2025,
-  'Erling Haaland': 2025,
-  'Mohamed Salah': 2025,
-  'Kevin De Bruyne': 2025,
-  'Vinícius Jr': 2025,
-  'Jude Bellingham': 2025,
-  'Harry Kane': 2025,
-  'Karim Benzema': 2024,
-  'Sergio Ramos': 2023,
-  'Gianluigi Buffon': 2023,
-  'Iker Casillas': 2020,
-  'David Beckham': 2013,
-  'Ryan Giggs': 2014,
-  'Paul Scholes': 2013,
-  'Raúl': 2018,
-  'Didier Drogba': 2013,
-  'Samuel Eto\'o': 2018,
-  'David Villa': 2019,
-  'Fernando Torres': 2018,
-  'Gonzalo Higuaín': 2019,
-  'Radamel Falcao': 2022,
-  'John Terry': 2017,
-  'Rio Ferdinand': 2015,
-  'Nemanja Vidić': 2016,
-  'Dani Alves': 2023,
-  'Marcelo': 2022,
-  'Philipp Lahm': 2017,
-  'Thiago Silva': 2025,
-  'Marquinhos': 2025,
-  'Gianluigi Donnarumma': 2025,
-  'Ederson': 2025,
-  'Manuel Neuer': 2025,
-  'Thibaut Courtois': 2025,
-  'Virgil van Dijk': 2025,
-  'Alisson': 2025,
-  'Jordi Alba': 2025,
-  'David Alaba': 2025,
-  'Ashley Cole': 2014,
-  'Antonio Rüdiger': 2025,
-  'Petr Čech': 2019,
-  'Oliver Kahn': 2008,
-  'Edwin van der Sar': 2011,
-  'Ronaldo Nazário': 2007,
-  'Gianfranco Zola': 2003,
-  'Gennaro Gattuso': 2017
-};
-
-function getPlayerStatus(player) {
-  const name = player.n;
-  if (COACHES.has(name)) {
-    return { active: false, lastYear: LAST_PLAYED[name] || 2025 };
-  }
-  if (LAST_PLAYED[name] !== undefined) {
-    return { active: false, lastYear: LAST_PLAYED[name] };
-  }
-  return { active: true, lastYear: null };
-}
-
 const $=id=>document.getElementById(id);
 const stage=$('stage'),track=$('track');
 let list=P,i=0,picked=null,drag=null;
@@ -614,10 +527,7 @@ $('filters').onclick=e=>{
 
 function render(){
   track.innerHTML=list.map((p,k)=>{
-    const status = getPlayerStatus(p);
-    const label = status.active ? 'Active' : `Last played ${status.lastYear}`;
-    return `<div class="card${picked===p?' picked':''}${status.active?' active-player':' inactive-player'}" data-k="${k}" style="--c1:${p.c1};--c2:${p.c2};animation-delay:${Math.min(k*40,400)}ms">
-      <div class="card-status ${status.active ? 'is-active' : 'is-inactive'}">${label}</div>
+    return `<div class="card${picked===p?' picked':''}" data-k="${k}" style="--c1:${p.c1};--c2:${p.c2};animation-delay:${Math.min(k*40,400)}ms">
       <div class="num">${p.num}</div>
       <div class="ini">${ini(p.n)}</div>
       <div class="flag">${p.f}</div>
@@ -671,13 +581,11 @@ function choose(){
   const p=list[i];if(!p)return;picked=p;
   document.querySelectorAll('.card').forEach((c,k)=>c.classList.toggle('picked',k===i));
   const pn=$('panel');pn.style.setProperty('--c1',p.c1);pn.style.setProperty('--c2',p.c2);
-  const status=getPlayerStatus(p);
   $('pb').textContent=p.num;$('pn').textContent=p.n+' '+p.f;
   $('pd').textContent=`${POS[p.pos]} · ${p.club}`;
-  const statusText = status.active ? 'Active now' : `Inactive • last played ${status.lastYear}`;
   const u=$('pu');
-  u.textContent = `${statusText} • ${p.ucl ? '🏆 Champions League winner' : 'No Champions League title'}`;
-  u.style.color = status.active ? 'var(--accent)' : '#dce7ff';
+  u.textContent = p.ucl ? '🏆 Champions League winner' : 'No Champions League title';
+  u.style.color = p.ucl ? 'var(--accent)' : '#dce7ff';
   u.style.fontWeight='600';
   pn.classList.remove('pop');pn.offsetWidth;pn.classList.add('show','pop');
 }

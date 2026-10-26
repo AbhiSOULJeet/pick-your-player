@@ -514,41 +514,69 @@ Stefan Effenberg,de,MF,Bayern,11,1
 Giovane Élber,br,FW,Bayern,9,1
 Mehmet Scholl,de,MF,Bayern,7,1`.split('\n').map(l=>{const[n,c,pos,club,num,w]=l.split(',');const[c1,c2]=CL[club]||[`hsl(${hs(club)} 55% 38%)`,`hsl(${(hs(club)+30)%360} 60% 16%)`];return{n,f:FL[c]||iso(c),pos,club,num,c1,c2,ucl:w==='1'}}).filter(p=>!seen.has(p.n)&&seen.add(p.n)).slice(0,350));
 
-const RETIRED_PLAYERS = new Set([
-  'Zinedine Zidane','Ronaldinho','Xavi Hernández','Andrés Iniesta','Thierry Henry','Kaká','Wayne Rooney','Steven Gerrard','Frank Lampard','Andrea Pirlo','Gianluigi Buffon','Iker Casillas','Virgil van Dijk','Sergio Ramos','Luka Modrić','Karim Benzema','Zlatan Ibrahimović','Gianluigi Buffon','David Beckham','Ryan Giggs','Paul Scholes','Carlos Tevez','Ruud van Nistelrooy','Robin van Persie','Andrew Cole','Andy Cole','Michael Owen','Raúl','Luis Suárez','Didier Drogba','Samuel Eto\'o','David Villa','Fernando Torres','Andriy Shevchenko','Gabriel Batistuta','Francesco Totti','Alessandro Del Piero','Filippo Inzaghi','Miroslav Klose','Thomas Müller','Antoine Griezmann','Olivier Giroud','Edinson Cavani','Gonzalo Higuaín','Radamel Falcao','Rivaldo','Pedro','Paul Scholes','Clarence Seedorf','Gennaro Gattuso','Marco Verratti','Paolo Maldini','Fabio Cannavaro','Alessandro Nesta','Carles Puyol','Gerard Piqué','John Terry','Rio Ferdinand','Nemanja Vidić','Philipp Lahm','Dani Alves','Marcelo','Roberto Carlos','Cafu','Lúcio','Thiago Silva','Marquinhos','Giorgio Chiellini','Leonardo Bonucci','Raphaël Varane','Jude Bellingham','Kylian Mbappé','Erling Haaland','Harry Kane','Mohamed Salah','Sergio Ramos','Vinícius Jr','Cesc Fàbregas','Xabi Alonso','Bastian Schweinsteiger','Bastian Florian','Mesut Özil','Michael Ballack','N\'Golo Kanté','Paul Pogba','Jordi Alba','David Alaba','Ashley Cole','Antonio Rüdiger','Manuel Neuer','Petr Čech','Edwin van der Sar','Oliver Kahn','Thibaut Courtois','Ederson','Gianluigi Donnarumma','Luis García','Jamie Carragher','Andy Robertson','Jordan Henderson','Pepe Reina','Peter Schmeichel','Sami Hyypiä','César Azpilicueta','Nani','Patrice Evra','Michael Carrick','Jesse Lingard','Darren Fletcher','Ashley Young','Wayne Rooney','Dani Carvajal','Pepe','Fernando Hierro','Rui Costa','Hernán Crespo','Robin van Persie'
+const ACTIVE_MANAGERS = new Set([
+  'Zinedine Zidane',
+  'Xavi Hernández',
+  'Andrés Iniesta',
+  'Thierry Henry',
+  'Steven Gerrard',
+  'Frank Lampard',
+  'Wayne Rooney',
+  'Mikel Arteta',
+  'Pep Guardiola',
+  'Jürgen Klopp',
+  'Arne Slot'
 ]);
-const LAST_ACTIVITY = {
+
+const LAST_PLAYED = {
+  'Cristiano Ronaldo': 2025,
+  'Lionel Messi': 2025,
+  'Neymar Jr': 2025,
+  'Kylian Mbappé': 2025,
+  'Erling Haaland': 2025,
+  'Mohamed Salah': 2025,
+  'Harry Kane': 2025,
+  'Kevin De Bruyne': 2025,
+  'Luka Modrić': 2025,
+  'Vinícius Jr': 2025,
+  'Jude Bellingham': 2025,
+  'Son Heung-min': 2025,
+  'Rodri': 2025,
+  'Rodrigo De Paul': 2025,
+  'Sergio Ramos': 2023,
+  'David Alaba': 2025,
+  'Thiago Silva': 2025,
+  'Marquinhos': 2025,
+  'Gianluigi Donnarumma': 2025,
+  'Iker Casillas': 2020,
+  'Gianluigi Buffon': 2023,
+  'Dani Alves': 2023,
+  'Marcelo': 2022,
+  'Pepe': 2024,
+  'Philipp Lahm': 2017,
   'Ronaldinho': 2011,
-  'Zinedine Zidane': 2006,
   'Xavi Hernández': 2015,
   'Andrés Iniesta': 2018,
   'Thierry Henry': 2012,
-  'Kaká': 2014,
-  'Wayne Rooney': 2021,
   'Steven Gerrard': 2015,
   'Frank Lampard': 2014,
-  'Andrea Pirlo': 2015,
-  'Roberto Carlos': 2007,
-  'Paolo Maldini': 2009,
-  'Gianluigi Buffon': 2023,
-  'Iker Casillas': 2020,
-  'Sergio Ramos': 2023,
-  'David Beckham': 2013,
-  'Ryan Giggs': 2014,
+  'Wayne Rooney': 2021,
   'Paul Scholes': 2013,
-  'Raúl': 2018,
+  'Ryan Giggs': 2014,
+  'David Beckham': 2013,
+  'Ronaldinho': 2011,
+  'Zinedine Zidane': 2006,
+  'Kaká': 2014,
+  'Zlatan Ibrahimović': 2023,
+  'Karim Benzema': 2025,
+  'Robert Lewandowski': 2025,
+  'Ronaldo Nazário': 2007,
+  'Sergio Agüero': 2021,
   'Didier Drogba': 2013,
   'Samuel Eto\'o': 2018,
   'David Villa': 2019,
   'Fernando Torres': 2018,
-  'Andriy Shevchenko': 2012,
-  'Francesco Totti': 2017,
-  'Alessandro Del Piero': 2014,
-  'Filippo Inzaghi': 2012,
-  'Miroslav Klose': 2016,
-  'Thomas Müller': 2025,
-  'Antoine Griezmann': 2025,
-  'Olivier Giroud': 2025,
+  'Raúl': 2018,
   'Gonzalo Higuaín': 2019,
   'Radamel Falcao': 2022,
   'Rivaldo': 2003,
@@ -556,72 +584,33 @@ const LAST_ACTIVITY = {
   'John Terry': 2017,
   'Rio Ferdinand': 2015,
   'Nemanja Vidić': 2016,
-  'Philipp Lahm': 2017,
   'Dani Alves': 2023,
-  'Marcelo': 2022,
   'Cafu': 2003,
   'Lúcio': 2012,
-  'Thiago Silva': 2025,
-  'Marquinhos': 2025,
-  'Giorgio Chiellini': 2022,
-  'Leonardo Bonucci': 2024,
-  'Raphaël Varane': 2024,
-  'David Alaba': 2025,
+  'Andrea Pirlo': 2015,
+  'Paolo Maldini': 2009,
+  'Alessandro Nesta': 2013,
+  'Gerard Piqué': 2022,
+  'Carles Puyol': 2013,
+  'Jordi Alba': 2025,
   'Ashley Cole': 2014,
   'Antonio Rüdiger': 2025,
   'Petr Čech': 2019,
   'Edwin van der Sar': 2011,
   'Oliver Kahn': 2008,
   'Thibaut Courtois': 2025,
-  'Gianluigi Donnarumma': 2025,
-  'Paul Pogba': 2024,
-  'Mesut Özil': 2022,
-  'Michael Ballack': 2012,
-  'N\'Golo Kanté': 2025,
-  'Jordi Alba': 2025,
-  'Jamie Carragher': 2013,
-  'Andy Robertson': 2025,
-  'Jordan Henderson': 2024,
-  'Pepe Reina': 2023,
-  'Sami Hyypiä': 2009,
-  'Roberto Firmino': 2024,
-  'Illkay Gündoğan': 2025,
-  'Jude Bellingham': 2025,
-  'Kylian Mbappé': 2025,
-  'Erling Haaland': 2025,
-  'Harry Kane': 2025,
-  'Mohamed Salah': 2025,
-  'Vinícius Jr': 2025,
-  'Karim Benzema': 2025,
-  'Zlatan Ibrahimović': 2023
+  'Ederson': 2025,
+  'Manuel Neuer': 2025,
+  'Alisson': 2025,
+  'Virgil van Dijk': 2025,
+  'Sergio Ramos': 2023
 };
 
 function getPlayerStatus(player) {
-  if (LAST_ACTIVITY[player.n] !== undefined) {
-    return { active: false, lastYear: LAST_ACTIVITY[player.n] };
-  }
-  if (RETIRED_PLAYERS.has(player.n)) {
-    return { active: false, lastYear: 2024 };
-  }
+  const name = player.n;
+  if (ACTIVE_MANAGERS.has(name)) return { active: false, lastYear: 2025 };
+  if (LAST_PLAYED[name] !== undefined) return { active: false, lastYear: LAST_PLAYED[name] };
   return { active: true, lastYear: null };
-}
-
-const PLAYER_IMAGE_CACHE = new Map();
-async function fetchPlayerImage(name) {
-  if (PLAYER_IMAGE_CACHE.has(name)) return PLAYER_IMAGE_CACHE.get(name);
-  const url = `https://en.wikipedia.org/w/api.php?origin=*&action=query&format=json&prop=pageimages|pageterms&piprop=original&redirects=1&titles=${encodeURIComponent(name)}`;
-  try {
-    const res = await fetch(url, { headers: { Accept: 'application/json' } });
-    const data = await res.json();
-    const pages = data?.query?.pages || {};
-    const page = Object.values(pages)[0];
-    const imageUrl = page?.original?.source || page?.thumbnail?.source;
-    PLAYER_IMAGE_CACHE.set(name, imageUrl || null);
-    return imageUrl || null;
-  } catch {
-    PLAYER_IMAGE_CACHE.set(name, null);
-    return null;
-  }
 }
 
 const $=id=>document.getElementById(id);
@@ -637,31 +626,15 @@ $('filters').onclick=e=>{
   list=b.dataset.k==='All'?P:P.filter(p=>p.pos===b.dataset.k);i=0;render();
 };
 
-async function hydratePlayerImages() {
-  const cards = track.querySelectorAll('.player-image');
-  for (const img of cards) {
-    const name = img.dataset.name;
-    const src = await fetchPlayerImage(name);
-    if (src) {
-      img.src = src;
-      img.style.opacity = '1';
-    } else {
-      img.src = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 420'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop stop-color='#0f172a'/><stop offset='1' stop-color='#1d4ed8'/></linearGradient></defs><rect width='100%' height='100%' fill='url(#g)'/><circle cx='150' cy='140' r='62' fill='rgba(255,255,255,.18)'/><path d='M100 285c15-55 52-78 100-78s85 23 100 78v75H100z' fill='rgba(255,255,255,.18)'/><text x='50%' y='92%' text-anchor='middle' fill='white' font-family='sans-serif' font-size='18'>${name}</text></svg>`)}`;
-    }
-  }
-}
-
 function render(){
-  const markup = list.map((p,k)=>{
+  track.innerHTML=list.map((p,k)=>{
     const status = getPlayerStatus(p);
-    const chipText = status.active ? 'Active' : `Inactive · ${status.lastYear}`;
+    const label = status.active ? 'Active' : `Last played ${status.lastYear}`;
     return `<div class="card${picked===p?' picked':''}${status.active?' active-player':' inactive-player'}" data-k="${k}" style="--c1:${p.c1};--c2:${p.c2};animation-delay:${Math.min(k*40,400)}ms">
-      <img class="player-image" data-name="${p.n}" alt="${p.n}" loading="lazy" />
-      <div class="card-overlay"></div>
+      <div class="card-status ${status.active ? 'is-active' : 'is-inactive'}">${label}</div>
       <div class="num">${p.num}</div>
       <div class="ini">${ini(p.n)}</div>
       <div class="flag">${p.f}</div>
-      <div class="card-status ${status.active ? 'is-active' : 'is-inactive'}">${chipText}</div>
       <div class="content">
         <h3>${p.n}</h3>
         <p>${p.club}</p>
@@ -669,9 +642,7 @@ function render(){
       </div>
     </div>`;
   }).join('');
-  track.innerHTML = markup;
   update(true);
-  hydratePlayerImages();
 }
 
 function offset(){
@@ -717,11 +688,11 @@ function choose(){
   const status=getPlayerStatus(p);
   $('pb').textContent=p.num;$('pn').textContent=p.n+' '+p.f;
   $('pd').textContent=`${POS[p.pos]} · ${p.club}`;
-  const statusText = status.active ? 'Active now' : `Inactive • last activity ${status.lastYear}`;
+  const statusText = status.active ? 'Active now' : `Inactive • last played ${status.lastYear}`;
   const u=$('pu');
   u.textContent = `${statusText} • ${p.ucl ? '🏆 Champions League winner' : 'No Champions League title'}`;
   u.style.color = status.active ? 'var(--accent)' : '#dce7ff';
-  u.style.fontWeight = '600';
+  u.style.fontWeight='600';
   pn.classList.remove('pop');pn.offsetWidth;pn.classList.add('show','pop');
 }
 let busy=false;

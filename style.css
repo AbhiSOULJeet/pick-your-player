@@ -1,11 +1,12 @@
 :root{
   box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
   --bg:#0b0f1a;--bg2:#141b2e;--text:#f2f5ff;--muted:#8d97b5;--card:#1a2238;--line:rgba(255,255,255,.08);--accent:#3ddc97;
+  --football-accent:#3ddc97;--cricket-accent:#f97316;--panel-shadow:rgba(15, 23, 42, 0.45);
   color-scheme:dark;
 }
 @media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
-  --bg:#f3f5fb;--bg2:#e4e9f6;--text:#12172a;--muted:#5d6785;--card:#fff;--line:rgba(0,0,0,.08);--accent:#12b76a;color-scheme:light}}
-:root[data-theme="dark"]{--bg:#0b0f1a;--bg2:#141b2e;--text:#f2f5ff;--muted:#8d97b5;--card:#1a2238;--line:rgba(255,255,255,.08);--accent:#3ddc97}
+  --bg:#f3f5fb;--bg2:#e4e9f6;--text:#12172a;--muted:#5d6785;--card:#fff;--line:rgba(0,0,0,.08);--accent:#12b76a;--football-accent:#12b76a;--cricket-accent:#f97316;color-scheme:light}}
+:root[data-theme="dark"]{--bg:#0b0f1a;--bg2:#141b2e;--text:#f2f5ff;--muted:#8d97b5;--card:#1a2238;--line:rgba(255,255,255,.08);--accent:#3ddc97;--football-accent:#3ddc97;--cricket-accent:#f97316}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *,*::before,*::after{box-sizing:inherit}
 body{margin:0;min-height:100vh;font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--text);
@@ -111,10 +112,26 @@ h1{font-size:clamp(1.6rem,5vw,2.4rem);margin:0;letter-spacing:-.02em;text-align:
   font: inherit;
   font-weight: 700;
   cursor: pointer;
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 .sport-btn:hover {
   transform: translateY(-2px);
   border-color: var(--accent);
   background: rgba(61, 220, 151, 0.08);
+  box-shadow: 0 10px 30px rgba(61, 220, 151, 0.12);
+}
+.sport-btn.football:hover {
+  border-color: var(--football-accent);
+  background: rgba(61, 220, 151, 0.08);
+}
+.sport-btn.cricket:hover {
+  border-color: var(--cricket-accent);
+  background: rgba(249, 115, 22, 0.12);
+}
+@media (max-width: 560px){
+  .sport-card{padding:22px 16px 18px}
+  .sport-options{grid-template-columns:1fr}
+  .ctrl{gap:10px}
+  .pick,.rand{flex:1 1 120px}
+  .arrow{width:42px;height:42px}
 }

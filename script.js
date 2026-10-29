@@ -1,145 +1,239 @@
 const FOOTBALL_BASE = [
+  // --- UCL WINNERS (ucl: true) ---
   { name: 'Lionel Messi', flag: '🇦🇷', pos: 'FW', club: 'Inter Miami', num: '10', c1: '#75aadb', c2: '#1b3a6b', ucl: true },
   { name: 'Cristiano Ronaldo', flag: '🇵🇹', pos: 'FW', club: 'Al Nassr', num: '7', c1: '#c8102e', c2: '#4a0a14', ucl: true },
-  { name: 'Kylian Mbappé', flag: '🇫🇷', pos: 'FW', club: 'Real Madrid', num: '9', c1: '#1f4fd8', c2: '#0a1a4d', ucl: true },
-  { name: 'Erling Haaland', flag: '🇳🇴', pos: 'FW', club: 'Manchester City', num: '9', c1: '#6cabdd', c2: '#1c2c5b', ucl: true },
-  { name: 'Kevin De Bruyne', flag: '🇧🇪', pos: 'MF', club: 'Napoli', num: '17', c1: '#6cabdd', c2: '#12305e', ucl: true },
+  { name: 'Karim Benzema', flag: '🇫🇷', pos: 'FW', club: 'Al Ittihad', num: '9', c1: '#eab308', c2: '#0f172a', ucl: true },
+  { name: 'Luka Modrić', flag: '🇭🇷', pos: 'MF', club: 'Real Madrid', num: '10', c1: '#e53935', c2: '#3b0d12', ucl: true },
+  { name: 'Toni Kroos', flag: '🇩🇪', pos: 'MF', club: 'Real Madrid', num: '8', c1: '#f8fafc', c2: '#1e293b', ucl: true },
+  { name: 'Gareth Bale', flag: '🏴󠁧󠁢󠁷󠁬󠁳󠁿', pos: 'FW', club: 'Real Madrid', num: '11', c1: '#dc2626', c2: '#166534', ucl: true },
+  { name: 'Sergio Ramos', flag: '🇪🇸', pos: 'DF', club: 'Sevilla', num: '4', c1: '#e0e0f0', c2: '#4a4f7a', ucl: true },
+  { name: 'Marcelo', flag: '🇧🇷', pos: 'DF', club: 'Fluminense', num: '12', c1: '#facc15', c2: '#1d4ed8', ucl: true },
+  { name: 'Casemiro', flag: '🇧🇷', pos: 'MF', club: 'Manchester United', num: '18', c1: '#dc2626', c2: '#111827', ucl: true },
+  { name: 'Daniel Carvajal', flag: '🇪🇸', pos: 'DF', club: 'Real Madrid', num: '2', c1: '#f8fafc', c2: '#1e293b', ucl: true },
+  { name: 'Andrés Iniesta', flag: '🇪🇸', pos: 'MF', club: 'Barcelona', num: '8', c1: '#a50044', c2: '#1d4ed8', ucl: true },
+  { name: 'Xavi Hernández', flag: '🇪🇸', pos: 'MF', club: 'Barcelona', num: '6', c1: '#a50044', c2: '#1d4ed8', ucl: true },
+  { name: 'Sergio Busquets', flag: '🇪🇸', pos: 'MF', club: 'Inter Miami', num: '5', c1: '#ec4899', c2: '#1e293b', ucl: true },
+  { name: 'Gerard Piqué', flag: '🇪🇸', pos: 'DF', club: 'Barcelona', num: '3', c1: '#a50044', c2: '#1d4ed8', ucl: true },
+  { name: 'Carles Puyol', flag: '🇪🇸', pos: 'DF', club: 'Barcelona', num: '5', c1: '#a50044', c2: '#1d4ed8', ucl: true },
+  { name: 'Neymar Jr', flag: '🇧🇷', pos: 'FW', club: 'Al Hilal', num: '10', c1: '#1d4ed8', c2: '#0b6b3a', ucl: true },
+  { name: 'Luis Suárez', flag: '🇺🇾', pos: 'FW', club: 'Inter Miami', num: '9', c1: '#ec4899', c2: '#1f2937', ucl: true },
+  { name: 'Thierry Henry', flag: '🇫🇷', pos: 'FW', club: 'Barcelona', num: '14', c1: '#a50044', c2: '#4a0b10', ucl: true },
+  { name: 'Ronaldinho', flag: '🇧🇷', pos: 'FW', club: 'Barcelona', num: '10', c1: '#fbbf24', c2: '#1e3a8a', ucl: true },
+  { name: 'Samuel Eto\'o', flag: '🇨🇲', pos: 'FW', club: 'Inter Milan', num: '9', c1: '#0284c7', c2: '#0f172a', ucl: true },
+  { name: 'Wayne Rooney', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'FW', club: 'Manchester United', num: '10', c1: '#da291c', c2: '#3b0a06', ucl: true },
+  { name: 'Paul Scholes', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'MF', club: 'Manchester United', num: '18', c1: '#da291c', c2: '#1e293b', ucl: true },
+  { name: 'Ryan Giggs', flag: '🏴󠁧󠁢󠁷󠁬󠁳󠁿', pos: 'MF', club: 'Manchester United', num: '11', c1: '#da291c', c2: '#1e293b', ucl: true },
+  { name: 'Rio Ferdinand', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'DF', club: 'Manchester United', num: '5', c1: '#da291c', c2: '#1e293b', ucl: true },
+  { name: 'Nemanja Vidić', flag: '🇷🇸', pos: 'DF', club: 'Manchester United', num: '15', c1: '#da291c', c2: '#1e293b', ucl: true },
+  { name: 'Edwin van der Sar', flag: '🇳🇱', pos: 'GK', club: 'Manchester United', num: '1', c1: '#da291c', c2: '#1e293b', ucl: true },
+  { name: 'Frank Lampard', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'MF', club: 'Chelsea', num: '8', c1: '#034694', c2: '#021a3a', ucl: true },
+  { name: 'John Terry', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'DF', club: 'Chelsea', num: '26', c1: '#034694', c2: '#0f172a', ucl: true },
+  { name: 'Didier Drogba', flag: '🇨🇮', pos: 'FW', club: 'Chelsea', num: '11', c1: '#034694', c2: '#0f172a', ucl: true },
+  { name: 'Petr Čech', flag: '🇨🇿', pos: 'GK', club: 'Chelsea', num: '1', c1: '#034694', c2: '#0f172a', ucl: true },
+  { name: 'Steven Gerrard', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'MF', club: 'Liverpool', num: '8', c1: '#c8102e', c2: '#3d0610', ucl: true },
   { name: 'Mohamed Salah', flag: '🇪🇬', pos: 'FW', club: 'Liverpool', num: '11', c1: '#c8102e', c2: '#5a0714', ucl: true },
-  { name: 'Harry Kane', flag: '🏴', pos: 'FW', club: 'Bayern Munich', num: '9', c1: '#dc052d', c2: '#4a0214', ucl: true },
-  { name: 'Vinícius Júnior', flag: '🇧🇷', pos: 'FW', club: 'Real Madrid', num: '7', c1: '#e8e8f0', c2: '#6a5acd', ucl: true },
-  { name: 'Jude Bellingham', flag: '🏴', pos: 'MF', club: 'Real Madrid', num: '5', c1: '#e8e8f0', c2: '#2b3a8a', ucl: true },
-  { name: 'Rodri', flag: '🇪🇸', pos: 'MF', club: 'Manchester City', num: '16', c1: '#9db9de', c2: '#12305e', ucl: true },
-  { name: 'Bukayo Saka', flag: '🏴', pos: 'FW', club: 'Arsenal', num: '7', c1: '#ef4444', c2: '#0f172a', ucl: false },
-  { name: 'Phil Foden', flag: '🏴', pos: 'MF', club: 'Manchester City', num: '47', c1: '#f5d76e', c2: '#1d4ed8', ucl: true },
   { name: 'Sadio Mané', flag: '🇸🇳', pos: 'FW', club: 'Al Nassr', num: '10', c1: '#f59e0b', c2: '#111827', ucl: true },
   { name: 'Virgil van Dijk', flag: '🇳🇱', pos: 'DF', club: 'Liverpool', num: '4', c1: '#c8102e', c2: '#2d0509', ucl: true },
+  { name: 'Alisson Becker', flag: '🇧🇷', pos: 'GK', club: 'Liverpool', num: '1', c1: '#c8102e', c2: '#1d4ed8', ucl: true },
+  { name: 'Trent Alexander-Arnold', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'DF', club: 'Liverpool', num: '66', c1: '#c8102e', c2: '#111827', ucl: true },
+  { name: 'Roberto Firmino', flag: '🇧🇷', pos: 'FW', club: 'Al Ahli', num: '9', c1: '#16a34a', c2: '#111827', ucl: true },
+  { name: 'Jordan Henderson', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'MF', club: 'Ajax', num: '14', c1: '#dc2626', c2: '#111827', ucl: true },
+  { name: 'Kevin De Bruyne', flag: '🇧🇪', pos: 'MF', club: 'Manchester City', num: '17', c1: '#6cabdd', c2: '#12305e', ucl: true },
+  { name: 'Erling Haaland', flag: '🇳🇴', pos: 'FW', club: 'Manchester City', num: '9', c1: '#6cabdd', c2: '#1c2c5b', ucl: true },
+  { name: 'Rodri', flag: '🇪🇸', pos: 'MF', club: 'Manchester City', num: '16', c1: '#9db9de', c2: '#12305e', ucl: true },
+  { name: 'İlkay Gündoğan', flag: '🇩🇪', pos: 'MF', club: 'Manchester City', num: '19', c1: '#6cabdd', c2: '#12305e', ucl: true },
+  { name: 'Bernardo Silva', flag: '🇵🇹', pos: 'MF', club: 'Manchester City', num: '20', c1: '#6cabdd', c2: '#12305e', ucl: true },
   { name: 'Rúben Dias', flag: '🇵🇹', pos: 'DF', club: 'Manchester City', num: '3', c1: '#9bb7ff', c2: '#111827', ucl: true },
-  { name: 'Alisson Becker', flag: '🇧🇷', pos: 'GK', club: 'Liverpool', num: '1', c1: '#c6f6d5', c2: '#1d4ed8', ucl: true },
-  { name: 'Manuel Neuer', flag: '🇩🇪', pos: 'GK', club: 'Bayern Munich', num: '1', c1: '#d1d5db', c2: '#0f172a', ucl: true },
-  { name: 'Luka Modrić', flag: '🇭🇷', pos: 'MF', club: 'Real Madrid', num: '10', c1: '#e53935', c2: '#3b0d12', ucl: true },
-  { name: 'Neymar Jr', flag: '🇧🇷', pos: 'FW', club: 'Al Hilal', num: '10', c1: '#f4c20d', c2: '#0b6b3a', ucl: true },
-  { name: 'Robert Lewandowski', flag: '🇵🇱', pos: 'FW', club: 'Barcelona', num: '9', c1: '#a50044', c2: '#162d6b', ucl: true },
-  { name: 'Thierry Henry', flag: '🇫🇷', pos: 'FW', club: 'Arsenal', num: '14', c1: '#d4202c', c2: '#4a0b10', ucl: true },
-  { name: 'Andrea Pirlo', flag: '🇮🇹', pos: 'MF', club: 'Juventus', num: '21', c1: '#2a2a2a', c2: '#8a8a8a', ucl: true },
-  { name: 'Gianluigi Buffon', flag: '🇮🇹', pos: 'GK', club: 'Juventus', num: '1', c1: '#3a3a3a', c2: '#0b0b0b', ucl: true },
-  { name: 'Sergio Ramos', flag: '🇪🇸', pos: 'DF', club: 'Real Madrid', num: '4', c1: '#e0e0f0', c2: '#4a4f7a', ucl: true },
-  { name: 'Son Heung-min', flag: '🇰🇷', pos: 'FW', club: 'Tottenham', num: '7', c1: '#1a2a5e', c2: '#6b8cd8', ucl: false },
-  { name: 'Luis Suárez', flag: '🇺🇾', pos: 'FW', club: 'Inter Miami', num: '9', c1: '#6ec6ff', c2: '#1f2937', ucl: true },
-  { name: 'Raúl', flag: '🇪🇸', pos: 'FW', club: 'Real Madrid', num: '7', c1: '#facc15', c2: '#1d4ed8', ucl: true },
-  { name: 'Jamie Vardy', flag: '🏴', pos: 'FW', club: 'Leicester City', num: '9', c1: '#0f172a', c2: '#b91c1c', ucl: false },
-  { name: 'Arjen Robben', flag: '🇳🇱', pos: 'FW', club: 'Bayern Munich', num: '10', c1: '#d1d5db', c2: '#1d4ed8', ucl: true },
-  { name: 'Eden Hazard', flag: '🇧🇪', pos: 'FW', club: 'Real Madrid', num: '7', c1: '#1d4ed8', c2: '#111827', ucl: true },
-  { name: 'Rivaldo', flag: '🇧🇷', pos: 'FW', club: 'Barcelona', num: '10', c1: '#c084fc', c2: '#1f2937', ucl: true },
-  { name: 'Paolo Maldini', flag: '🇮🇹', pos: 'DF', club: 'AC Milan', num: '3', c1: '#d1d5db', c2: '#111827', ucl: true },
-  { name: 'Carles Puyol', flag: '🇪🇸', pos: 'DF', club: 'Barcelona', num: '5', c1: '#a50044', c2: '#1d4ed8', ucl: true },
-  { name: 'John Terry', flag: '🏴', pos: 'DF', club: 'Chelsea', num: '26', c1: '#034694', c2: '#0f172a', ucl: true },
-  { name: 'Philipp Lahm', flag: '🇩🇪', pos: 'DF', club: 'Bayern Munich', num: '21', c1: '#dc2626', c2: '#111827', ucl: true },
-  { name: 'Marcelo', flag: '🇧🇷', pos: 'DF', club: 'Real Madrid', num: '12', c1: '#facc15', c2: '#1d4ed8', ucl: true },
-  { name: 'Cafu', flag: '🇧🇷', pos: 'DF', club: 'AC Milan', num: '2', c1: '#dc2626', c2: '#111827', ucl: true },
-  { name: 'Giorgio Chiellini', flag: '🇮🇹', pos: 'DF', club: 'Juventus', num: '3', c1: '#d4d4d8', c2: '#0f172a', ucl: true },
-  { name: 'Trent Alexander-Arnold', flag: '🏴', pos: 'DF', club: 'Liverpool', num: '66', c1: '#c8102e', c2: '#111827', ucl: true },
-  { name: 'Kyle Walker', flag: '🏴', pos: 'DF', club: 'Manchester City', num: '2', c1: '#7dd3fc', c2: '#0f172a', ucl: true },
-  { name: 'David Alaba', flag: '🇦🇹', pos: 'DF', club: 'Real Madrid', num: '4', c1: '#f8fafc', c2: '#1e293b', ucl: true },
-  { name: 'Antonio Rüdiger', flag: '🇩🇪', pos: 'DF', club: 'Real Madrid', num: '22', c1: '#94a3b8', c2: '#111827', ucl: true },
-  { name: 'Pedri', flag: '🇪🇸', pos: 'MF', club: 'Barcelona', num: '8', c1: '#a50044', c2: '#1d4ed8', ucl: true },
-  { name: 'Frenkie de Jong', flag: '🇳🇱', pos: 'MF', club: 'Barcelona', num: '21', c1: '#a50044', c2: '#1d4ed8', ucl: true },
-  { name: 'Declan Rice', flag: '🏴', pos: 'MF', club: 'Arsenal', num: '41', c1: '#ef4444', c2: '#111827', ucl: false },
-  { name: 'Jamal Musiala', flag: '🇩🇪', pos: 'MF', club: 'Bayern Munich', num: '42', c1: '#dc2626', c2: '#111827', ucl: true },
-  { name: 'Thomas Müller', flag: '🇩🇪', pos: 'FW', club: 'Bayern Munich', num: '25', c1: '#dc2626', c2: '#111827', ucl: true },
-  { name: 'Alphonso Davies', flag: '🇨🇦', pos: 'DF', club: 'Bayern Munich', num: '19', c1: '#dc2626', c2: '#111827', ucl: true },
-  { name: 'Mauro Icardi', flag: '🇦🇷', pos: 'FW', club: 'Galatasaray', num: '9', c1: '#fbbf24', c2: '#111827', ucl: false },
-  { name: 'Alexis Mac Allister', flag: '🇦🇷', pos: 'MF', club: 'Liverpool', num: '10', c1: '#c8102e', c2: '#111827', ucl: true },
-  { name: 'Enzo Fernández', flag: '🇦🇷', pos: 'MF', club: 'Chelsea', num: '8', c1: '#034694', c2: '#111827', ucl: false },
-  { name: 'Pablo Dybala', flag: '🇦🇷', pos: 'FW', club: 'Roma', num: '10', c1: '#d1d5db', c2: '#111827', ucl: false },
-  { name: 'Riyad Mahrez', flag: '🇩🇿', pos: 'FW', club: 'Al Ahli', num: '7', c1: '#0f172a', c2: '#22c55e', ucl: false },
-  { name: 'Ciro Immobile', flag: '🇮🇹', pos: 'FW', club: 'Lazio', num: '17', c1: '#1d4ed8', c2: '#111827', ucl: false },
-  { name: 'Lamine Yamal', flag: '🇪🇸', pos: 'FW', club: 'Barcelona', num: '19', c1: '#a50044', c2: '#fcd34d', ucl: false },
-  { name: 'Rasmus Højlund', flag: '🇩🇰', pos: 'FW', club: 'Manchester United', num: '11', c1: '#dc2626', c2: '#111827', ucl: false },
-  { name: 'Gavi', flag: '🇪🇸', pos: 'MF', club: 'Barcelona', num: '6', c1: '#a50044', c2: '#1d4ed8', ucl: true },
-  { name: 'Aitana Bonmatí', flag: '🇪🇸', pos: 'MF', club: 'Barcelona', num: '14', c1: '#facc15', c2: '#1d4ed8', ucl: false },
-  { name: 'Kylian Mbappé', flag: '🇫🇷', pos: 'FW', club: 'Real Madrid', num: '9', c1: '#1f4fd8', c2: '#0a1a4d', ucl: true },
-  { name: 'Andrés Iniesta', flag: '🇪🇸', pos: 'MF', club: 'Barcelona', num: '8', c1: '#a50044', c2: '#1d4ed8', ucl: true },
-  { name: 'Zlatan Ibrahimović', flag: '🇸🇪', pos: 'FW', club: 'AC Milan', num: '11', c1: '#fecb00', c2: '#006aa7', ucl: true },
-  { name: 'Wayne Rooney', flag: '🏴', pos: 'FW', club: 'Manchester United', num: '10', c1: '#da291c', c2: '#3b0a06', ucl: true },
-  { name: 'Steven Gerrard', flag: '🏴', pos: 'MF', club: 'Liverpool', num: '8', c1: '#c8102e', c2: '#3d0610', ucl: true },
-  { name: 'Frank Lampard', flag: '🏴', pos: 'MF', club: 'Chelsea', num: '8', c1: '#034694', c2: '#021a3a', ucl: true },
-  { name: 'Gianluigi Donnarumma', flag: '🇮🇹', pos: 'GK', club: 'Paris Saint-Germain', num: '99', c1: '#1d4ed8', c2: '#0f172a', ucl: false },
   { name: 'Ederson', flag: '🇧🇷', pos: 'GK', club: 'Manchester City', num: '31', c1: '#4ade80', c2: '#111827', ucl: true },
-  { name: 'Marco Verratti', flag: '🇮🇹', pos: 'MF', club: 'Paris Saint-Germain', num: '6', c1: '#1d4ed8', c2: '#111827', ucl: false },
-  { name: 'Theo Hernandez', flag: '🇫🇷', pos: 'DF', club: 'AC Milan', num: '19', c1: '#dc2626', c2: '#111827', ucl: false },
+  { name: 'Kyle Walker', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'DF', club: 'Manchester City', num: '2', c1: '#7dd3fc', c2: '#0f172a', ucl: true },
+  { name: 'Phil Foden', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'MF', club: 'Manchester City', num: '47', c1: '#f5d76e', c2: '#1d4ed8', ucl: true },
+  { name: 'Riyad Mahrez', flag: '🇩🇿', pos: 'FW', club: 'Al Ahli', num: '7', c1: '#0f172a', c2: '#22c55e', ucl: true },
+  { name: 'Manuel Neuer', flag: '🇩🇪', pos: 'GK', club: 'Bayern Munich', num: '1', c1: '#d1d5db', c2: '#0f172a', ucl: true },
+  { name: 'Thomas Müller', flag: '🇩🇪', pos: 'FW', club: 'Bayern Munich', num: '25', c1: '#dc2626', c2: '#111827', ucl: true },
+  { name: 'Robert Lewandowski', flag: '🇵🇱', pos: 'FW', club: 'Barcelona', num: '9', c1: '#a50044', c2: '#162d6b', ucl: true },
+  { name: 'Joshua Kimmich', flag: '🇩🇪', pos: 'MF', club: 'Bayern Munich', num: '6', c1: '#dc2626', c2: '#111827', ucl: true },
+  { name: 'Alphonso Davies', flag: '🇨🇦', pos: 'DF', club: 'Bayern Munich', num: '19', c1: '#dc2626', c2: '#111827', ucl: true },
+  { name: 'David Alaba', flag: '🇦🇹', pos: 'DF', club: 'Real Madrid', num: '4', c1: '#f8fafc', c2: '#1e293b', ucl: true },
+  { name: 'Arjen Robben', flag: '🇳🇱', pos: 'FW', club: 'Bayern Munich', num: '10', c1: '#d1d5db', c2: '#1d4ed8', ucl: true },
+  { name: 'Franck Ribéry', flag: '🇫🇷', pos: 'FW', club: 'Bayern Munich', num: '7', c1: '#dc2626', c2: '#111827', ucl: true },
+  { name: 'Philipp Lahm', flag: '🇩🇪', pos: 'DF', club: 'Bayern Munich', num: '21', c1: '#dc2626', c2: '#111827', ucl: true },
+  { name: 'Bastian Schweinsteiger', flag: '🇩🇪', pos: 'MF', club: 'Bayern Munich', num: '31', c1: '#dc2626', c2: '#111827', ucl: true },
+  { name: 'Kaká', flag: '🇧🇷', pos: 'MF', club: 'AC Milan', num: '22', c1: '#dc2626', c2: '#111827', ucl: true },
+  { name: 'Andrea Pirlo', flag: '🇮🇹', pos: 'MF', club: 'AC Milan', num: '21', c1: '#dc2626', c2: '#111827', ucl: true },
+  { name: 'Paolo Maldini', flag: '🇮🇹', pos: 'DF', club: 'AC Milan', num: '3', c1: '#d1d5db', c2: '#111827', ucl: true },
+  { name: 'Clarence Seedorf', flag: '🇳🇱', pos: 'MF', club: 'AC Milan', num: '10', c1: '#dc2626', c2: '#111827', ucl: true },
+  { name: 'Alessandro Nesta', flag: '🇮🇹', pos: 'DF', club: 'AC Milan', num: '13', c1: '#dc2626', c2: '#111827', ucl: true },
+  { name: 'Cafu', flag: '🇧🇷', pos: 'DF', club: 'AC Milan', num: '2', c1: '#dc2626', c2: '#111827', ucl: true },
+  { name: 'Vinícius Júnior', flag: '🇧🇷', pos: 'FW', club: 'Real Madrid', num: '7', c1: '#e8e8f0', c2: '#6a5acd', ucl: true },
+  { name: 'Jude Bellingham', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'MF', club: 'Real Madrid', num: '5', c1: '#e8e8f0', c2: '#2b3a8a', ucl: true },
+  { name: 'Antonio Rüdiger', flag: '🇩🇪', pos: 'DF', club: 'Real Madrid', num: '22', c1: '#94a3b8', c2: '#111827', ucl: true },
+  { name: 'Thibaut Courtois', flag: '🇧🇪', pos: 'GK', club: 'Real Madrid', num: '1', c1: '#f8fafc', c2: '#111827', ucl: true },
+  { name: 'N\'Golo Kanté', flag: '🇫🇷', pos: 'MF', club: 'Al Ittihad', num: '7', c1: '#eab308', c2: '#0f172a', ucl: true },
+  { name: 'Kai Havertz', flag: '🇩🇪', pos: 'FW', club: 'Arsenal', num: '29', c1: '#ef4444', c2: '#0f172a', ucl: true },
+
+  // --- UCL NON-WINNERS (ucl: false) ---
+  { name: 'Kylian Mbappé', flag: '🇫🇷', pos: 'FW', club: 'Real Madrid', num: '9', c1: '#1f4fd8', c2: '#0a1a4d', ucl: false },
+  { name: 'Harry Kane', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'FW', club: 'Bayern Munich', num: '9', c1: '#dc052d', c2: '#4a0214', ucl: false },
+  { name: 'Gianluigi Buffon', flag: '🇮🇹', pos: 'GK', club: 'Parma', num: '1', c1: '#3a3a3a', c2: '#0b0b0b', ucl: false },
+  { name: 'Zlatan Ibrahimović', flag: '🇸🇪', pos: 'FW', club: 'AC Milan', num: '11', c1: '#fecb00', c2: '#006aa7', ucl: false },
+  { name: 'Son Heung-min', flag: '🇰🇷', pos: 'FW', club: 'Tottenham', num: '7', c1: '#1a2a5e', c2: '#6b8cd8', ucl: false },
+  { name: 'Bukayo Saka', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'FW', club: 'Arsenal', num: '7', c1: '#ef4444', c2: '#0f172a', ucl: false },
+  { name: 'Declan Rice', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'MF', club: 'Arsenal', num: '41', c1: '#ef4444', c2: '#111827', ucl: false },
+  { name: 'Martin Ødegaard', flag: '🇳🇴', pos: 'MF', club: 'Arsenal', num: '8', c1: '#ef4444', c2: '#111827', ucl: false },
+  { name: 'William Saliba', flag: '🇫🇷', pos: 'DF', club: 'Arsenal', num: '2', c1: '#ef4444', c2: '#111827', ucl: false },
+  { name: 'Gabriel Magalhães', flag: '🇧🇷', pos: 'DF', club: 'Arsenal', num: '6', c1: '#ef4444', c2: '#111827', ucl: false },
+  { name: 'Pedri', flag: '🇪🇸', pos: 'MF', club: 'Barcelona', num: '8', c1: '#a50044', c2: '#1d4ed8', ucl: false },
+  { name: 'Gavi', flag: '🇪🇸', pos: 'MF', club: 'Barcelona', num: '6', c1: '#a50044', c2: '#1d4ed8', ucl: false },
+  { name: 'Lamine Yamal', flag: '🇪🇸', pos: 'FW', club: 'Barcelona', num: '19', c1: '#a50044', c2: '#fcd34d', ucl: false },
+  { name: 'Frenkie de Jong', flag: '🇳🇱', pos: 'MF', club: 'Barcelona', num: '21', c1: '#a50044', c2: '#1d4ed8', ucl: false },
+  { name: 'Raphinha', flag: '🇧🇷', pos: 'FW', club: 'Barcelona', num: '11', c1: '#a50044', c2: '#1d4ed8', ucl: false },
+  { name: 'Jules Koundé', flag: '🇫🇷', pos: 'DF', club: 'Barcelona', num: '23', c1: '#a50044', c2: '#1d4ed8', ucl: false },
+  { name: 'Jamal Musiala', flag: '🇩🇪', pos: 'MF', club: 'Bayern Munich', num: '42', c1: '#dc2626', c2: '#111827', ucl: false },
+  { name: 'Florian Wirtz', flag: '🇩🇪', pos: 'MF', club: 'Bayer Leverkusen', num: '10', c1: '#dc2626', c2: '#111827', ucl: false },
+  { name: 'Granit Xhaka', flag: '🇨🇭', pos: 'MF', club: 'Bayer Leverkusen', num: '34', c1: '#dc2626', c2: '#111827', ucl: false },
   { name: 'Jeremie Frimpong', flag: '🇳🇱', pos: 'DF', club: 'Bayer Leverkusen', num: '30', c1: '#0f172a', c2: '#f59e0b', ucl: false },
   { name: 'Jonathan Tah', flag: '🇩🇪', pos: 'DF', club: 'Bayer Leverkusen', num: '4', c1: '#1d4ed8', c2: '#0f172a', ucl: false },
-  { name: 'Mikel Arteta', flag: '🇪🇸', pos: 'MF', club: 'Arsenal', num: '8', c1: '#ef4444', c2: '#111827', ucl: true },
-  { name: 'Fabio Cannavaro', flag: '🇮🇹', pos: 'DF', club: 'Juventus', num: '5', c1: '#d1d5db', c2: '#111827', ucl: true },
-  { name: 'Angelo Ogbonna', flag: '🇮🇹', pos: 'DF', club: 'West Ham', num: '21', c1: '#7c3aed', c2: '#111827', ucl: false },
-  { name: 'Emerson Palmieri', flag: '🇧🇷', pos: 'DF', club: 'West Ham', num: '33', c1: '#7c3aed', c2: '#111827', ucl: false }
+  { name: 'Alexis Mac Allister', flag: '🇦🇷', pos: 'MF', club: 'Liverpool', num: '10', c1: '#c8102e', c2: '#111827', ucl: false },
+  { name: 'Dominik Szoboszlai', flag: '🇭🇺', pos: 'MF', club: 'Liverpool', num: '8', c1: '#c8102e', c2: '#111827', ucl: false },
+  { name: 'Darwin Núñez', flag: '🇺🇾', pos: 'FW', club: 'Liverpool', num: '9', c1: '#c8102e', c2: '#111827', ucl: false },
+  { name: 'Luis Díaz', flag: '🇨🇴', pos: 'FW', club: 'Liverpool', num: '7', c1: '#c8102e', c2: '#111827', ucl: false },
+  { name: 'Enzo Fernández', flag: '🇦🇷', pos: 'MF', club: 'Chelsea', num: '8', c1: '#034694', c2: '#111827', ucl: false },
+  { name: 'Moisés Caicedo', flag: '🇪🇨', pos: 'MF', club: 'Chelsea', num: '25', c1: '#034694', c2: '#111827', ucl: false },
+  { name: 'Cole Palmer', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'MF', club: 'Chelsea', num: '20', c1: '#034694', c2: '#111827', ucl: false },
+  { name: 'Nicolas Jackson', flag: '🇸🇳', pos: 'FW', club: 'Chelsea', num: '15', c1: '#034694', c2: '#111827', ucl: false },
+  { name: 'Bruno Fernandes', flag: '🇵🇹', pos: 'MF', club: 'Manchester United', num: '8', c1: '#dc2626', c2: '#111827', ucl: false },
+  { name: 'Marcus Rashford', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'FW', club: 'Manchester United', num: '10', c1: '#dc2626', c2: '#111827', ucl: false },
+  { name: 'Rasmus Højlund', flag: '🇩🇰', pos: 'FW', club: 'Manchester United', num: '11', c1: '#dc2626', c2: '#111827', ucl: false },
+  { name: 'Alejandro Garnacho', flag: '🇦🇷', pos: 'FW', club: 'Manchester United', num: '17', c1: '#dc2626', c2: '#111827', ucl: false },
+  { name: 'Kobbie Mainoo', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'MF', club: 'Manchester United', num: '37', c1: '#dc2626', c2: '#111827', ucl: false },
+  { name: 'Lisandro Martínez', flag: '🇦🇷', pos: 'DF', club: 'Manchester United', num: '6', c1: '#dc2626', c2: '#111827', ucl: false },
+  { name: 'André Onana', flag: '🇨🇲', pos: 'GK', club: 'Manchester United', num: '24', c1: '#dc2626', c2: '#111827', ucl: false },
+  { name: 'Giorgio Chiellini', flag: '🇮🇹', pos: 'DF', club: 'Juventus', num: '3', c1: '#d4d4d8', c2: '#0f172a', ucl: false },
+  { name: 'Leonardo Bonucci', flag: '🇮🇹', pos: 'DF', club: 'Juventus', num: '19', c1: '#d4d4d8', c2: '#0f172a', ucl: false },
+  { name: 'Fabio Cannavaro', flag: '🇮🇹', pos: 'DF', club: 'Real Madrid', num: '5', c1: '#d1d5db', c2: '#111827', ucl: false },
+  { name: 'Cesc Fàbregas', flag: '🇪🇸', pos: 'MF', club: 'Chelsea', num: '4', c1: '#034694', c2: '#111827', ucl: false },
+  { name: 'Alexis Sánchez', flag: '🇨🇱', pos: 'FW', club: 'Inter Milan', num: '7', c1: '#0284c7', c2: '#0f172a', ucl: false },
+  { name: 'Romelu Lukaku', flag: '🇧🇪', pos: 'FW', club: 'Napoli', num: '9', c1: '#0284c7', c2: '#111827', ucl: false },
+  { name: 'Victor Osimhen', flag: '🇳🇬', pos: 'FW', club: 'Galatasaray', num: '45', c1: '#f59e0b', c2: '#dc2626', ucl: false },
+  { name: 'Khvicha Kvaratskhelia', flag: '🇬🇪', pos: 'FW', club: 'Napoli', num: '77', c1: '#0284c7', c2: '#111827', ucl: false },
+  { name: 'Lautaro Martínez', flag: '🇦🇷', pos: 'FW', club: 'Inter Milan', num: '10', c1: '#0284c7', c2: '#0f172a', ucl: false },
+  { name: 'Nicolò Barella', flag: '🇮🇹', pos: 'MF', club: 'Inter Milan', num: '23', c1: '#0284c7', c2: '#0f172a', ucl: false },
+  { name: 'Alessandro Bastoni', flag: '🇮🇹', pos: 'DF', club: 'Inter Milan', num: '95', c1: '#0284c7', c2: '#0f172a', ucl: false },
+  { name: 'Federico Dimarco', flag: '🇮🇹', pos: 'DF', club: 'Inter Milan', num: '32', c1: '#0284c7', c2: '#0f172a', ucl: false },
+  { name: 'Gianluigi Donnarumma', flag: '🇮🇹', pos: 'GK', club: 'Paris Saint-Germain', num: '99', c1: '#1d4ed8', c2: '#0f172a', ucl: false },
+  { name: 'Marquinhos', flag: '🇧🇷', pos: 'DF', club: 'Paris Saint-Germain', num: '5', c1: '#1d4ed8', c2: '#0f172a', ucl: false },
+  { name: 'Achraf Hakimi', flag: '🇲🇦', pos: 'DF', club: 'Paris Saint-Germain', num: '2', c1: '#1d4ed8', c2: '#0f172a', ucl: true } // Won UCL with Real Madrid 2017–18
 ];
 
+
 const CRICKET_BASE = [
-  { name: 'Virat Kohli', flag: '🇮🇳', pos: 'BAT', club: 'India', num: '18', c1: '#f44336', c2: '#8b0f1d', trophy: true },
-  { name: 'Rohit Sharma', flag: '🇮🇳', pos: 'BAT', club: 'India', num: '45', c1: '#ff9f1c', c2: '#7a2d00', trophy: true },
-  { name: 'MS Dhoni', flag: '🇮🇳', pos: 'WK', club: 'India', num: '7', c1: '#f6d365', c2: '#d93f2d', trophy: true },
-  { name: 'Jasprit Bumrah', flag: '🇮🇳', pos: 'BOWL', club: 'India', num: '93', c1: '#1b4f9c', c2: '#0a1730', trophy: true },
-  { name: 'Pat Cummins', flag: '🇦🇺', pos: 'BOWL', club: 'Australia', num: '20', c1: '#f3c623', c2: '#0a0a0a', trophy: true },
-  { name: 'Ben Stokes', flag: '🏴', pos: 'AR', club: 'England', num: '55', c1: '#1e2a38', c2: '#8f1d17', trophy: true },
-  { name: 'Jos Buttler', flag: '🏴', pos: 'WK', club: 'England', num: '63', c1: '#0b1f4d', c2: '#7db0ff', trophy: true },
-  { name: 'Shubman Gill', flag: '🇮🇳', pos: 'BAT', club: 'India', num: '77', c1: '#1a6dff', c2: '#0d1d45', trophy: true },
-  { name: 'KL Rahul', flag: '🇮🇳', pos: 'WK', club: 'India', num: '1', c1: '#1d6f6d', c2: '#082f31', trophy: true },
-  { name: 'Hardik Pandya', flag: '🇮🇳', pos: 'AR', club: 'India', num: '33', c1: '#f9c74f', c2: '#8d2f1f', trophy: true },
-  { name: 'Ravindra Jadeja', flag: '🇮🇳', pos: 'AR', club: 'India', num: '8', c1: '#f7b801', c2: '#0a4d8a', trophy: true },
-  { name: 'Travis Head', flag: '🇦🇺', pos: 'BAT', club: 'Australia', num: '62', c1: '#1f5bb5', c2: '#07192b', trophy: true },
-  { name: 'Joe Root', flag: '🏴', pos: 'BAT', club: 'England', num: '66', c1: '#f1f1f1', c2: '#2d2d2d', trophy: true },
-  { name: 'David Warner', flag: '🇦🇺', pos: 'BAT', club: 'Australia', num: '31', c1: '#e26310', c2: '#4a1200', trophy: true },
-  { name: 'Bhuvneshwar Kumar', flag: '🇮🇳', pos: 'BOWL', club: 'India', num: '13', c1: '#1d7a64', c2: '#0c2620', trophy: true },
-  { name: 'Andre Russell', flag: '🇧🇩', pos: 'AR', club: 'West Indies', num: '12', c1: '#e62b2b', c2: '#2a0a0d', trophy: true },
-  { name: 'Kuldeep Yadav', flag: '🇮🇳', pos: 'BOWL', club: 'India', num: '23', c1: '#1a73b8', c2: '#0b2342', trophy: true },
-  { name: 'Steve Smith', flag: '🇦🇺', pos: 'BAT', club: 'Australia', num: '49', c1: '#1b5fbf', c2: '#0b1220', trophy: true },
-  { name: 'Mitchell Starc', flag: '🇦🇺', pos: 'BOWL', club: 'Australia', num: '56', c1: '#0ea5e9', c2: '#0f172a', trophy: true },
-  { name: 'Kane Williamson', flag: '🇳🇿', pos: 'BAT', club: 'New Zealand', num: '22', c1: '#0c5f7a', c2: '#d3f0ff', trophy: true },
-  { name: 'Rashid Khan', flag: '🇦🇫', pos: 'BOWL', club: 'Afghanistan', num: '19', c1: '#0a2e4b', c2: '#a5d6ff', trophy: true },
-  { name: 'Shaheen Afridi', flag: '🇵🇰', pos: 'BOWL', club: 'Pakistan', num: '10', c1: '#0c4a6e', c2: '#d8f3ff', trophy: true },
-  { name: 'Mohammed Siraj', flag: '🇮🇳', pos: 'BOWL', club: 'India', num: '13', c1: '#4372ff', c2: '#0d1b3c', trophy: true },
-  { name: 'Dale Steyn', flag: '🇿🇦', pos: 'BOWL', club: 'South Africa', num: '8', c1: '#0ea5e9', c2: '#0f172a', trophy: true },
-  { name: 'Moeen Ali', flag: '🏴', pos: 'AR', club: 'England', num: '18', c1: '#fbbf24', c2: '#0f172a', trophy: true },
-  { name: 'Stuart Broad', flag: '🏴', pos: 'BOWL', club: 'England', num: '8', c1: '#fca5a5', c2: '#1f2937', trophy: true },
-  { name: 'James Anderson', flag: '🏴', pos: 'BOWL', club: 'England', num: '20', c1: '#bfdbfe', c2: '#0f172a', trophy: true },
-  { name: 'Chris Gayle', flag: '🇯🇲', pos: 'BAT', club: 'West Indies', num: '45', c1: '#7f1d1d', c2: '#facc15', trophy: true },
-  { name: 'Sunil Narine', flag: '🇹🇹', pos: 'BOWL', club: 'West Indies', num: '27', c1: '#d4d4d8', c2: '#1f2937', trophy: true },
-  { name: 'Kumar Sangakkara', flag: '🇱🇰', pos: 'WK', club: 'Sri Lanka', num: '11', c1: '#dbeafe', c2: '#1f2937', trophy: true },
-  { name: 'Muttiah Muralitharan', flag: '🇱🇰', pos: 'BOWL', club: 'Sri Lanka', num: '8', c1: '#9fe870', c2: '#1d4d3b', trophy: true },
-  { name: 'Lasith Malinga', flag: '🇱🇰', pos: 'BOWL', club: 'Sri Lanka', num: '99', c1: '#e1b12c', c2: '#0f172a', trophy: true },
-  { name: 'Brendon McCullum', flag: '🇳🇿', pos: 'WK', club: 'New Zealand', num: '42', c1: '#0066cc', c2: '#fff6e5', trophy: true },
-  { name: 'Martin Guptill', flag: '🇳🇿', pos: 'BAT', club: 'New Zealand', num: '31', c1: '#5eead4', c2: '#0f172a', trophy: true },
-  { name: 'Temba Bavuma', flag: '🇿🇦', pos: 'BAT', club: 'South Africa', num: '13', c1: '#fbbf24', c2: '#1f2937', trophy: true },
-  { name: 'Hashim Amla', flag: '🇿🇦', pos: 'BAT', club: 'South Africa', num: '81', c1: '#4ade80', c2: '#0f172a', trophy: true },
-  { name: 'AB de Villiers', flag: '🇿🇦', pos: 'WK', club: 'South Africa', num: '17', c1: '#94a3b8', c2: '#111827', trophy: true },
-  { name: 'Brian Lara', flag: '🇹🇹', pos: 'BAT', club: 'West Indies', num: '9', c1: '#f59e0b', c2: '#0f172a', trophy: true },
-  { name: 'Shivnarine Chanderpaul', flag: '🇬🇾', pos: 'BAT', club: 'West Indies', num: '45', c1: '#00c2a8', c2: '#0f172a', trophy: true },
-  { name: 'Babar Azam', flag: '🇵🇰', pos: 'BAT', club: 'Pakistan', num: '56', c1: '#0f766e', c2: '#d1fae5', trophy: true },
-  { name: 'Mohammad Rizwan', flag: '🇵🇰', pos: 'WK', club: 'Pakistan', num: '75', c1: '#93c5fd', c2: '#0f172a', trophy: true },
-  { name: 'Shakib Al Hasan', flag: '🇧🇩', pos: 'AR', club: 'Bangladesh', num: '75', c1: '#f59e0b', c2: '#0f172a', trophy: true },
-  { name: 'Tamim Iqbal', flag: '🇧🇩', pos: 'BAT', club: 'Bangladesh', num: '27', c1: '#60a5fa', c2: '#111827', trophy: true },
-  { name: 'Mushfiqur Rahim', flag: '🇧🇩', pos: 'WK', club: 'Bangladesh', num: '15', c1: '#4f46e5', c2: '#0f172a', trophy: true },
-  { name: 'Mohammad Nabi', flag: '🇦🇫', pos: 'AR', club: 'Afghanistan', num: '20', c1: '#86efac', c2: '#0f172a', trophy: true },
-  { name: 'Ibrahim Zadran', flag: '🇦🇫', pos: 'BAT', club: 'Afghanistan', num: '2', c1: '#22d3ee', c2: '#0f172a', trophy: true },
-  { name: 'Naseem Shah', flag: '🇵🇰', pos: 'BOWL', club: 'Pakistan', num: '7', c1: '#ef4444', c2: '#0f172a', trophy: true },
-  { name: 'Adam Zampa', flag: '🇦🇺', pos: 'BOWL', club: 'Australia', num: '18', c1: '#a1d6ff', c2: '#1d3f64', trophy: true },
-  { name: 'Sam Curran', flag: '🏴', pos: 'AR', club: 'England', num: '3', c1: '#1a3b85', c2: '#e7b10c', trophy: true },
-  { name: 'Liam Livingstone', flag: '🏴', pos: 'AR', club: 'England', num: '8', c1: '#b3d5ff', c2: '#1a2448', trophy: true },
-  { name: 'Rachin Ravindra', flag: '🇳🇿', pos: 'AR', club: 'New Zealand', num: '8', c1: '#4ade80', c2: '#0f172a', trophy: true },
-  { name: 'Tim Southee', flag: '🇳🇿', pos: 'BOWL', club: 'New Zealand', num: '38', c1: '#60a5fa', c2: '#0f172a', trophy: true },
-  { name: 'Suryakumar Yadav', flag: '🇮🇳', pos: 'BAT', club: 'India', num: '63', c1: '#22c55e', c2: '#111827', trophy: true },
-  { name: 'Axar Patel', flag: '🇮🇳', pos: 'AR', club: 'India', num: '20', c1: '#f59e0b', c2: '#1e3a8a', trophy: true },
-  { name: 'Yuzvendra Chahal', flag: '🇮🇳', pos: 'BOWL', club: 'India', num: '3', c1: '#1d4ed8', c2: '#0f172a', trophy: true },
-  { name: 'Kagiso Rabada', flag: '🇿🇦', pos: 'BOWL', club: 'South Africa', num: '25', c1: '#0b7a75', c2: '#082d2f', trophy: true },
-  { name: 'Shaheen Afridi', flag: '🇵🇰', pos: 'BOWL', club: 'Pakistan', num: '10', c1: '#3b82f6', c2: '#111827', trophy: true },
-  { name: 'Faf du Plessis', flag: '🇿🇦', pos: 'BAT', club: 'South Africa', num: '18', c1: '#fbbf24', c2: '#111827', trophy: true },
-  { name: 'Quinton de Kock', flag: '🇿🇦', pos: 'WK', club: 'South Africa', num: '12', c1: '#94a3b8', c2: '#111827', trophy: true },
-  { name: 'Imam-ul-Haq', flag: '🇵🇰', pos: 'BAT', club: 'Pakistan', num: '8', c1: '#0f766e', c2: '#d1fae5', trophy: true },
-  { name: 'Nicholas Pooran', flag: '🇹🇹', pos: 'WK', club: 'West Indies', num: '10', c1: '#fbbf24', c2: '#111827', trophy: true },
-  { name: 'Jofra Archer', flag: '🏴', pos: 'BOWL', club: 'England', num: '51', c1: '#fbbf24', c2: '#111827', trophy: true },
-  { name: 'Saqib Mahmood', flag: '🏴', pos: 'BOWL', club: 'England', num: '16', c1: '#93c5fd', c2: '#111827', trophy: true },
-  { name: 'Dawid Malan', flag: '🏴', pos: 'BAT', club: 'England', num: '15', c1: '#f5f5f5', c2: '#111827', trophy: true }
+  // --- ICC TROPHY WINNERS (trophy: true) ---
+  // (Senior ICC Men's Events: ODI CWC, T20 WC, CT, WTC)
+  { name: 'Virat Kohli', flag: '🇮🇳', pos: 'BAT', club: 'India', num: '18', c1: '#1e40af', c2: '#dc2626', trophy: true }, // CWC 2011, CT 2013, T20 WC 2024
+  { name: 'Rohit Sharma', flag: '🇮🇳', pos: 'BAT', club: 'India', num: '45', c1: '#1e40af', c2: '#ea580c', trophy: true }, // T20 WC 2007 & 2024, CT 2013
+  { name: 'MS Dhoni', flag: '🇮🇳', pos: 'WK', club: 'India', num: '7', c1: '#1e40af', c2: '#eab308', trophy: true }, // T20 WC 2007, CWC 2011, CT 2013
+  { name: 'Jasprit Bumrah', flag: '🇮🇳', pos: 'BOWL', club: 'India', num: '93', c1: '#1e40af', c2: '#0f172a', trophy: true }, // T20 WC 2024
+  { name: 'Hardik Pandya', flag: '🇮🇳', pos: 'AR', club: 'India', num: '33', c1: '#1e40af', c2: '#eab308', trophy: true }, // T20 WC 2024
+  { name: 'Ravindra Jadeja', flag: '🇮🇳', pos: 'AR', club: 'India', num: '8', c1: '#1e40af', c2: '#16a34a', trophy: true }, // CT 2013, T20 WC 2024
+  { name: 'Suryakumar Yadav', flag: '🇮🇳', pos: 'BAT', club: 'India', num: '63', c1: '#1e40af', c2: '#22c55e', trophy: true }, // T20 WC 2024
+  { name: 'Axar Patel', flag: '🇮🇳', pos: 'AR', club: 'India', num: '20', c1: '#1e40af', c2: '#f59e0b', trophy: true }, // T20 WC 2024
+  { name: 'Kuldeep Yadav', flag: '🇮🇳', pos: 'BOWL', club: 'India', num: '23', c1: '#1e40af', c2: '#0b2342', trophy: true }, // T20 WC 2024
+  { name: 'Arshdeep Singh', flag: '🇮🇳', pos: 'BOWL', club: 'India', num: '2', c1: '#1e40af', c2: '#0284c7', trophy: true }, // T20 WC 2024
+  { name: 'Mohammed Siraj', flag: '🇮🇳', pos: 'BOWL', club: 'India', num: '13', c1: '#1e40af', c2: '#0d1b3c', trophy: true }, // T20 WC 2024 squad
+  { name: 'Rishabh Pant', flag: '🇮🇳', pos: 'WK', club: 'India', num: '17', c1: '#1e40af', c2: '#dc2626', trophy: true }, // T20 WC 2024
+  { name: 'Yuzvendra Chahal', flag: '🇮🇳', pos: 'BOWL', club: 'India', num: '3', c1: '#1e40af', c2: '#0f172a', trophy: true }, // T20 WC 2024 squad
+  { name: 'Sachin Tendulkar', flag: '🇮🇳', pos: 'BAT', club: 'India', num: '10', c1: '#1e40af', c2: '#ea580c', trophy: true }, // CWC 2011, CT 2002
+  { name: 'Yuvraj Singh', flag: '🇮🇳', pos: 'AR', club: 'India', num: '12', c1: '#1e40af', c2: '#eab308', trophy: true }, // CT 2002, T20 WC 2007, CWC 2011
+  { name: 'Gautam Gambhir', flag: '🇮🇳', pos: 'BAT', club: 'India', num: '5', c1: '#1e40af', c2: '#16a34a', trophy: true }, // T20 WC 2007, CWC 2011
+  { name: 'Virender Sehwag', flag: '🇮🇳', pos: 'BAT', club: 'India', num: '44', c1: '#1e40af', c2: '#ea580c', trophy: true }, // CT 2002, T20 WC 2007, CWC 2011
+  { name: 'Zaheer Khan', flag: '🇮🇳', pos: 'BOWL', club: 'India', num: '34', c1: '#1e40af', c2: '#0f172a', trophy: true }, // CT 2002, CWC 2011
+  { name: 'Harbhajan Singh', flag: '🇮🇳', pos: 'BOWL', club: 'India', num: '27', c1: '#1e40af', c2: '#f59e0b', trophy: true }, // CT 2002, T20 WC 2007, CWC 2011
+  { name: 'Suresh Raina', flag: '🇮🇳', pos: 'BAT', club: 'India', num: '48', c1: '#1e40af', c2: '#eab308', trophy: true }, // CWC 2011, CT 2013
+  { name: 'Bhuvneshwar Kumar', flag: '🇮🇳', pos: 'BOWL', club: 'India', num: '15', c1: '#1e40af', c2: '#0c2620', trophy: true }, // CT 2013
+  { name: 'Shikhar Dhawan', flag: '🇮🇳', pos: 'BAT', club: 'India', num: '25', c1: '#1e40af', c2: '#ea580c', trophy: true }, // CT 2013
+  { name: 'Kapil Dev', flag: '🇮🇳', pos: 'AR', club: 'India', num: '4', c1: '#1e40af', c2: '#eab308', trophy: true }, // CWC 1983
+  { name: 'Pat Cummins', flag: '🇦🇺', pos: 'BOWL', club: 'Australia', num: '30', c1: '#eab308', c2: '#0f172a', trophy: true }, // CWC 2015/2023, T20 WC 2021, WTC 2023
+  { name: 'Mitchell Starc', flag: '🇦🇺', pos: 'BOWL', club: 'Australia', num: '56', c1: '#eab308', c2: '#0f172a', trophy: true }, // CWC 2015/2023, T20 WC 2021, WTC 2023
+  { name: 'Steve Smith', flag: '🇦🇺', pos: 'BAT', club: 'Australia', num: '49', c1: '#eab308', c2: '#0f172a', trophy: true }, // CWC 2015/2023, T20 WC 2021, WTC 2023
+  { name: 'David Warner', flag: '🇦🇺', pos: 'BAT', club: 'Australia', num: '31', c1: '#eab308', c2: '#0f172a', trophy: true }, // CWC 2015/2023, T20 WC 2021, WTC 2023
+  { name: 'Travis Head', flag: '🇦🇺', pos: 'BAT', club: 'Australia', num: '62', c1: '#eab308', c2: '#0f172a', trophy: true }, // WTC 2023, CWC 2023
+  { name: 'Glenn Maxwell', flag: '🇦🇺', pos: 'AR', club: 'Australia', num: '32', c1: '#eab308', c2: '#0f172a', trophy: true }, // CWC 2015/2023, T20 WC 2021
+  { name: 'Josh Hazlewood', flag: '🇦🇺', pos: 'BOWL', club: 'Australia', num: '38', c1: '#eab308', c2: '#0f172a', trophy: true }, // CWC 2015/2023, T20 WC 2021, WTC 2023
+  { name: 'Adam Zampa', flag: '🇦🇺', pos: 'BOWL', club: 'Australia', num: '88', c1: '#eab308', c2: '#0f172a', trophy: true }, // T20 WC 2021, CWC 2023
+  { name: 'Ricky Ponting', flag: '🇦🇺', pos: 'BAT', club: 'Australia', num: '14', c1: '#eab308', c2: '#0f172a', trophy: true }, // CWC 1999/2003/2007, CT 2006/2009
+  { name: 'Shane Warne', flag: '🇦🇺', pos: 'BOWL', club: 'Australia', num: '23', c1: '#eab308', c2: '#0f172a', trophy: true }, // CWC 1999
+  { name: 'Glenn McGrath', flag: '🇦🇺', pos: 'BOWL', club: 'Australia', num: '11', c1: '#eab308', c2: '#0f172a', trophy: true }, // CWC 1999/2003/2007
+  { name: 'Adam Gilchrist', flag: '🇦🇺', pos: 'WK', club: 'Australia', num: '17', c1: '#eab308', c2: '#0f172a', trophy: true }, // CWC 1999/2003/2007
+  { name: 'Brett Lee', flag: '🇦🇺', pos: 'BOWL', club: 'Australia', num: '58', c1: '#eab308', c2: '#0f172a', trophy: true }, // CWC 2003, CT 2006/2009
+  { name: 'Michael Clarke', flag: '🇦🇺', pos: 'BAT', club: 'Australia', num: '23', c1: '#eab308', c2: '#0f172a', trophy: true }, // CWC 2007/2015, CT 2006/2009
+  { name: 'Ben Stokes', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'AR', club: 'England', num: '55', c1: '#0284c7', c2: '#dc2626', trophy: true }, // CWC 2019, T20 WC 2022
+  { name: 'Jos Buttler', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'WK', club: 'England', num: '63', c1: '#0284c7', c2: '#dc2626', trophy: true }, // CWC 2019, T20 WC 2022
+  { name: 'Joe Root', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'BAT', club: 'England', num: '66', c1: '#0284c7', c2: '#0f172a', trophy: true }, // CWC 2019
+  { name: 'Eoin Morgan', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'BAT', club: 'England', num: '16', c1: '#0284c7', c2: '#dc2626', trophy: true }, // CWC 2019
+  { name: 'Jofra Archer', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'BOWL', club: 'England', num: '22', c1: '#0284c7', c2: '#dc2626', trophy: true }, // CWC 2019
+  { name: 'Moeen Ali', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'AR', club: 'England', num: '18', c1: '#0284c7', c2: '#dc2626', trophy: true }, // CWC 2019, T20 WC 2022
+  { name: 'Sam Curran', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'AR', club: 'England', num: '58', c1: '#0284c7', c2: '#dc2626', trophy: true }, // T20 WC 2022
+  { name: 'Liam Livingstone', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'AR', club: 'England', num: '23', c1: '#0284c7', c2: '#dc2626', trophy: true }, // T20 WC 2022
+  { name: 'Stuart Broad', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'BOWL', club: 'England', num: '8', c1: '#0284c7', c2: '#0f172a', trophy: true }, // T20 WC 2010
+  { name: 'Kevin Pietersen', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'BAT', club: 'England', num: '24', c1: '#0284c7', c2: '#0f172a', trophy: true }, // T20 WC 2010
+  { name: 'Chris Gayle', flag: '🇯🇲', pos: 'BAT', club: 'West Indies', num: '45', c1: '#881337', c2: '#eab308', trophy: true }, // CT 2004, T20 WC 2012/2016
+  { name: 'Daren Sammy', flag: '🇱🇨', pos: 'AR', club: 'West Indies', num: '88', c1: '#881337', c2: '#eab308', trophy: true }, // T20 WC 2012/2016
+  { name: 'Marlon Samuels', flag: '🇯🇲', pos: 'BAT', club: 'West Indies', num: '7', c1: '#881337', c2: '#eab308', trophy: true }, // T20 WC 2012/2016
+  { name: 'Dwayne Bravo', flag: '🇹🇹', pos: 'AR', club: 'West Indies', num: '47', c1: '#881337', c2: '#eab308', trophy: true }, // CT 2004, T20 WC 2012/2016
+  { name: 'Andre Russell', flag: '🇯🇲', pos: 'AR', club: 'West Indies', num: '12', c1: '#881337', c2: '#eab308', trophy: true }, // T20 WC 2012/2016
+  { name: 'Sunil Narine', flag: '🇹🇹', pos: 'BOWL', club: 'West Indies', num: '74', c1: '#881337', c2: '#eab308', trophy: true }, // T20 WC 2012
+  { name: 'Brian Lara', flag: '🇹🇹', pos: 'BAT', club: 'West Indies', num: '9', c1: '#881337', c2: '#eab308', trophy: true }, // CT 2004
+  { name: 'Shivnarine Chanderpaul', flag: '🇬🇾', pos: 'BAT', club: 'West Indies', num: '45', c1: '#881337', c2: '#eab308', trophy: true }, // CT 2004
+  { name: 'Kane Williamson', flag: '🇳🇿', pos: 'BAT', club: 'New Zealand', num: '22', c1: '#0f172a', c2: '#f8fafc', trophy: true }, // WTC 2021
+  { name: 'Tim Southee', flag: '🇳🇿', pos: 'BOWL', club: 'New Zealand', num: '38', c1: '#0f172a', c2: '#f8fafc', trophy: true }, // WTC 2021
+  { name: 'Trent Boult', flag: '🇳🇿', pos: 'BOWL', club: 'New Zealand', num: '18', c1: '#0f172a', c2: '#f8fafc', trophy: true }, // WTC 2021
+  { name: 'Ross Taylor', flag: '🇳🇿', pos: 'BAT', club: 'New Zealand', num: '3', c1: '#0f172a', c2: '#f8fafc', trophy: true }, // WTC 2021
+  { name: 'Kumar Sangakkara', flag: '🇱🇰', pos: 'WK', club: 'Sri Lanka', num: '11', c1: '#1e3a8a', c2: '#eab308', trophy: true }, // CT 2002, T20 WC 2014
+  { name: 'Mahela Jayawardene', flag: '🇱🇰', pos: 'BAT', club: 'Sri Lanka', num: '27', c1: '#1e3a8a', c2: '#eab308', trophy: true }, // CT 2002, T20 WC 2014
+  { name: 'Muttiah Muralitharan', flag: '🇱🇰', pos: 'BOWL', club: 'Sri Lanka', num: '8', c1: '#1e3a8a', c2: '#eab308', trophy: true }, // CWC 1996, CT 2002
+  { name: 'Lasith Malinga', flag: '🇱🇰', pos: 'BOWL', club: 'Sri Lanka', num: '99', c1: '#1e3a8a', c2: '#eab308', trophy: true }, // T20 WC 2014
+  { name: 'Sanath Jayasuriya', flag: '🇱🇰', pos: 'AR', club: 'Sri Lanka', num: '7', c1: '#1e3a8a', c2: '#eab308', trophy: true }, // CWC 1996, CT 2002
+  { name: 'Babar Azam', flag: '🇵🇰', pos: 'BAT', club: 'Pakistan', num: '56', c1: '#065f46', c2: '#f8fafc', trophy: true }, // CT 2017
+  { name: 'Fakhar Zaman', flag: '🇵🇰', pos: 'BAT', club: 'Pakistan', num: '39', c1: '#065f46', c2: '#f8fafc', trophy: true }, // CT 2017
+  { name: 'Sarfaraz Ahmed', flag: '🇵🇰', pos: 'WK', club: 'Pakistan', num: '54', c1: '#065f46', c2: '#f8fafc', trophy: true }, // CT 2017
+  { name: 'Shadab Khan', flag: '🇵🇰', pos: 'AR', club: 'Pakistan', num: '7', c1: '#065f46', c2: '#f8fafc', trophy: true }, // CT 2017
+  { name: 'Imran Khan', flag: '🇵🇰', pos: 'AR', club: 'Pakistan', num: '8', c1: '#065f46', c2: '#f8fafc', trophy: true }, // CWC 1992
+  { name: 'Wasim Akram', flag: '🇵🇰', pos: 'BOWL', club: 'Pakistan', num: '3', c1: '#065f46', c2: '#f8fafc', trophy: true }, // CWC 1992
+  { name: 'Waqar Younis', flag: '🇵🇰', pos: 'BOWL', club: 'Pakistan', num: '99', c1: '#065f46', c2: '#f8fafc', trophy: false }, // Missed 1992 WC injured; 0 ICC titles
+  { name: 'Shahid Afridi', flag: '🇵🇰', pos: 'AR', club: 'Pakistan', num: '10', c1: '#065f46', c2: '#f8fafc', trophy: true }, // T20 WC 2009
+  { name: 'Younis Khan', flag: '🇵🇰', pos: 'BAT', club: 'Pakistan', num: '75', c1: '#065f46', c2: '#f8fafc', trophy: true }, // T20 WC 2009
+
+  // --- ICC TROPHY NON-WINNERS (trophy: false) ---
+  { name: 'Shubman Gill', flag: '🇮🇳', pos: 'BAT', club: 'India', num: '77', c1: '#1e40af', c2: '#0d1d45', trophy: false },
+  { name: 'KL Rahul', flag: '🇮🇳', pos: 'WK', club: 'India', num: '1', c1: '#1e40af', c2: '#082f31', trophy: false },
+  { name: 'Mohammed Shami', flag: '🇮🇳', pos: 'BOWL', club: 'India', num: '11', c1: '#1e40af', c2: '#0f172a', trophy: false },
+  { name: 'Shreyas Iyer', flag: '🇮🇳', pos: 'BAT', club: 'India', num: '96', c1: '#1e40af', c2: '#0f172a', trophy: false },
+  { name: 'Yashasvi Jaiswal', flag: '🇮🇳', pos: 'BAT', club: 'India', num: '64', c1: '#1e40af', c2: '#0f172a', trophy: false },
+  { name: 'James Anderson', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'BOWL', club: 'England', num: '20', c1: '#0284c7', c2: '#0f172a', trophy: false },
+  { name: 'Brendon McCullum', flag: '🇳🇿', pos: 'WK', club: 'New Zealand', num: '42', c1: '#0f172a', c2: '#fff6e5', trophy: false },
+  { name: 'Martin Guptill', flag: '🇳🇿', pos: 'BAT', club: 'New Zealand', num: '31', c1: '#0f172a', c2: '#0f172a', trophy: false },
+  { name: 'Rachin Ravindra', flag: '🇳🇿', pos: 'AR', club: 'New Zealand', num: '8', c1: '#0f172a', c2: '#0f172a', trophy: false },
+  { name: 'AB de Villiers', flag: '🇿🇦', pos: 'WK', club: 'South Africa', num: '17', c1: '#15803d', c2: '#eab308', trophy: false },
+  { name: 'Dale Steyn', flag: '🇿🇦', pos: 'BOWL', club: 'South Africa', num: '8', c1: '#15803d', c2: '#0f172a', trophy: false },
+  { name: 'Hashim Amla', flag: '🇿🇦', pos: 'BAT', club: 'South Africa', num: '1', c1: '#15803d', c2: '#eab308', trophy: false },
+  { name: 'Kagiso Rabada', flag: '🇿🇦', pos: 'BOWL', club: 'South Africa', num: '25', c1: '#15803d', c2: '#0f172a', trophy: false },
+  { name: 'Quinton de Kock', flag: '🇿🇦', pos: 'WK', club: 'South Africa', num: '12', c1: '#15803d', c2: '#0f172a', trophy: false },
+  { name: 'Faf du Plessis', flag: '🇿🇦', pos: 'BAT', club: 'South Africa', num: '18', c1: '#15803d', c2: '#eab308', trophy: false },
+  { name: 'Temba Bavuma', flag: '🇿🇦', pos: 'BAT', club: 'South Africa', num: '13', c1: '#15803d', c2: '#0f172a', trophy: false },
+  { name: 'Shaheen Afridi', flag: '🇵🇰', pos: 'BOWL', club: 'Pakistan', num: '10', c1: '#065f46', c2: '#f8fafc', trophy: false },
+  { name: 'Mohammad Rizwan', flag: '🇵🇰', pos: 'WK', club: 'Pakistan', num: '16', c1: '#065f46', c2: '#f8fafc', trophy: false },
+  { name: 'Naseem Shah', flag: '🇵🇰', pos: 'BOWL', club: 'Pakistan', num: '71', c1: '#065f46', c2: '#f8fafc', trophy: false },
+  { name: 'Shakib Al Hasan', flag: '🇧🇩', pos: 'AR', club: 'Bangladesh', num: '75', c1: '#047857', c2: '#dc2626', trophy: false },
+  { name: 'Tamim Iqbal', flag: '🇧🇩', pos: 'BAT', club: 'Bangladesh', num: '28', c1: '#047857', c2: '#dc2626', trophy: false },
+  { name: 'Mushfiqur Rahim', flag: '🇧🇩', pos: 'WK', club: 'Bangladesh', num: '15', c1: '#047857', c2: '#dc2626', trophy: false },
+  { name: 'Mustafizur Rahman', flag: '🇧🇩', pos: 'BOWL', club: 'Bangladesh', num: '90', c1: '#047857', c2: '#dc2626', trophy: false },
+  { name: 'Rashid Khan', flag: '🇦🇫', pos: 'BOWL', club: 'Afghanistan', num: '19', c1: '#2563eb', c2: '#dc2626', trophy: false },
+  { name: 'Mohammad Nabi', flag: '🇦🇫', pos: 'AR', club: 'Afghanistan', num: '7', c1: '#2563eb', c2: '#dc2626', trophy: false },
+  { name: 'Ibrahim Zadran', flag: '🇦🇫', pos: 'BAT', club: 'Afghanistan', num: '18', c1: '#2563eb', c2: '#dc2626', trophy: false },
+  { name: 'Rahmanullah Gurbaz', flag: '🇦🇫', pos: 'WK', club: 'Afghanistan', num: '21', c1: '#2563eb', c2: '#dc2626', trophy: false },
+  { name: 'Nicholas Pooran', flag: '🇹🇹', pos: 'WK', club: 'West Indies', num: '29', c1: '#881337', c2: '#eab308', trophy: false },
+  { name: 'Shimron Hetmyer', flag: '🇬🇾', pos: 'BAT', club: 'West Indies', num: '2', c1: '#881337', c2: '#eab308', trophy: false },
+  { name: 'Alzarri Joseph', flag: '🇦🇬', pos: 'BOWL', club: 'West Indies', num: '8', c1: '#881337', c2: '#eab308', trophy: false }
 ];
 
 const DEFAULT_SPORT = 'football';

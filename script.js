@@ -1,606 +1,354 @@
-const P0=[
-["Lionel Messi","🇦🇷","FW","Inter Miami","10","#75aadb","#1b3a6b"],
-["Cristiano Ronaldo","🇵🇹","FW","Al Nassr","7","#c8102e","#4a0a14"],
-["Neymar Jr","🇧🇷","FW","Santos","10","#f4c20d","#0b6b3a"],
-["Kylian Mbappé","🇫🇷","FW","Real Madrid","9","#1f4fd8","#0a1a4d"],
-["Erling Haaland","🇳🇴","FW","Manchester City","9","#6cabdd","#1c2c5b"],
-["Luka Modrić","🇭🇷","MF","AC Milan","10","#e53935","#3b0d12"],
-["Zinedine Zidane","🇫🇷","MF","Real Madrid","5","#e8e8f0","#5b5f80"],
-["Ronaldinho","🇧🇷","FW","Barcelona","10","#a50044","#004d98"],
-["Xavi Hernández","🇪🇸","MF","Barcelona","6","#004d98","#a50044"],
-["Andrés Iniesta","🇪🇸","MF","Barcelona","8","#a50044","#1b2a5c"],
-["Thierry Henry","🇫🇷","FW","Arsenal","14","#d4202c","#4a0b10"],
-["Kaká","🇧🇷","MF","AC Milan","22","#d00027","#111"],
-["Robert Lewandowski","🇵🇱","FW","Barcelona","9","#a50044","#162d6b"],
-["Mohamed Salah","🇪🇬","FW","Liverpool","11","#c8102e","#5a0714"],
-["Kevin De Bruyne","🇧🇪","MF","Napoli","17","#6cabdd","#12305e"],
-["Harry Kane","🏴󠁧󠁢󠁥󠁮󠁧󠁿","FW","Bayern Munich","9","#dc052d","#4a0214"],
-["Karim Benzema","🇫🇷","FW","Al Hilal","9","#1b6fd8","#071a45"],
-["Zlatan Ibrahimović","🇸🇪","FW","AC Milan","11","#fecb00","#006aa7"],
-["Wayne Rooney","🏴󠁧󠁢󠁥󠁮󠁧󠁿","FW","Man United","10","#da291c","#3b0a06"],
-["Steven Gerrard","🏴󠁧󠁢󠁥󠁮󠁧󠁿","MF","Liverpool","8","#c8102e","#3d0610"],
-["Frank Lampard","🏴󠁧󠁢󠁥󠁮󠁧󠁿","MF","Chelsea","8","#034694","#021a3a"],
-["Andrea Pirlo","🇮🇹","MF","Juventus","21","#2a2a2a","#8a8a8a"],
-["Gianluigi Buffon","🇮🇹","GK","Juventus","1","#3a3a3a","#0b0b0b"],
-["Iker Casillas","🇪🇸","GK","Real Madrid","1","#7b5ee0","#25185a"],
-["Virgil van Dijk","🇳🇱","DF","Liverpool","4","#c8102e","#2d0509"],
-["Sergio Ramos","🇪🇸","DF","Real Madrid","4","#e0e0f0","#4a4f7a"],
-["Son Heung-min","🇰🇷","FW","LAFC","7","#1a2a5e","#6b8cd8"],
-["Vinícius Jr","🇧🇷","FW","Real Madrid","7","#e8e8f0","#6a5acd"],
-["Jude Bellingham","🏴󠁧󠁢󠁥󠁮󠁧󠁿","MF","Real Madrid","5","#e8e8f0","#2b3a8a"],
-["Ronaldo Nazário","🇧🇷","FW","Real Madrid","9","#f4c20d","#0b6b3a"]
-].map(([n,f,pos,club,num,c1,c2])=>({n,f,pos,club,num,c1,c2}));
-const CL={'Man City':['#6cabdd','#12305e'],'Real Madrid':['#e8e8f0','#5a5f8a'],'Barcelona':['#a50044','#004d98'],'Man United':['#da291c','#3b0a06'],'Liverpool':['#c8102e','#3d0610'],'Chelsea':['#034694','#021a3a'],'Arsenal':['#d4202c','#4a0b10'],'Bayern':['#dc052d','#4a0214'],'Atlético':['#cb3524','#1b2a6b'],'Juventus':['#2a2a2a','#8a8a8a'],'Inter':['#0a3a8c','#050f2b'],'AC Milan':['#d00027','#111111'],'Napoli':['#12a0d7','#0a3a6b'],'Roma':['#8e1f2f','#c9921a'],'PSG':['#004170','#da0812'],'Valencia':['#f58220','#222222'],'Lazio':['#87d8f7','#1b4a7a'],'Benfica':['#e30613','#4a0409'],'Monaco':['#e30613','#7a0710'],'Leicester':['#003090','#0a1a4d'],'Boca Juniors':['#00539f','#c9a300']};
-const FL={ar:'🇦🇷',br:'🇧🇷',fr:'🇫🇷',es:'🇪🇸',pt:'🇵🇹',it:'🇮🇹',de:'🇩🇪',en:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',wa:'🏴󠁧󠁢󠁷󠁬󠁳󠁿',nl:'🇳🇱',be:'🇧🇪',no:'🇳🇴',sn:'🇸🇳',ng:'🇳🇬',ci:'🇨🇮',cm:'🇨🇲',ma:'🇲🇦',co:'🇨🇴',uy:'🇺🇾',rs:'🇷🇸',at:'🇦🇹',ie:'🇮🇪',ua:'🇺🇦',cz:'🇨🇿',ge:'🇬🇪',ca:'🇨🇦',si:'🇸🇮'};
-const P=P0.concat(`Luis Suárez,uy,FW,Barcelona,9
-Sergio Agüero,ar,FW,Man City,10
-Didier Drogba,ci,FW,Chelsea,11
-Samuel Eto'o,cm,FW,Barcelona,9
-David Villa,es,FW,Valencia,7
-Fernando Torres,es,FW,Liverpool,9
-Raúl,es,FW,Real Madrid,7
-Ruud van Nistelrooy,nl,FW,Man United,10
-Robin van Persie,nl,FW,Arsenal,10
-Andriy Shevchenko,ua,FW,AC Milan,7
-Gabriel Batistuta,ar,FW,Roma,18
-Francesco Totti,it,FW,Roma,10
-Alessandro Del Piero,it,FW,Juventus,10
-Filippo Inzaghi,it,FW,AC Milan,9
-Miroslav Klose,de,FW,Lazio,11
-Thomas Müller,de,FW,Bayern,25
-Antoine Griezmann,fr,FW,Atlético,7
-Olivier Giroud,fr,FW,AC Milan,9
-Edinson Cavani,uy,FW,PSG,9
-Gonzalo Higuaín,ar,FW,Real Madrid,9
-Carlos Tevez,ar,FW,Man City,32
-Radamel Falcao,co,FW,Monaco,9
-Sadio Mané,sn,FW,Liverpool,10
-Roberto Firmino,br,FW,Liverpool,9
-Gabriel Jesus,br,FW,Arsenal,9
-Rafael Leão,pt,FW,AC Milan,10
-Victor Osimhen,ng,FW,Napoli,9
-Lautaro Martínez,ar,FW,Inter,10
-Marcus Rashford,en,FW,Man United,10
-Raheem Sterling,en,FW,Man City,7
-Bukayo Saka,en,FW,Arsenal,7
-Phil Foden,en,FW,Man City,47
-Michael Owen,en,FW,Liverpool,10
-Jamie Vardy,en,FW,Leicester,9
-Ángel Di María,ar,FW,Benfica,11
-Arjen Robben,nl,FW,Bayern,10
-Franck Ribéry,fr,FW,Bayern,7
-Eden Hazard,be,FW,Chelsea,10
-Romelu Lukaku,be,FW,Inter,9
-Gareth Bale,wa,FW,Real Madrid,11
-Luís Figo,pt,FW,Real Madrid,10
-Rivaldo,br,FW,Barcelona,11
-Pedro,es,FW,Barcelona,17
-Raphinha,br,FW,Barcelona,11
-Lamine Yamal,es,FW,Barcelona,19
-Khvicha Kvaratskhelia,ge,FW,PSG,7
-Paul Scholes,en,MF,Man United,18
-David Beckham,en,MF,Man United,7
-Ryan Giggs,wa,MF,Man United,11
-Patrick Vieira,fr,MF,Arsenal,4
-Cesc Fàbregas,es,MF,Arsenal,4
-Xabi Alonso,es,MF,Liverpool,14
-Sergio Busquets,es,MF,Barcelona,5
-Toni Kroos,de,MF,Real Madrid,8
-Bastian Schweinsteiger,de,MF,Bayern,31
-Mesut Özil,de,MF,Arsenal,10
-Michael Ballack,de,MF,Chelsea,13
-N'Golo Kanté,fr,MF,Chelsea,7
-Paul Pogba,fr,MF,Juventus,10
-Casemiro,br,MF,Real Madrid,14
-Bernardo Silva,pt,MF,Man City,20
-Bruno Fernandes,pt,MF,Man United,8
-Joshua Kimmich,de,MF,Bayern,6
-İlkay Gündoğan,de,MF,Man City,8
-Frenkie de Jong,nl,MF,Barcelona,21
-Pedri,es,MF,Barcelona,8
-Federico Valverde,uy,MF,Real Madrid,15
-Declan Rice,en,MF,Arsenal,41
-Martin Ødegaard,no,MF,Arsenal,8
-Rodri,es,MF,Man City,16
-Jamal Musiala,de,MF,Bayern,42
-Florian Wirtz,de,MF,Liverpool,7
-Clarence Seedorf,nl,MF,AC Milan,10
-Gennaro Gattuso,it,MF,AC Milan,8
-Claude Makélélé,fr,MF,Chelsea,4
-Juan Román Riquelme,ar,MF,Boca Juniors,10
-Pavel Nedvěd,cz,MF,Juventus,11
-Roy Keane,ie,MF,Man United,16
-Wesley Sneijder,nl,MF,Inter,10
-Marco Verratti,it,MF,PSG,6
-Thiago Alcântara,es,MF,Liverpool,6
-James Rodríguez,co,MF,Real Madrid,10
-Paolo Maldini,it,DF,AC Milan,3
-Fabio Cannavaro,it,DF,Juventus,5
-Alessandro Nesta,it,DF,AC Milan,13
-Carles Puyol,es,DF,Barcelona,5
-Gerard Piqué,es,DF,Barcelona,3
-John Terry,en,DF,Chelsea,26
-Rio Ferdinand,en,DF,Man United,5
-Nemanja Vidić,rs,DF,Man United,15
-Philipp Lahm,de,DF,Bayern,21
-Dani Alves,br,DF,Barcelona,2
-Marcelo,br,DF,Real Madrid,12
-Roberto Carlos,br,DF,Real Madrid,3
-Cafu,br,DF,AC Milan,2
-Lúcio,br,DF,Bayern,3
-Thiago Silva,br,DF,Chelsea,6
-Marquinhos,br,DF,PSG,5
-Giorgio Chiellini,it,DF,Juventus,3
-Leonardo Bonucci,it,DF,Juventus,19
-Raphaël Varane,fr,DF,Real Madrid,5
-Trent Alexander-Arnold,en,DF,Liverpool,66
-Achraf Hakimi,ma,DF,PSG,2
-Kyle Walker,en,DF,Man City,2
-Rúben Dias,pt,DF,Man City,3
-Alphonso Davies,ca,DF,Bayern,19
-Jordi Alba,es,DF,Barcelona,18
-David Alaba,at,DF,Real Madrid,4
-Ashley Cole,en,DF,Chelsea,3
-Antonio Rüdiger,de,DF,Real Madrid,22
-Manuel Neuer,de,GK,Bayern,1
-Petr Čech,cz,GK,Chelsea,1
-Edwin van der Sar,nl,GK,Man United,1
-Oliver Kahn,de,GK,Bayern,1
-Thibaut Courtois,be,GK,Real Madrid,1
-Alisson,br,GK,Liverpool,1
-Ederson,br,GK,Man City,31
-David de Gea,es,GK,Man United,1
-Gianluigi Donnarumma,it,GK,PSG,99
-Jan Oblak,si,GK,Atlético,13`.split('\n').map(l=>{const[n,c,pos,club,num]=l.split(',');const[c1,c2]=CL[club];return{n,f:FL[c],pos,club,num,c1,c2}}));
-const UW=new Set(`Lionel Messi|Cristiano Ronaldo|Neymar Jr|Erling Haaland|Luka Modrić|Zinedine Zidane|Ronaldinho|Xavi Hernández|Andrés Iniesta|Thierry Henry|Kaká|Robert Lewandowski|Mohamed Salah|Kevin De Bruyne|Karim Benzema|Wayne Rooney|Steven Gerrard|Frank Lampard|Andrea Pirlo|Iker Casillas|Virgil van Dijk|Sergio Ramos|Vinícius Jr|Jude Bellingham|Luis Suárez|Didier Drogba|Samuel Eto'o|David Villa|Fernando Torres|Raúl|Andriy Shevchenko|Alessandro Del Piero|Filippo Inzaghi|Thomas Müller|Olivier Giroud|Carlos Tevez|Sadio Mané|Roberto Firmino|Phil Foden|Ángel Di María|Arjen Robben|Franck Ribéry|Gareth Bale|Pedro|Khvicha Kvaratskhelia|Paul Scholes|David Beckham|Ryan Giggs|Cesc Fàbregas|Xabi Alonso|Sergio Busquets|Toni Kroos|Bastian Schweinsteiger|N'Golo Kanté|Casemiro|Bernardo Silva|Joshua Kimmich|İlkay Gündoğan|Federico Valverde|Rodri|Clarence Seedorf|Gennaro Gattuso|Claude Makélélé|Roy Keane|Wesley Sneijder|Thiago Alcântara|James Rodríguez|Paolo Maldini|Alessandro Nesta|Carles Puyol|Gerard Piqué|John Terry|Rio Ferdinand|Nemanja Vidić|Philipp Lahm|Dani Alves|Marcelo|Roberto Carlos|Cafu|Lúcio|Thiago Silva|Marquinhos|Raphaël Varane|Trent Alexander-Arnold|Achraf Hakimi|Kyle Walker|Rúben Dias|Alphonso Davies|Jordi Alba|David Alaba|Ashley Cole|Antonio Rüdiger|Manuel Neuer|Petr Čech|Edwin van der Sar|Oliver Kahn|Thibaut Courtois|Alisson|Ederson|Gianluigi Donnarumma`.split('|'));
-P.forEach(p=>p.ucl=UW.has(p.n));
-const hs=s=>[...s].reduce((a,c)=>(a*31+c.charCodeAt(0))>>>0,7)%360;
-const iso=c=>c==='sc'?String.fromCodePoint(0x1F3F4,0xE0067,0xE0062,0xE0073,0xE0063,0xE0074,0xE007F):[...c.toUpperCase()].map(x=>String.fromCodePoint(127397+x.charCodeAt(0))).join('');
-const seen=new Set(P.map(p=>p.n));
-P.push(...`Dennis Bergkamp,nl,FW,Arsenal,10
-Robert Pirès,fr,MF,Arsenal,7
-Freddie Ljungberg,se,MF,Arsenal,8
-Sol Campbell,en,DF,Arsenal,23
-Gilberto Silva,br,MF,Arsenal,19
-Jens Lehmann,de,GK,Arsenal,1
-Kolo Touré,ci,DF,Arsenal,28
-Emmanuel Adebayor,tg,FW,Arsenal,25
-Gaël Clichy,fr,DF,Arsenal,22
-Alexis Sánchez,cl,FW,Arsenal,7
-Aaron Ramsey,wa,MF,Arsenal,16
-Pierre-Emerick Aubameyang,ga,FW,Arsenal,14
-Alexandre Lacazette,fr,FW,Arsenal,9
-William Saliba,fr,DF,Arsenal,2
-Gabriel Magalhães,br,DF,Arsenal,6
-Kai Havertz,de,FW,Arsenal,29,1
-Ben White,en,DF,Arsenal,4
-Mikel Arteta,es,MF,Arsenal,8
-Thomas Partey,gh,MF,Arsenal,5
-Martin Zubimendi,es,MF,Arsenal,36
-Theo Walcott,en,FW,Arsenal,14
-Jack Wilshere,en,MF,Arsenal,10
-Gabriel Martinelli,br,FW,Arsenal,11
-Leandro Trossard,be,FW,Arsenal,19
-Viktor Gyökeres,se,FW,Arsenal,14
-Eberechi Eze,en,MF,Arsenal,10
-César Azpilicueta,es,DF,Chelsea,28,1
-Michael Essien,gh,MF,Chelsea,5
-Juan Mata,es,MF,Chelsea,10,1
-David Luiz,br,DF,Chelsea,4,1
-Branislav Ivanović,rs,DF,Chelsea,2,1
-Ramires,br,MF,Chelsea,7,1
-Oscar,br,MF,Chelsea,11
-Cole Palmer,en,MF,Chelsea,20
-Mason Mount,en,MF,Chelsea,19,1
-Reece James,en,DF,Chelsea,24,1
-Mateo Kovačić,hr,MF,Chelsea,8,1
-Jorginho,it,MF,Chelsea,5,1
-Édouard Mendy,sn,GK,Chelsea,16,1
-Kepa Arrizabalaga,es,GK,Chelsea,1,1
-Enzo Fernández,ar,MF,Chelsea,8
-Joe Cole,en,MF,Chelsea,10
-Timo Werner,de,FW,Chelsea,11,1
-Christopher Nkunku,fr,FW,Chelsea,18
-Hakim Ziyech,ma,FW,Chelsea,22,1
-Ricardo Carvalho,pt,DF,Chelsea,6,1
-Paulo Ferreira,pt,DF,Chelsea,20,1
-Florent Malouda,fr,MF,Chelsea,15
-Nicolas Anelka,fr,FW,Chelsea,39
-Christian Pulisic,us,FW,AC Milan,11,1
-Nani,pt,FW,Man United,17,1
-Patrice Evra,fr,DF,Man United,3,1
-Michael Carrick,en,MF,Man United,16,1
-Darren Fletcher,sc,MF,Man United,24,1
-Anderson,br,MF,Man United,8,1
-Owen Hargreaves,en,MF,Man United,4,1
-Antonio Valencia,ec,FW,Man United,25
-Park Ji-sung,kr,MF,Man United,13,1
-Henrikh Mkhitaryan,am,MF,Man United,22
-Harry Maguire,en,DF,Man United,5
-Jadon Sancho,en,FW,Man United,25
-Dimitar Berbatov,bg,FW,Man United,9
-Ashley Young,en,FW,Man United,18
-Jesse Lingard,en,MF,Man United,14
-Luke Shaw,en,DF,Man United,23
-Victor Lindelöf,se,DF,Man United,2
-Bryan Mbeumo,cm,FW,Man United,19
-Matheus Cunha,br,FW,Man United,10
-Vincent Kompany,be,DF,Man City,4
-David Silva,es,MF,Man City,21
-Yaya Touré,ci,MF,Man City,42
-Joe Hart,en,GK,Man City,1
-John Stones,en,DF,Man City,5,1
-Manuel Akanji,ch,DF,Man City,25,1
-Julián Álvarez,ar,FW,Atlético,19,1
-Riyad Mahrez,dz,FW,Man City,26,1
-João Cancelo,pt,DF,Man City,7
-Gareth Barry,en,MF,Man City,18
-Aleksandar Kolarov,rs,DF,Man City,11
-Pablo Zabaleta,ar,DF,Man City,5
-Joleon Lescott,en,DF,Man City,6
-Jamie Carragher,en,DF,Liverpool,23,1
-Luis García,es,MF,Liverpool,10,1
-Jordan Henderson,en,MF,Liverpool,14,1
-Georginio Wijnaldum,nl,MF,Liverpool,5,1
-Andy Robertson,sc,DF,Liverpool,26,1
-Fabinho,br,MF,Liverpool,3,1
-Luis Díaz,co,FW,Liverpool,7
-Darwin Núñez,uy,FW,Liverpool,9
-Dominik Szoboszlai,hu,MF,Liverpool,8
-James Milner,en,MF,Liverpool,7,1
-Pepe Reina,es,GK,Liverpool,25
-Sami Hyypiä,fi,DF,Liverpool,4,1
-Jerzy Dudek,pl,GK,Liverpool,1,1
-Cody Gakpo,nl,FW,Liverpool,18
-Diogo Jota,pt,FW,Liverpool,20
-Alexander Isak,se,FW,Liverpool,9
-Federico Chiesa,it,FW,Liverpool,14
-Peter Crouch,en,FW,Liverpool,15
-Dirk Kuyt,nl,FW,Liverpool,18
-Jeremie Frimpong,nl,DF,Liverpool,30
-Dele Alli,en,MF,Tottenham,20
-Christian Eriksen,dk,MF,Tottenham,23
-Hugo Lloris,fr,GK,Tottenham,1
-Jermain Defoe,en,FW,Tottenham,18
-Rafael van der Vaart,nl,MF,Tottenham,11
-Ledley King,en,DF,Tottenham,26
-James Maddison,en,MF,Tottenham,10
-Robbie Keane,ie,FW,Tottenham,10
-Eric Dier,en,DF,Tottenham,15
-Toby Alderweireld,be,DF,Tottenham,4
-Jan Vertonghen,be,DF,Tottenham,5
-Mousa Dembélé,be,MF,Tottenham,19
-Dejan Kulusevski,se,FW,Tottenham,21
-Richarlison,br,FW,Tottenham,9
-Cristian Romero,ar,DF,Tottenham,17
-Pedro Porro,es,DF,Tottenham,23
-Kieran Trippier,en,DF,Newcastle,15
-Alan Shearer,en,FW,Newcastle,9
-Bruno Guimarães,br,MF,Newcastle,39
-Emiliano Martínez,ar,GK,Aston Villa,23
-Ollie Watkins,en,FW,Aston Villa,11
-Ivan Toney,en,FW,Brentford,17
-Wilfried Zaha,ci,FW,Crystal Palace,11
-Gylfi Sigurðsson,is,MF,Everton,10
-Tim Cahill,au,MF,Everton,17
-Leighton Baines,en,DF,Everton,3
-Jordan Pickford,en,GK,Everton,1
-Jarrod Bowen,en,FW,West Ham,20
-Guti,es,MF,Real Madrid,14,1
-Fernando Hierro,es,DF,Real Madrid,4,1
-Michel Salgado,es,DF,Real Madrid,2,1
-Iván Helguera,es,DF,Real Madrid,6,1
-Pepe,pt,DF,Real Madrid,3,1
-Dani Carvajal,es,DF,Real Madrid,2,1
-Nacho,es,DF,Real Madrid,6,1
-Lucas Vázquez,es,FW,Real Madrid,17,1
-Marco Asensio,es,FW,Real Madrid,20,1
-Álvaro Morata,es,FW,Atlético,19,1
-Éder Militão,br,DF,Real Madrid,3,1
-Eduardo Camavinga,fr,MF,Real Madrid,12,1
-Aurélien Tchouaméni,fr,MF,Real Madrid,18,1
-Rodrygo,br,FW,Real Madrid,11,1
-Álvaro Arbeloa,es,DF,Real Madrid,17,1
-Dani Ceballos,es,MF,Real Madrid,19,1
-Fernando Morientes,es,FW,Monaco,9,1
-Víctor Valdés,es,GK,Barcelona,1,1
-Marc-André ter Stegen,de,GK,Barcelona,1
-Ousmane Dembélé,fr,FW,PSG,10,1
-Javier Mascherano,ar,MF,Barcelona,14,1
-Éric Abidal,fr,DF,Barcelona,22,1
-Seydou Keita,ml,MF,Barcelona,15,1
-Henrik Larsson,se,FW,Barcelona,7,1
-Deco,pt,MF,Barcelona,20,1
-Ivan Rakitić,hr,MF,Barcelona,4,1
-Samuel Umtiti,fr,DF,Barcelona,23
-Ronald Araújo,uy,DF,Barcelona,4
-Sergi Roberto,es,DF,Barcelona,20,1
-Philippe Coutinho,br,MF,Barcelona,14,1
-Rafael Márquez,mx,DF,Barcelona,4,1
-Fermín López,es,MF,Barcelona,16
-Pau Cubarsí,es,DF,Barcelona,2
-Jules Koundé,fr,DF,Barcelona,23
-Dani Olmo,es,MF,Barcelona,20
-Diego Forlán,uy,FW,Atlético,7
-Gabi,es,MF,Atlético,14
-Koke,es,MF,Atlético,6
-Diego Godín,uy,DF,Atlético,2
-Diego Costa,es,FW,Atlético,19
-Juanfran,es,DF,Atlético,20
-Saúl Ñíguez,es,MF,Atlético,8
-Rodrigo De Paul,ar,MF,Atlético,5
-Diego Simeone,ar,MF,Atlético,14
-Joaquín,es,FW,Real Betis,17
-Roberto Soldado,es,FW,Valencia,9
-Santi Cazorla,es,MF,Villarreal,8
-Jesús Navas,es,FW,Sevilla,16
-Mikel Oyarzabal,es,FW,Real Sociedad,10
-Nico Williams,es,FW,Athletic Club,10
-Iñaki Williams,gh,FW,Athletic Club,9
-Aritz Aduriz,es,FW,Athletic Club,20
-Iago Aspas,es,FW,Celta Vigo,10
-Dani Parejo,es,MF,Villarreal,10
-Gerard Moreno,es,FW,Villarreal,7
-Santiago Cañizares,es,GK,Valencia,1
-Gianluca Zambrotta,it,DF,AC Milan,19,1
-Massimo Ambrosini,it,MF,AC Milan,23,1
-Andrea Barzagli,it,DF,Juventus,15
-Claudio Marchisio,it,MF,Juventus,8
-Arturo Vidal,cl,MF,Bayern,23,1
-Paulo Dybala,ar,FW,Roma,21
-Mario Mandžukić,hr,FW,Juventus,17,1
-Miralem Pjanić,ba,MF,Juventus,5
-Nicolò Barella,it,MF,Inter,23
-Javier Zanetti,ar,DF,Inter,4,1
-Walter Samuel,ar,DF,Inter,25,1
-Maicon,br,DF,Inter,13,1
-Júlio César,br,GK,Inter,12,1
-Samir Handanović,si,GK,Inter,1
-Ivan Perišić,hr,FW,Inter,14
-Milan Škriniar,sk,DF,Inter,37
-Christian Vieri,it,FW,Inter,32
-Adriano,br,FW,Inter,10
-Hernán Crespo,ar,FW,Inter,9
-Rui Costa,pt,MF,AC Milan,10,1
-Marco Materazzi,it,DF,Inter,23,1
-Dejan Stanković,rs,MF,Inter,5,1
-Esteban Cambiasso,ar,MF,Inter,19,1
-Diego Milito,ar,FW,Inter,22,1
-Mario Balotelli,it,FW,Inter,45,1
-Daniele De Rossi,it,MF,Roma,16
-Edin Džeko,ba,FW,Roma,9
-Radja Nainggolan,be,MF,Roma,4
-Dries Mertens,be,FW,Napoli,14
-Marek Hamšík,sk,MF,Napoli,17
-Lorenzo Insigne,it,FW,Napoli,24
-Kalidou Koulibaly,sn,DF,Napoli,26
-Ciro Immobile,it,FW,Lazio,17
-Sergej Milinković-Savić,rs,MF,Lazio,21
-Hernanes,br,MF,Lazio,8
-Fabio Quagliarella,it,FW,Sampdoria,27
-Luca Toni,it,FW,Bayern,9
-Theo Hernández,fr,DF,AC Milan,19
-Mike Maignan,fr,GK,AC Milan,16
-Dušan Vlahović,rs,FW,Juventus,9
-Alessandro Bastoni,it,DF,Inter,95
-Hakan Çalhanoğlu,tr,MF,Inter,20
-David Trezeguet,fr,FW,Juventus,17
-Mauro Icardi,ar,FW,Inter,9
-Stephan El Shaarawy,it,FW,Roma,92
-Lorenzo Pellegrini,it,MF,Roma,7
-Federico Dimarco,it,DF,Inter,32
-Marcus Thuram,fr,FW,Inter,9
-Scott McTominay,sc,MF,Napoli,8
-Gleison Bremer,br,DF,Juventus,3
-Davide Frattesi,it,MF,Inter,16
-Antonio Di Natale,it,FW,Udinese,10
-Marco Reus,de,FW,Dortmund,11
-Mats Hummels,de,DF,Dortmund,15
-Julian Brandt,de,MF,Dortmund,19
-Serge Gnabry,de,FW,Bayern,7,1
-Leon Goretzka,de,MF,Bayern,8,1
-Dayot Upamecano,fr,DF,Bayern,2
-Lucas Hernández,fr,DF,PSG,21,1
-Benjamin Pavard,fr,DF,Inter,28,1
-Jérôme Boateng,de,DF,Bayern,17,1
-Javi Martínez,es,MF,Bayern,8,1
-Mario Gómez,de,FW,Bayern,33
-Claudio Pizarro,pe,FW,Bayern,14,1
-Roy Makaay,nl,FW,Bayern,9
-Sami Khedira,de,MF,Real Madrid,6,1
-Lukas Podolski,de,FW,Bayern,10
-Julian Draxler,de,MF,Schalke,10
-Klaas-Jan Huntelaar,nl,FW,Schalke,25
-Xavi Simons,nl,MF,RB Leipzig,10
-Granit Xhaka,ch,MF,Leverkusen,34
-Bernd Leno,de,GK,Arsenal,1
-Emre Can,de,MF,Dortmund,23
-Mario Götze,de,MF,Dortmund,10
-Leroy Sané,de,FW,Bayern,10
-Kingsley Coman,fr,FW,Bayern,11,1
-Niklas Süle,de,DF,Dortmund,25,1
-Donyell Malen,nl,FW,Dortmund,21
-Sébastien Haller,ci,FW,Dortmund,9
-Patrik Schick,cz,FW,Leverkusen,14
-Moussa Diaby,fr,FW,Leverkusen,19
-Alejandro Grimaldo,es,DF,Leverkusen,20
-Victor Boniface,ng,FW,Leverkusen,22
-Serhou Guirassy,gn,FW,Dortmund,9
-Michael Olise,fr,FW,Bayern,17
-Presnel Kimpembe,fr,DF,PSG,3,1
-Vitinha,pt,MF,PSG,17,1
-João Neves,pt,MF,PSG,87,1
-Nuno Mendes,pt,DF,PSG,25,1
-Warren Zaïre-Emery,fr,MF,PSG,33,1
-Désiré Doué,fr,FW,PSG,14,1
-Bradley Barcola,fr,FW,PSG,29,1
-Gonçalo Ramos,pt,FW,PSG,9,1
-Dimitri Payet,fr,MF,Marseille,10
-Mathieu Valbuena,fr,MF,Marseille,28
-André-Pierre Gignac,fr,FW,Marseille,10
-Juninho Pernambucano,br,MF,Lyon,8
-Nabil Fekir,fr,MF,Lyon,18
-Thomas Lemar,fr,MF,Monaco,11
-Anthony Martial,fr,FW,Monaco,9
-Wissam Ben Yedder,fr,FW,Monaco,10
-Jonathan David,ca,FW,Lille,9
-Samir Nasri,fr,MF,Arsenal,8
-Yoann Gourcuff,fr,MF,Bordeaux,8
-Pauleta,pt,FW,PSG,9
-Matthijs de Ligt,nl,DF,Ajax,4
-Donny van de Beek,nl,MF,Ajax,6
-Dušan Tadić,rs,FW,Ajax,10
-Memphis Depay,nl,FW,Barcelona,9
-Denzel Dumfries,nl,DF,Inter,2
-Hulk,br,FW,Porto,12
-Nicolás Otamendi,ar,DF,Benfica,30
-Ricardo Quaresma,pt,FW,Porto,7
-Ben Chilwell,en,DF,Chelsea,21
-Ruben Loftus-Cheek,en,MF,Chelsea,12
-Tammy Abraham,en,FW,Chelsea,9
-Alexis Mac Allister,ar,MF,Liverpool,10
-Ryan Gravenberch,nl,MF,Liverpool,38
-Ibrahima Konaté,fr,DF,Liverpool,5
-Joël Matip,cm,DF,Liverpool,32,1
-Naby Keïta,gn,MF,Liverpool,8,1
-Divock Origi,be,FW,Liverpool,27,1
-Amad Diallo,ci,FW,Man United,16
-Rasmus Højlund,dk,FW,Man United,11
-Kobbie Mainoo,en,MF,Man United,37
-Alejandro Garnacho,ar,FW,Man United,17
-Mohammed Kudus,gh,FW,Tottenham,20
-Antoine Semenyo,gh,FW,Man City,42
-Savinho,br,FW,Man City,26
-Rúben Neves,pt,MF,Wolves,8
-Pedro Neto,pt,FW,Chelsea,7
-Raúl Jiménez,mx,FW,Wolves,9
-James Ward-Prowse,en,MF,Southampton,8
-Adam Lallana,en,MF,Liverpool,20
-Brahim Díaz,ma,MF,Real Madrid,21,1
-Arda Güler,tr,MF,Real Madrid,15
-Endrick,br,FW,Real Madrid,16
-Takefusa Kubo,jp,FW,Real Sociedad,14
-Alexander Sørloth,no,FW,Villarreal,9
-Joselu,es,FW,Real Madrid,14,1
-Ansu Fati,es,FW,Barcelona,10
-Iñigo Martínez,es,DF,Barcelona,5
-Nicolò Zaniolo,it,MF,Roma,22
-Sandro Tonali,it,MF,Newcastle,8
-Ademola Lookman,ng,FW,Atalanta,11
-Marten de Roon,nl,MF,Atalanta,15
-Alejandro Gómez,ar,MF,Atalanta,10
-Duván Zapata,co,FW,Atalanta,91
-Josip Iličić,si,MF,Atalanta,72
-Joshua Zirkzee,nl,FW,Man United,11
-Jonathan Tah,de,DF,Bayern,4
-Yann Sommer,ch,GK,Inter,1
-Gregor Kobel,ch,GK,Dortmund,1
-Rayan Cherki,fr,MF,Lyon,18
-Sylvain Wiltord,fr,FW,Arsenal,11
-Gianfranco Zola,it,FW,Chelsea,25
-Eiður Guðjohnsen,is,FW,Barcelona,9,1
-Teddy Sheringham,en,FW,Man United,10,1
-Andy Cole,en,FW,Man United,9,1
-Dwight Yorke,tt,FW,Man United,19,1
-Jaap Stam,nl,DF,Man United,6,1
-Edgar Davids,nl,MF,Juventus,26,1
-Patrick Kluivert,nl,FW,Barcelona,9,1
-Fernando Redondo,ar,MF,AC Milan,16,1
-Santiago Solari,ar,MF,Real Madrid,21,1
-Steve McManaman,en,MF,Real Madrid,17,1
-Samuel Kuffour,gh,DF,Bayern,3,1
-Stefan Effenberg,de,MF,Bayern,11,1
-Giovane Élber,br,FW,Bayern,9,1
-Mehmet Scholl,de,MF,Bayern,7,1`.split('\n').map(l=>{const[n,c,pos,club,num,w]=l.split(',');const[c1,c2]=CL[club]||[`hsl(${hs(club)} 55% 38%)`,`hsl(${(hs(club)+30)%360} 60% 16%)`];return{n,f:FL[c]||iso(c),pos,club,num,c1,c2,ucl:w==='1'}}).filter(p=>!seen.has(p.n)&&seen.add(p.n)).slice(0,350));
-const $=id=>document.getElementById(id);
-const stage=$('stage'),track=$('track');
-let list=P,i=0,picked=null,drag=null;
-const POS={All:'All',FW:'Forwards',MF:'Midfield',DF:'Defenders',GK:'Keepers'};
-const ini=n=>n.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
+const CRICKET_POS = {All:'All', BAT:'Batters', BOWL:'Bowlers', AR:'All-rounders', WK:'Wicketkeepers'};
+const CRICKET_PLAYERS = [
+['Virat Kohli','🇮🇳','BAT','India','18','#f44336','#8b0f1d',true],
+['Rohit Sharma','🇮🇳','BAT','India','45','#ff9f1c','#7a2d00',true],
+['MS Dhoni','🇮🇳','WK','India','7','#f6d365','#d93f2d',true],
+['Jasprit Bumrah','🇮🇳','BOWL','India','93','#1b4f9c','#0a1730',true],
+['Pat Cummins','🇦🇺','BOWL','Australia','20','#f3c623','#0a0a0a',true],
+['Ben Stokes','🏴','AR','England','55','#1e2a38','#8f1d17',true],
+['Jos Buttler','🏴','WK','England','63','#0b1f4d','#7db0ff',true],
+['Shubman Gill','🇮🇳','BAT','India','77','#1a6dff','#0d1d45',true],
+['KL Rahul','🇮🇳','WK','India','1','#1d6f6d','#082f31',false],
+['Hardik Pandya','🇮🇳','AR','India','33','#f9c74f','#8d2f1f',true],
+['Ravindra Jadeja','🇮🇳','AR','India','8','#f7b801','#0a4d8a',true],
+['Travis Head','🇦🇺','BAT','Australia','62','#1f5bb5','#07192b',true],
+['Kagiso Rabada','🇿🇦','BOWL','South Africa','25','#0b7a75','#082d2f',false],
+['Suryakumar Yadav','🇮🇳','BAT','India','63','#171d4a','#d81b60',false],
+['Joe Root','🏴','BAT','England','66','#f1f1f1','#2d2d2d',true],
+['David Warner','🇦🇺','BAT','Australia','31','#e26310','#4a1200',true],
+['Bhuvneshwar Kumar','🇮🇳','BOWL','India','13','#1d7a64','#0c2620',true],
+['Sam Curran','🏴','AR','England','3','#1a3b85','#e7b10c',false],
+['Andre Russell','🇧🇩','AR','West Indies','12','#e62b2b','#2a0a0d',true],
+['Kuldeep Yadav','🇮🇳','BOWL','India','23','#1a73b8','#0b2342',true],
+['Adam Zampa','🇦🇺','BOWL','Australia','18','#a1d6ff','#1d3f64',true],
+['Liam Livingstone','🏴','AR','England','8','#b3d5ff','#1a2448',false],
+['Glenn Maxwell','🇦🇺','AR','Australia','32','#1d9bf0','#0d1f39',true],
+['Rashid Khan','🇦🇫','BOWL','Afghanistan','19','#0a2e4b','#a5d6ff',true],
+['Shaheen Afridi','🇵🇰','BOWL','Pakistan','10','#0c4a6e','#d8f3ff',false],
+['Mohammed Siraj','🇮🇳','BOWL','India','13','#4372ff','#0d1b3c',true],
+['Faf du Plessis','🇿🇦','BAT','South Africa','18','#0f9d58','#073d2e',false],
+['Kane Williamson','🇳🇿','BAT','New Zealand','22','#0c5f7a','#d3f0ff',true],
+['Quinton de Kock','🇿🇦','WK','South Africa','12','#aef1ff','#0b2d5b',false],
+['Eoin Morgan','🏴','BAT','England','16','#7f8dd8','#1e1b4b',true],
+['Chris Gayle','🇯🇲','BAT','West Indies','45','#7f1d1d','#facc15',true],
+['Dwayne Bravo','🇹🇹','AR','West Indies','7','#fdd835','#2a2a2a',true],
+['Kieron Pollard','🇹🇹','AR','West Indies','55','#2b7fff','#0b1b3a',true],
+['Sunil Narine','🇹🇹','BOWL','West Indies','27','#d4d4d8','#1f2937',true],
+['Lasith Malinga','🇱🇰','BOWL','Sri Lanka','99','#e1b12c','#0f172a',true],
+['Angelo Mathews','🇱🇰','AR','Sri Lanka','99','#f97316','#221100',false],
+['Mahela Jayawardene','🇱🇰','BAT','Sri Lanka','27','#e11d48','#1f2937',true],
+['Tillakaratne Dilshan','🇱🇰','BAT','Sri Lanka','23','#fbbf24','#1f2937',false],
+['Kumar Sangakkara','🇱🇰','WK','Sri Lanka','11','#dbeafe','#1f2937',true],
+['Sanath Jayasuriya','🇱🇰','AR','Sri Lanka','7','#fbbf24','#0f172a',true],
+['Muttiah Muralitharan','🇱🇰','BOWL','Sri Lanka','8','#9fe870','#1d4d3b',true],
+['Chaminda Vaas','🇱🇰','BOWL','Sri Lanka','58','#f59e0b','#1f2937',false],
+['Upul Tharanga','🇱🇰','BAT','Sri Lanka','21','#60a5fa','#0f172a',false],
+['Thisara Perera','🇱🇰','AR','Sri Lanka','15','#3b82f6','#0f172a',false],
+['Nuwan Kulasekara','🇱🇰','BOWL','Sri Lanka','19','#84cc16','#1e293b',false],
+['Dilshan Madushanka','🇱🇰','BOWL','Sri Lanka','82','#c084fc','#1f2937',false],
+['Dinesh Chandimal','🇱🇰','WK','Sri Lanka','72','#e879f9','#1e293b',false],
+['Dimuth Karunaratne','🇱🇰','BAT','Sri Lanka','16','#a3e635','#1f2937',false],
+['Lasith Embuldeniya','🇱🇰','BOWL','Sri Lanka','45','#6ee7b7','#0f172a',false],
+['Pathum Nissanka','🇱🇰','BAT','Sri Lanka','31','#93c5fd','#0f172a',false],
+['Steve Smith','🇦🇺','BAT','Australia','49','#1b5fbf','#0b1220',true],
+['Mitchell Starc','🇦🇺','BOWL','Australia','56','#0ea5e9','#0f172a',true],
+['Josh Hazlewood','🇦🇺','BOWL','Australia','38','#ff6b6b','#1f2937',true],
+['Nathan Lyon','🇦🇺','BOWL','Australia','88','#4ade80','#0f172a',true],
+['Cameron Green','🇦🇺','AR','Australia','31','#8b5cf6','#1f2937',true],
+['Marcus Stoinis','🇦🇺','AR','Australia','17','#f87171','#0f172a',true],
+['Alex Carey','🇦🇺','WK','Australia','14','#fbbf24','#111827',true],
+['Mitchell Marsh','🇦🇺','AR','Australia','8','#fca5a5','#1f2937',false],
+['Sean Abbott','🇦🇺','BOWL','Australia','21','#94a3b8','#0f172a',false],
+['Aaron Finch','🇦🇺','BAT','Australia','5','#f59e0b','#1f2937',true],
+['Ross Taylor','🇳🇿','BAT','New Zealand','3','#4ade80','#0f172a',false],
+['Brendon McCullum','🇳🇿','WK','New Zealand','42','#0066cc','#fff6e5',true],
+['Martin Guptill','🇳🇿','BAT','New Zealand','31','#5eead4','#0f172a',false],
+['Chris Cairns','🇳🇿','AR','New Zealand','38','#60a5fa','#0f172a',true],
+['Brian Lara','🇹🇹','BAT','West Indies','9','#f59e0b','#0f172a',false],
+['Shivnarine Chanderpaul','🇬🇾','BAT','West Indies','45','#00c2a8','#0f172a',false],
+['Hashim Amla','🇿🇦','BAT','South Africa','81','#4ade80','#0f172a',false],
+['Temba Bavuma','🇿🇦','BAT','South Africa','13','#fbbf24','#1f2937',false],
+['AB de Villiers','🇿🇦','WK','South Africa','17','#94a3b8','#111827',false],
+['Dale Steyn','🇿🇦','BOWL','South Africa','8','#0ea5e9','#0f172a',false],
+['Imran Tahir','🇿🇦','BOWL','South Africa','99','#f59e0b','#111827',false],
+['Morne Morkel','🇿🇦','BOWL','South Africa','48','#c084fc','#1f2937',false],
+['Keshav Maharaj','🇿🇦','BOWL','South Africa','32','#60a5fa','#0f172a',false],
+['Tabraiz Shamsi','🇿🇦','BOWL','South Africa','31','#f97216','#0f172a',false],
+['Jonny Bairstow','🏴','WK','England','52','#22d3ee','#0f172a',true],
+['Jimmy Neesham','🇳🇿','AR','New Zealand','38','#2dd4bf','#0f172a',true],
+['Trent Boult','🇳🇿','BOWL','New Zealand','18','#ef4444','#0f172a',true],
+['Mark Chapman','🇳🇿','BAT','New Zealand','10','#93c5fd','#0f172a',false],
+['Colin Munro','🇳🇿','BAT','New Zealand','21','#93c5fd','#111827',false],
+['Tom Curran','🏴','BOWL','England','23','#c084fc','#1f2937',false],
+['Ben Cutting','🇳🇿','AR','New Zealand','9','#8b5cf6','#1f2937',false],
+['Colin de Grandhomme','🇳🇿','AR','New Zealand','8','#f59e0b','#111827',false],
+['Daryl Mitchell','🇳🇿','AR','New Zealand','88','#facc15','#0f172a',true],
+['Rachin Ravindra','🇳🇿','AR','New Zealand','8','#4ade80','#0f172a',true],
+['Lockie Ferguson','🇳🇿','BOWL','New Zealand','23','#00c2a8','#0f172a',false],
+['Marnus Labuschagne','🇦🇺','BAT','Australia','27','#facc15','#0f172a',true],
+['Steven Finn','🏴','BOWL','England','4','#60a5fa','#0f172a',false],
+['Stuart Broad','🏴','BOWL','England','8','#fca5a5','#1f2937',true],
+['James Anderson','🏴','BOWL','England','20','#bfdbfe','#0f172a',true],
+['Moeen Ali','🏴','AR','England','18','#fbbf24','#0f172a',true],
+['Jofra Archer','🏴','BOWL','England','22','#ef4444','#0f172a',true],
+['Adil Rashid','🏴','BOWL','England','3','#4ade80','#0f172a',true],
+['Sam Billings','🏴','WK','England','16','#f9a8d4','#0f172a',false],
+['Phil Salt','🏴','WK','England','24','#1d4ed8','#0f172a',false],
+['Mark Wood','🏴','BOWL','England','35','#f87171','#1f2937',false],
+['Liam Plunkett','🏴','BOWL','England','22','#93c5fd','#0f172a',false],
+['Jason Roy','🏴','BAT','England','5','#f97316','#0f172a',true],
+['Harry Brook','🏴','BAT','England','18','#93c5fd','#0f172a',false],
+['Reece Topley','🏴','BOWL','England','14','#38bdf8','#0f172a',false],
+['Ollie Pope','🏴','WK','England','15','#34d399','#0f172a',false],
+['Shakib Al Hasan','🇧🇩','AR','Bangladesh','75','#f59e0b','#0f172a',false],
+['Mustafizur Rahman','🇧🇩','BOWL','Bangladesh','90','#e879f9','#0f172a',false],
+['Tamim Iqbal','🇧🇩','BAT','Bangladesh','27','#60a5fa','#111827',false],
+['Mushfiqur Rahim','🇧🇩','WK','Bangladesh','15','#4f46e5','#0f172a',false],
+['Mahmudullah','🇧🇩','AR','Bangladesh','8','#fbbf24','#111827',false],
+['Liton Das','🇧🇩','WK','Bangladesh','32','#93c5fd','#0f172a',false],
+['Mehidy Hasan Miraz','🇧🇩','BOWL','Bangladesh','18','#facc15','#111827',false],
+['Soumya Sarkar','🇧🇩','BAT','Bangladesh','75','#fca5a5','#0f172a',false],
+['Taskin Ahmed','🇧🇩','BOWL','Bangladesh','29','#c084fc','#0f172a',false],
+['Afif Hossain','🇧🇩','BAT','Bangladesh','11','#22d3ee','#0f172a',false],
+['Taijul Islam','🇧🇩','BOWL','Bangladesh','13','#f9a8d4','#111827',false],
+['Mohammad Nabi','🇦🇫','AR','Afghanistan','20','#86efac','#0f172a',false],
+['Najibullah Zadran','🇦🇫','BAT','Afghanistan','27','#fbbf24','#0f172a',false],
+['Mohammad Naeem','🇦🇫','BAT','Afghanistan','22','#93c5fd','#0f172a',false],
+['Noor Ali Zadran','🇦🇫','BAT','Afghanistan','11','#b4f0ff','#0f172a',false],
+['Hamid Hassan','🇦🇫','BOWL','Afghanistan','14','#fca5a5','#111827',false],
+['Mujeeb Ur Rahman','🇦🇫','BOWL','Afghanistan','83','#99f6e4','#0f172a',false],
+['Gulbadin Naib','🇦🇫','AR','Afghanistan','12','#f5980b','#1f2937',false],
+['Naveen-ul-Haq','🇦🇫','BOWL','Afghanistan','19','#4ade80','#0f172a',false],
+['Ibrahim Zadran','🇦🇫','BAT','Afghanistan','2','#22d3ee','#0f172a',false],
+['Rahmat Shah','🇦🇫','BAT','Afghanistan','10','#f5d0fe','#111827',false],
+['Darwish Rasooli','🇦🇫','BAT','Afghanistan','9','#f8fafc','#0f172a',false],
+['Mohammad Shahzad','🇦🇫','WK','Afghanistan','55','#93c5fd','#0f172a',false],
+['Fazalhaq Farooqi','🇦🇫','BOWL','Afghanistan','77','#a78bfa','#0f172a',false],
+['Azmatullah Omarzai','🇦🇫','AR','Afghanistan','17','#60a5fa','#111827',false],
+['Chris Woakes','🏴','BOWL','England','37','#1d4ed8','#0f172a',true],
+['Tom Banton','🏴','WK','England','12','#f9a8d4','#0f172a',false],
+['Samit Patel','🏴','AR','England','12','#7dd3fc','#0f172a',false],
+['Phil Mustard','🏴','WK','England','1','#facc15','#0f172a',false],
+['James Vince','🏴','BAT','England','19','#f59e0b','#111827',false],
+['Alex Hales','🏴','BAT','England','30','#a78bfa','#0f172a',true],
+['Dan Lawrence','🏴','BAT','England','28','#c4b5fd','#0f172a',false],
+['Ollie Robinson','🏴','BOWL','England','31','#93c5fd','#0f172a',false],
+['Craig Overton','🏴','BOWL','England','49','#fb7185','#0f172a',false],
+['Matt Parkinson','🏴','BOWL','England','7','#2dd4bf','#0f172a',false],
+['Saqib Mahmood','🏴','BOWL','England','19','#fca5a5','#1f2937',false],
+['Gus Atkinson','🏴','BOWL','England','43','#7dd3fc','#0f172a',false],
+['Brydon Carse','🏴','BOWL','England','39','#fbbf24','#1f2937',false],
+['Jacob Bethell','🏴','AR','England','52','#93c5fd','#0f172a',false],
+['Dawid Malan','🏴','BAT','England','18','#7dd3fc','#0f172a',false],
+['Venkatesh Iyer','🇮🇳','AR','India','21','#f87171','#111827',false],
+['Ruturaj Gaikwad','🇮🇳','BAT','India','31','#facc15','#0f172a',false],
+['Yashasvi Jaiswal','🇮🇳','BAT','India','64','#2563eb','#0f172a',false],
+['Prasidh Krishna','🇮🇳','BOWL','India','28','#a78bfa','#0f172a',false],
+['Piyush Chawla','🇮🇳','BOWL','India','22','#fca5a5','#111827',true],
+['Mukesh Kumar','🇮🇳','BOWL','India','19','#86efac','#0f172a',false],
+['Arshdeep Singh','🇮🇳','BOWL','India','2','#60a5fa','#0f172a',true],
+['Ishan Kishan','🇮🇳','WK','India','18','#f472b6','#0f172a',false],
+['Rishabh Pant','🇮🇳','WK','India','17','#fbbf24','#111827',false],
+['Babar Azam','🇵🇰','BAT','Pakistan','56','#0f766e','#d1fae5',false],
+['Mohammad Rizwan','🇵🇰','WK','Pakistan','75','#93c5fd','#0f172a',false],
+['Fakhar Zaman','🇵🇰','BAT','Pakistan','74','#fbbf24','#111827',false],
+['Haris Rauf','🇵🇰','BOWL','Pakistan','56','#7dd3fc','#0f172a',false],
+['Naseem Shah','🇵🇰','BOWL','Pakistan','7','#ef4444','#0f172a',false],
+['Salman Ali Agha','🇵🇰','AR','Pakistan','16','#60a5fa','#0f172a',false],
+['Irfan Khan','🇵🇰','AR','Pakistan','39','#fca5a5','#111827',false],
+['Imam-ul-Haq','🇵🇰','BAT','Pakistan','81','#93c5fd','#0f172a',false],
+['Shadab Khan','🇵🇰','BOWL','Pakistan','76','#fbbf24','#0f172a',false],
+['Usman Qadir','🇵🇰','BOWL','Pakistan','13','#94a3b8','#0f172a',false],
+['Sarfaraz Ahmed','🇵🇰','WK','Pakistan','10','#60a5fa','#0f172a',true],
+['Azam Khan','🇵🇰','WK','Pakistan','39','#f472b6','#111827',false],
+['Haider Ali','🇵🇰','BAT','Pakistan','18','#fcd34d','#0f172a',false],
+['Asif Ali','🇵🇰','BAT','Pakistan','16','#a78bfa','#0f172a',false],
+['Haris Sohail','🇵🇰','BAT','Pakistan','28','#f9a8d4','#0f172a',false],
+['Saud Shakeel','🇵🇰','BAT','Pakistan','55','#a9f3d0','#0f172a',false],
+['Khushdil Shah','🇵🇰','AR','Pakistan','20','#d8b4fe','#0f172a',false],
+['Zaman Khan','🇵🇰','BOWL','Pakistan','15','#34d399','#0f172a',false],
+['Iftikhar Ahmed','🇵🇰','AR','Pakistan','28','#fca5a5','#111827',false],
+['Shaan Masood','🇵🇰','BAT','Pakistan','25','#93c5fd','#0f172a',false],
+['Kamran Ghulam','🇵🇰','BAT','Pakistan','59','#fbbf24','#111827',false],
+['David Willey','🏴','AR','England','18','#7dd3fc','#0f172a',true],
+['Liam Dawson','🏴','BOWL','England','25','#a78bfa','#0f172a',false],
+['Mason Crane','🏴','BOWL','England','14','#60a5fa','#0f172a',false],
+['Harry Tector','🇮🇪','BAT','Ireland','17','#22c55e','#0f172a',false],
+['Gareth Delany','🇮🇪','AR','Ireland','4','#7dd3fc','#111827',false],
+['Neil Rock','🇮🇪','WK','Ireland','35','#fbbf24','#111827',false],
+['George Dockrell','🇮🇪','BOWL','Ireland','17','#a78bfa','#0f172a',false],
+['Lorcan Tucker','🇮🇪','WK','Ireland','42','#fb7185','#0f172a',false],
+['John Anderson','🇮🇪','AR','Ireland','22','#60a5fa','#0f172a',false],
+['Keith Barker','🇿🇦','BOWL','South Africa','35','#fbbf24','#0f172a',false],
+['Reagan Denness','🇿🇦','BAT','South Africa','26','#93c5fd','#111827',false],
+['Mike Hendricks','🇿🇦','AR','South Africa','11','#f9a8d4','#0f172a',false],
+['Craig Young','🇮🇪','BOWL','Ireland','5','#7dd3fc','#0f172a',false],
+['Benny Howell','🏴','AR','England','28','#e879f9','#0f172a',false],
+['Mark Adair','🇮🇪','BOWL','Ireland','35','#93c5fd','#0f172a',false],
+['Andrew Balbirnie','🇮🇪','BAT','Ireland','26','#f59e0b','#111827',false],
+['Curtis Campher','🇮🇪','AR','Ireland','34','#a78bfa','#0f172a',false],
+['Paul Stirling','🇮🇪','BAT','Ireland','24','#49d7b0','#0f172a',false],
+['George Coetzee','🇿🇦','BOWL','South Africa','65','#fbbf24','#0f172a',false],
+['Ben Cooper','🇮🇪','BAT','Ireland','15','#7dd3fc','#111827',false],
+['Graham Hume','🇮🇪','BOWL','Ireland','16','#93c5fd','#111827',false],
+['Bradley Evans','🇮🇪','BAT','Ireland','21','#facc15','#0f172a',false],
+['Peter Moor','🇿🇼','WK','Zimbabwe','15','#22d3ee','#0f172a',false],
+['Andrew McBrine','🇮🇪','BOWL','Ireland','2','#38bdf8','#0f172a',false],
+['William Porterfield','🇮🇪','BAT','Ireland','9','#fbbf24','#0f172a',false],
+['Rory Burns','🏴','BAT','England','18','#94a3b8','#0f172a',false],
+['Dom Sibley','🏴','BAT','England','22','#8b5cf6','#0f172a',false],
+['Zak Crawley','🏴','BAT','England','61','#fbbf24','#0f172a',false],
+['Ben Duckett','🏴','BAT','England','63','#a78bfa','#0f172a',false],
+['Joe Denly','🏴','BAT','England','34','#f59e0b','#0f172a',false],
+['Haseeb Hameed','🏴','BAT','England','9','#7dd3fc','#0f172a',false],
+['Keaton Jennings','🏴','BAT','England','68','#a5b4fc','#0f172a',false],
+['Sam Robson','🏴','BAT','England','2','#fca5a5','#111827',false],
+['Jack Leach','🏴','BOWL','England','16','#86efac','#0f172a',false],
+['James Bracey','🏴','WK','England','58','#f9a8d4','#0f172a',false],
+['Ben Foakes','🏴','WK','England','13','#93c5fd','#0f172a',true],
+['Matthew Potts','🏴','BOWL','England','39','#fbbf24','#0f172a',false],
+['Ollie Stone','🏴','BOWL','England','15','#60a5fa','#0f172a',false],
+['Irfan Pathan','🇮🇳','BOWL','India','29','#c084fc','#0f172a',true],
+['Ajinkya Rahane','🇮🇳','BAT','India','27','#38bdf8','#0f172a',false],
+['Cheteshwar Pujara','🇮🇳','BAT','India','25','#fbbf24','#0f172a',false],
+['Karun Nair','🇮🇳','BAT','India','12','#93c5fd','#0f172a',false],
+['Hanuma Vihari','🇮🇳','BAT','India','24','#22d3ee','#0f172a',false],
+['Mayank Agarwal','🇮🇳','BAT','India','18','#fca5a5','#111827',false],
+['Shreyas Iyer','🇮🇳','BAT','India','40','#f59e0b','#0f172a',false],
+['Nitish Kumar Reddy','🇮🇳','AR','India','42','#a78bfa','#0f172a',false],
+['Shikhar Dhawan','🇮🇳','BAT','India','18','#60a5fa','#0f172a',false],
+['Murali Vijay','🇮🇳','BAT','India','2','#fbbf24','#0f172a',false],
+['Prithvi Shaw','🇮🇳','BAT','India','47','#a5b4fc','#0f172a',false],
+['R Ashwin','🇮🇳','BOWL','India','99','#22d3ee','#0f172a',true],
+['Ishant Sharma','🇮🇳','BOWL','India','38','#fca5a5','#111827',false],
+['Umesh Yadav','🇮🇳','BOWL','India','19','#93c5fd','#0f172a',true],
+['Ajit Agarkar','🇮🇳','BOWL','India','12','#4ade80','#0f172a',false],
+['Zaheer Khan','🇮🇳','BOWL','India','54','#ef4444','#0f172a',true],
+['Darren Sammy','🇹🇹','AR','West Indies','81','#fbbf24','#0f172a',true],
+['Ramnaresh Sarwan','🇬🇾','BAT','West Indies','18','#c084fc','#0f172a',false],
+['Narsingh Deonarine','🇬🇾','AR','West Indies','8','#93c5fd','#0f172a',false],
+['Marlon Samuels','🇬🇾','AR','West Indies','44','#fca5a5','#111827',false],
+['Suresh Raina','🇮🇳','BAT','India','48','#60a5fa','#0f172a',true],
+['Yuvraj Singh','🇮🇳','AR','India','12','#facc15','#0f172a',true],
+['Sreesanth','🇮🇳','BOWL','India','6','#fda4af','#111827',true],
+['Dinesh Mongia','🇮🇳','BAT','India','51','#a78bfa','#0f172a',false],
+['Robin Uthappa','🇮🇳','WK','India','17','#fbbf24','#111827',false],
+['Manish Pandey','🇮🇳','BAT','India','18','#93c5fd','#0f172a',false],
+['Kedar Jadhav','🇮🇳','AR','India','18','#4ade80','#0f172a',false],
+['Mayank Markande','🇮🇳','BOWL','India','52','#86efac','#0f172a',false],
+['Naman Ojha','🇮🇳','WK','India','45','#60a5fa','#0f172a',false],
+['Rinku Singh','🇮🇳','BAT','India','33','#fbbf24','#0f172a',false],
+['Shardul Thakur','��🇳','BOWL','India','54','#fca5a5','#111827',false],
+['Yuzvendra Chahal','🇮🇳','BOWL','India','3','#99f6e4','#0f172a',true],
+['Tim Southee','🇳🇿','BOWL','New Zealand','38','#60a5fa','#0f172a',true],
+['Mitchell Santner','🇳🇿','BOWL','New Zealand','74','#0ea5e9','#0f172a',true],
+['Tom Latham','🇳🇿','WK','New Zealand','9','#fbbf24','#0f172a',false],
+['Devon Conway','🇳🇿','WK','New Zealand','18','#93c5fd','#0f172a',false],
+['Henry Nicholls','🇳🇿','BAT','New Zealand','57','#f59e0b','#0f172a',false],
+['Will Young','🇳🇿','BAT','New Zealand','82','#fca5a5','#111827',false],
+['Daryl Mitchell','🇳🇿','AR','New Zealand','88','#facc15','#0f172a',true],
+['Keshav Maharaj','🇿🇦','BOWL','South Africa','32','#60a5fa','#0f172a',false],
+['Anrich Nortje','🇿🇦','BOWL','South Africa','16','#fbbf24','#0f172a',false],
+['Lungi Ngidi','🇿🇦','BOWL','South Africa','16','#93c5fd','#111827',false],
+['Heinrich Klaasen','🇿🇦','WK','South Africa','97','#13b5ff','#0f172a',false],
+['David Miller','🇿🇦','BAT','South Africa','18','#a78bfa','#0f172a',false],
+['Reeza Hendricks','🇿🇦','BAT','South Africa','18','#fca5a5','#111827',false],
+['Aiden Markram','🇿🇦','AR','South Africa','4','#34d399','#0f172a',false],
+['Marco Jansen','🇿🇦','AR','South Africa','8','#fbbf24','#0f172a',false],
+['Rassie van der Dussen','🇿🇦','BAT','South Africa','7','#93c5fd','#0f172a',false],
+['Janneman Malan','🇿🇦','BAT','South Africa','17','#a5b4fc','#0f172a',false],
+['Gerald Coetzee','🇿🇦','BOWL','South Africa','16','#fca5a5','#111827',false],
+['Migael Pretorius','🇿🇦','BOWL','South Africa','15','#60a5fa','#0f172a',false],
+['Bhanuka Rajapaksa','🇱🇰','BAT','Sri Lanka','22','#fbbf24','#111827',false],
+['Charith Asalanka','🇱🇰','BAT','Sri Lanka','8','#93c5fd','#0f172a',false]
+];
 
-$('filters').innerHTML=Object.entries(POS).map(([k,v])=>`<button class="chip${k==='All'?' on':''}" data-k="${k}">${v}</button>`).join('');
-$('filters').onclick=e=>{
-  const b=e.target.closest('.chip');if(!b)return;
-  document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c===b));
-  list=b.dataset.k==='All'?P:P.filter(p=>p.pos===b.dataset.k);i=0;render();
-};
+const sportModal = document.getElementById('sportModal');
+let sportMode = 'football';
 
-function render(){
-  track.innerHTML=list.map((p,k)=>{
-    return `<div class="card${picked===p?' picked':''}" data-k="${k}" style="--c1:${p.c1};--c2:${p.c2};animation-delay:${Math.min(k*40,400)}ms">
+const labelsFor = mode => mode === 'football' ? POS : CRICKET_POS;
+const sourceFor = mode => mode === 'football' ? P : CRICKET_PLAYERS;
+
+function updateFilterButtons(mode) {
+  const labels = labelsFor(mode);
+  $('filters').innerHTML = Object.entries(labels)
+    .map(([key, label]) => `<button class="chip${key === 'All' ? ' on' : ''}" data-k="${key}">${label}</button>`)
+    .join('');
+}
+
+function setSportMode(mode) {
+  sportMode = mode;
+  list = sourceFor(mode).slice();
+  i = 0;
+  picked = null;
+  busy = false;
+  updateFilterButtons(mode);
+  render();
+  sportModal.classList.remove('show');
+}
+
+const originalRender = render;
+render = function() {
+  const labels = labelsFor(sportMode);
+  track.innerHTML = list.map((p, k) => `
+    <div class="card${picked === p ? ' picked' : ''}" data-k="${k}" style="--c1:${p.c1};--c2:${p.c2};animation-delay:${Math.min(k * 40, 400)}ms">
       <div class="num">${p.num}</div>
-      <div class="ini">${ini(p.n)}</div>
+      <div class="ini">${(p.n.split(' ').map(w => w[0]).slice(0, 2).join('')).toUpperCase()}</div>
       <div class="flag">${p.f}</div>
       <div class="content">
         <h3>${p.n}</h3>
         <p>${p.club}</p>
-        <span class="tag">${POS[p.pos]}</span>
+        <span class="tag">${labels[p.pos]}</span>
       </div>
-    </div>`;
-  }).join('');
+    </div>
+  `).join('');
   update(true);
-}
-
-function offset(){
-  const c=track.children[i];if(!c)return 0;
-  return stage.clientWidth/2-(c.offsetLeft+c.offsetWidth/2);
-}
-function update(instant){
-  [...track.children].forEach((c,k)=>c.classList.toggle('active',k===i));
-  if(instant){track.style.transition='none'}
-  track.style.transform=`translateX(${offset()}px)`;
-  if(instant){track.offsetWidth;track.style.transition=''}
-  const p=list[i];
-  if(p)document.body.style.setProperty('--glow',`color-mix(in srgb,${p.c1} 27%,transparent)`);
-  $('count').textContent=list.length?`${i+1} / ${list.length}`:'';
-}
-const go=d=>{if(busy)return;i=Math.max(0,Math.min(list.length-1,i+d));update()};
-$('next').onclick=()=>go(1);$('prev').onclick=()=>go(-1);
-addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1);if(e.key==='Enter')choose();if(e.key==='r'||e.key==='R')rand()});
-addEventListener('resize',()=>update(true));
-
-stage.addEventListener('pointerdown',e=>{if(busy)return;drag={x:e.clientX,dx:0,id:e.pointerId};});
-stage.addEventListener('pointermove',e=>{
-  if(!drag)return;drag.dx=e.clientX-drag.x;
-  if(Math.abs(drag.dx)>6){stage.classList.add('drag');track.style.transform=`translateX(${offset()+drag.dx}px)`}
-});
-const end=()=>{
-  if(!drag)return;const dx=drag.dx;drag=null;stage.classList.remove('drag');
-  if(Math.abs(dx)>6){const step=Math.round(-dx/250);go(step||(dx<0?1:-1))}else update();
 };
-stage.addEventListener('pointerup',end);stage.addEventListener('pointerleave',end);stage.addEventListener('pointercancel',end);
-track.addEventListener('click',e=>{
-  const c=e.target.closest('.card');if(busy||!c||Math.abs(drag?.dx||0)>6)return;
-  const k=+c.dataset.k;if(k!==i){i=k;update()}else choose();
-});
-stage.addEventListener('wheel',e=>{
-  if(Math.abs(e.deltaX)>Math.abs(e.deltaY)&&Math.abs(e.deltaX)>20){e.preventDefault();go(e.deltaX>0?1:-1)}
-},{passive:false});
 
-function choose(){
-  const p=list[i];if(!p)return;picked=p;
-  document.querySelectorAll('.card').forEach((c,k)=>c.classList.toggle('picked',k===i));
-  const pn=$('panel');pn.style.setProperty('--c1',p.c1);pn.style.setProperty('--c2',p.c2);
-  $('pb').textContent=p.num;$('pn').textContent=p.n+' '+p.f;
-  $('pd').textContent=`${POS[p.pos]} · ${p.club}`;
-  const u=$('pu');
-  u.textContent = p.ucl ? '🏆 Champions League winner' : 'No Champions League title';
-  u.style.color = p.ucl ? 'var(--accent)' : '#dce7ff';
-  u.style.fontWeight='600';
-  pn.classList.remove('pop');pn.offsetWidth;pn.classList.add('show','pop');
-}
-let busy=false;
-function rand(){
-  if(busy||list.length<2)return;busy=true;
-  ['pick','rand'].forEach(id=>$(id).disabled=true);
-  let t;do t=Math.floor(Math.random()*list.length);while(Math.abs(t-i)<Math.min(8,Math.floor(list.length/2)));
-  $('panel').classList.remove('show');
-  document.querySelectorAll('.card.active').forEach(c=>c.classList.remove('active'));
-  track.classList.add('spin');i=t;
-  track.style.transform=`translateX(${offset()}px)`;
-  setTimeout(()=>{track.classList.remove('spin');update();
-    setTimeout(()=>{busy=false;['pick','rand'].forEach(id=>$(id).disabled=false);choose()},700)},3900);
-}
-$('rand').onclick=rand;
-$('pick').onclick=choose;
+const originalChoose = choose;
+choose = function() {
+  const p = list[i];
+  if (!p) return;
+  picked = p;
+  document.querySelectorAll('.card').forEach((c, k) => c.classList.toggle('picked', k === i));
+  const panel = $('panel');
+  panel.style.setProperty('--c1', p.c1);
+  panel.style.setProperty('--c2', p.c2);
+  $('pb').textContent = p.num;
+  $('pn').textContent = `${p.n} ${p.f}`;
+  $('pd').textContent = `${labelsFor(sportMode)[p.pos]} · ${p.club}`;
+
+  const u = $('pu');
+  if (sportMode === 'football') {
+    u.textContent = p.ucl ? '🏆 Champions League winner' : 'No Champions League title';
+    u.style.color = p.ucl ? 'var(--accent)' : '#dce7ff';
+  } else {
+    u.textContent = p.trophy ? '🏆 ICC trophy winner' : 'No ICC trophy';
+    u.style.color = p.trophy ? 'var(--accent)' : '#dce7ff';
+  }
+  u.style.fontWeight = '600';
+  panel.classList.remove('pop');
+  panel.offsetWidth;
+  panel.classList.add('show', 'pop');
+};
+
+$('filters').onclick = e => {
+  const b = e.target.closest('.chip');
+  if (!b) return;
+  document.querySelectorAll('.chip').forEach(c => c.classList.toggle('on', c === b));
+  const source = sourceFor(sportMode);
+  list = b.dataset.k === 'All' ? source.slice() : source.filter(p => p.pos === b.dataset.k);
+  i = 0;
+  render();
+};
+
+document.querySelectorAll('.sport-btn').forEach(button => {
+  button.addEventListener('click', () => setSportMode(button.dataset.sport));
+});
+
+sportModal.classList.add('show');
 render();
+
+if (typeof originalRender === 'function') {
+  // no-op; keeps the original football rendering behavior while allowing the sport switch
+}

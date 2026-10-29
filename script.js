@@ -1,244 +1,250 @@
-const P0=[
-["Lionel Messi","🇦🇷","FW","Inter Miami","10","#75aadb","#1b3a6b"],
-["Cristiano Ronaldo","🇵🇹","FW","Al Nassr","7","#c8102e","#4a0a14"],
-["Neymar Jr","🇧🇷","FW","Santos","10","#f4c20d","#0b6b3a"],
-["Kylian Mbappé","🇫🇷","FW","Real Madrid","9","#1f4fd8","#0a1a4d"],
-["Erling Haaland","🇳🇴","FW","Manchester City","9","#6cabdd","#1c2c5b"],
-["Luka Modrić","🇭🇷","MF","AC Milan","10","#e53935","#3b0d12"],
-["Zinedine Zidane","🇫🇷","MF","Real Madrid","5","#e8e8f0","#5b5f80"],
-["Ronaldinho","🇧🇷","FW","Barcelona","10","#a50044","#004d98"],
-["Xavi Hernández","🇪🇸","MF","Barcelona","6","#004d98","#a50044"],
-["Andrés Iniesta","🇪🇸","MF","Barcelona","8","#a50044","#1b2a5c"],
-["Thierry Henry","🇫🇷","FW","Arsenal","14","#d4202c","#4a0b10"],
-["Kaká","🇧🇷","MF","AC Milan","22","#d00027","#111"],
-["Robert Lewandowski","🇵🇱","FW","Barcelona","9","#a50044","#162d6b"],
-["Mohamed Salah","🇪🇬","FW","Liverpool","11","#c8102e","#5a0714"],
-["Kevin De Bruyne","🇧🇪","MF","Napoli","17","#6cabdd","#12305e"],
-["Harry Kane","🏴","FW","Bayern Munich","9","#dc052d","#4a0214"],
-["Karim Benzema","🇫🇷","FW","Al Hilal","9","#1b6fd8","#071a45"],
-["Zlatan Ibrahimović","🇸🇪","FW","AC Milan","11","#fecb00","#006aa7"],
-["Wayne Rooney","🏴","FW","Man United","10","#da291c","#3b0a06"],
-["Steven Gerrard","🏴","MF","Liverpool","8","#c8102e","#3d0610"],
-["Frank Lampard","🏴","MF","Chelsea","8","#034694","#021a3a"],
-["Andrea Pirlo","🇮🇹","MF","Juventus","21","#2a2a2a","#8a8a8a"],
-["Gianluigi Buffon","🇮🇹","GK","Juventus","1","#3a3a3a","#0b0b0b"],
-["Iker Casillas","🇪🇸","GK","Real Madrid","1","#7b5ee0","#25185a"],
-["Virgil van Dijk","🇳🇱","DF","Liverpool","4","#c8102e","#2d0509"],
-["Sergio Ramos","🇪🇸","DF","Real Madrid","4","#e0e0f0","#4a4f7a"],
-["Son Heung-min","🇰🇷","FW","LAFC","7","#1a2a5e","#6b8cd8"],
-["Vinícius Jr","🇧🇷","FW","Real Madrid","7","#e8e8f0","#6a5acd"],
-["Jude Bellingham","🏴","MF","Real Madrid","5","#e8e8f0","#2b3a8a"],
-["Ronaldo Nazário","🇧🇷","FW","Real Madrid","9","#f4c20d","#0b6b3a"]
-].map(([n,f,pos,club,num,c1,c2])=>({n,f,pos,club,num,c1,c2}));
+const FOOTBALL_BASE = [
+  { name: 'Lionel Messi', flag: '🇦🇷', pos: 'FW', club: 'Inter Miami', num: '10', c1: '#75aadb', c2: '#1b3a6b', ucl: true },
+  { name: 'Cristiano Ronaldo', flag: '🇵🇹', pos: 'FW', club: 'Al Nassr', num: '7', c1: '#c8102e', c2: '#4a0a14', ucl: true },
+  { name: 'Kylian Mbappé', flag: '🇫🇷', pos: 'FW', club: 'Real Madrid', num: '9', c1: '#1f4fd8', c2: '#0a1a4d', ucl: true },
+  { name: 'Erling Haaland', flag: '🇳🇴', pos: 'FW', club: 'Manchester City', num: '9', c1: '#6cabdd', c2: '#1c2c5b', ucl: true },
+  { name: 'Kevin De Bruyne', flag: '🇧🇪', pos: 'MF', club: 'Napoli', num: '17', c1: '#6cabdd', c2: '#12305e', ucl: true },
+  { name: 'Mohamed Salah', flag: '🇪🇬', pos: 'FW', club: 'Liverpool', num: '11', c1: '#c8102e', c2: '#5a0714', ucl: true },
+  { name: 'Harry Kane', flag: '🏴', pos: 'FW', club: 'Bayern Munich', num: '9', c1: '#dc052d', c2: '#4a0214', ucl: true },
+  { name: 'Vinícius Júnior', flag: '🇧🇷', pos: 'FW', club: 'Real Madrid', num: '7', c1: '#e8e8f0', c2: '#6a5acd', ucl: true },
+  { name: 'Jude Bellingham', flag: '🏴', pos: 'MF', club: 'Real Madrid', num: '5', c1: '#e8e8f0', c2: '#2b3a8a', ucl: true },
+  { name: 'Rodri', flag: '🇪🇸', pos: 'MF', club: 'Manchester City', num: '16', c1: '#9db9de', c2: '#12305e', ucl: true },
+  { name: 'Bukayo Saka', flag: '🏴', pos: 'FW', club: 'Arsenal', num: '7', c1: '#ef4444', c2: '#0f172a', ucl: false },
+  { name: 'Phil Foden', flag: '🏴', pos: 'MF', club: 'Manchester City', num: '47', c1: '#f5d76e', c2: '#1d4ed8', ucl: true },
+  { name: 'Sadio Mané', flag: '🇸🇳', pos: 'FW', club: 'Al Nassr', num: '10', c1: '#f59e0b', c2: '#111827', ucl: true },
+  { name: 'Virgil van Dijk', flag: '🇳🇱', pos: 'DF', club: 'Liverpool', num: '4', c1: '#c8102e', c2: '#2d0509', ucl: true },
+  { name: 'Rúben Dias', flag: '🇵🇹', pos: 'DF', club: 'Manchester City', num: '3', c1: '#9bb7ff', c2: '#111827', ucl: true },
+  { name: 'Alisson Becker', flag: '🇧🇷', pos: 'GK', club: 'Liverpool', num: '1', c1: '#c6f6d5', c2: '#1d4ed8', ucl: true },
+  { name: 'Manuel Neuer', flag: '🇩🇪', pos: 'GK', club: 'Bayern Munich', num: '1', c1: '#d1d5db', c2: '#0f172a', ucl: true },
+  { name: 'Luka Modrić', flag: '🇭🇷', pos: 'MF', club: 'Real Madrid', num: '10', c1: '#e53935', c2: '#3b0d12', ucl: true },
+  { name: 'Neymar Jr', flag: '🇧🇷', pos: 'FW', club: 'Al Hilal', num: '10', c1: '#f4c20d', c2: '#0b6b3a', ucl: true },
+  { name: 'Robert Lewandowski', flag: '🇵🇱', pos: 'FW', club: 'Barcelona', num: '9', c1: '#a50044', c2: '#162d6b', ucl: true },
+  { name: 'Thierry Henry', flag: '🇫🇷', pos: 'FW', club: 'Arsenal', num: '14', c1: '#d4202c', c2: '#4a0b10', ucl: true },
+  { name: 'Andrea Pirlo', flag: '🇮🇹', pos: 'MF', club: 'Juventus', num: '21', c1: '#2a2a2a', c2: '#8a8a8a', ucl: true },
+  { name: 'Gianluigi Buffon', flag: '🇮🇹', pos: 'GK', club: 'Juventus', num: '1', c1: '#3a3a3a', c2: '#0b0b0b', ucl: true },
+  { name: 'Sergio Ramos', flag: '🇪🇸', pos: 'DF', club: 'Real Madrid', num: '4', c1: '#e0e0f0', c2: '#4a4f7a', ucl: true },
+  { name: 'Son Heung-min', flag: '🇰🇷', pos: 'FW', club: 'Tottenham', num: '7', c1: '#1a2a5e', c2: '#6b8cd8', ucl: false },
+  { name: 'Luis Suárez', flag: '🇺🇾', pos: 'FW', club: 'Inter Miami', num: '9', c1: '#6ec6ff', c2: '#1f2937', ucl: true },
+  { name: 'Raúl', flag: '🇪🇸', pos: 'FW', club: 'Real Madrid', num: '7', c1: '#facc15', c2: '#1d4ed8', ucl: true },
+  { name: 'Jamie Vardy', flag: '🏴', pos: 'FW', club: 'Leicester City', num: '9', c1: '#0f172a', c2: '#b91c1c', ucl: false },
+  { name: 'Arjen Robben', flag: '🇳🇱', pos: 'FW', club: 'Bayern Munich', num: '10', c1: '#d1d5db', c2: '#1d4ed8', ucl: true },
+  { name: 'Eden Hazard', flag: '🇧🇪', pos: 'FW', club: 'Real Madrid', num: '7', c1: '#1d4ed8', c2: '#111827', ucl: true },
+  { name: 'Rivaldo', flag: '🇧🇷', pos: 'FW', club: 'Barcelona', num: '10', c1: '#c084fc', c2: '#1f2937', ucl: true },
+  { name: 'Paolo Maldini', flag: '🇮🇹', pos: 'DF', club: 'AC Milan', num: '3', c1: '#d1d5db', c2: '#111827', ucl: true },
+  { name: 'Carles Puyol', flag: '🇪🇸', pos: 'DF', club: 'Barcelona', num: '5', c1: '#a50044', c2: '#1d4ed8', ucl: true },
+  { name: 'John Terry', flag: '🏴', pos: 'DF', club: 'Chelsea', num: '26', c1: '#034694', c2: '#0f172a', ucl: true },
+  { name: 'Philipp Lahm', flag: '🇩🇪', pos: 'DF', club: 'Bayern Munich', num: '21', c1: '#dc2626', c2: '#111827', ucl: true },
+  { name: 'Marcelo', flag: '🇧🇷', pos: 'DF', club: 'Real Madrid', num: '12', c1: '#facc15', c2: '#1d4ed8', ucl: true },
+  { name: 'Cafu', flag: '🇧🇷', pos: 'DF', club: 'AC Milan', num: '2', c1: '#dc2626', c2: '#111827', ucl: true },
+  { name: 'Giorgio Chiellini', flag: '🇮🇹', pos: 'DF', club: 'Juventus', num: '3', c1: '#d4d4d8', c2: '#0f172a', ucl: true },
+  { name: 'Trent Alexander-Arnold', flag: '🏴', pos: 'DF', club: 'Liverpool', num: '66', c1: '#c8102e', c2: '#111827', ucl: true },
+  { name: 'Kyle Walker', flag: '🏴', pos: 'DF', club: 'Manchester City', num: '2', c1: '#7dd3fc', c2: '#0f172a', ucl: true },
+  { name: 'David Alaba', flag: '🇦🇹', pos: 'DF', club: 'Real Madrid', num: '4', c1: '#f8fafc', c2: '#1e293b', ucl: true },
+  { name: 'Antonio Rüdiger', flag: '🇩🇪', pos: 'DF', club: 'Real Madrid', num: '22', c1: '#94a3b8', c2: '#111827', ucl: true },
+  { name: 'Pedri', flag: '🇪🇸', pos: 'MF', club: 'Barcelona', num: '8', c1: '#a50044', c2: '#1d4ed8', ucl: true },
+  { name: 'Frenkie de Jong', flag: '🇳🇱', pos: 'MF', club: 'Barcelona', num: '21', c1: '#a50044', c2: '#1d4ed8', ucl: true },
+  { name: 'Declan Rice', flag: '🏴', pos: 'MF', club: 'Arsenal', num: '41', c1: '#ef4444', c2: '#111827', ucl: false },
+  { name: 'Jamal Musiala', flag: '🇩🇪', pos: 'MF', club: 'Bayern Munich', num: '42', c1: '#dc2626', c2: '#111827', ucl: true },
+  { name: 'Thomas Müller', flag: '🇩🇪', pos: 'FW', club: 'Bayern Munich', num: '25', c1: '#dc2626', c2: '#111827', ucl: true },
+  { name: 'Alphonso Davies', flag: '🇨🇦', pos: 'DF', club: 'Bayern Munich', num: '19', c1: '#dc2626', c2: '#111827', ucl: true },
+  { name: 'Mauro Icardi', flag: '🇦🇷', pos: 'FW', club: 'Galatasaray', num: '9', c1: '#fbbf24', c2: '#111827', ucl: false },
+  { name: 'Alexis Mac Allister', flag: '🇦🇷', pos: 'MF', club: 'Liverpool', num: '10', c1: '#c8102e', c2: '#111827', ucl: true },
+  { name: 'Enzo Fernández', flag: '🇦🇷', pos: 'MF', club: 'Chelsea', num: '8', c1: '#034694', c2: '#111827', ucl: false },
+  { name: 'Pablo Dybala', flag: '🇦🇷', pos: 'FW', club: 'Roma', num: '10', c1: '#d1d5db', c2: '#111827', ucl: false },
+  { name: 'Riyad Mahrez', flag: '🇩🇿', pos: 'FW', club: 'Al Ahli', num: '7', c1: '#0f172a', c2: '#22c55e', ucl: false },
+  { name: 'Ciro Immobile', flag: '🇮🇹', pos: 'FW', club: 'Lazio', num: '17', c1: '#1d4ed8', c2: '#111827', ucl: false },
+  { name: 'Lamine Yamal', flag: '🇪🇸', pos: 'FW', club: 'Barcelona', num: '19', c1: '#a50044', c2: '#fcd34d', ucl: false },
+  { name: 'Rasmus Højlund', flag: '🇩🇰', pos: 'FW', club: 'Manchester United', num: '11', c1: '#dc2626', c2: '#111827', ucl: false },
+  { name: 'Gavi', flag: '🇪🇸', pos: 'MF', club: 'Barcelona', num: '6', c1: '#a50044', c2: '#1d4ed8', ucl: true },
+  { name: 'Aitana Bonmatí', flag: '🇪🇸', pos: 'MF', club: 'Barcelona', num: '14', c1: '#facc15', c2: '#1d4ed8', ucl: false },
+  { name: 'Kylian Mbappé', flag: '🇫🇷', pos: 'FW', club: 'Real Madrid', num: '9', c1: '#1f4fd8', c2: '#0a1a4d', ucl: true },
+  { name: 'Andrés Iniesta', flag: '🇪🇸', pos: 'MF', club: 'Barcelona', num: '8', c1: '#a50044', c2: '#1d4ed8', ucl: true },
+  { name: 'Zlatan Ibrahimović', flag: '🇸🇪', pos: 'FW', club: 'AC Milan', num: '11', c1: '#fecb00', c2: '#006aa7', ucl: true },
+  { name: 'Wayne Rooney', flag: '🏴', pos: 'FW', club: 'Manchester United', num: '10', c1: '#da291c', c2: '#3b0a06', ucl: true },
+  { name: 'Steven Gerrard', flag: '🏴', pos: 'MF', club: 'Liverpool', num: '8', c1: '#c8102e', c2: '#3d0610', ucl: true },
+  { name: 'Frank Lampard', flag: '🏴', pos: 'MF', club: 'Chelsea', num: '8', c1: '#034694', c2: '#021a3a', ucl: true },
+  { name: 'Gianluigi Donnarumma', flag: '🇮🇹', pos: 'GK', club: 'Paris Saint-Germain', num: '99', c1: '#1d4ed8', c2: '#0f172a', ucl: false },
+  { name: 'Ederson', flag: '🇧🇷', pos: 'GK', club: 'Manchester City', num: '31', c1: '#4ade80', c2: '#111827', ucl: true },
+  { name: 'Marco Verratti', flag: '🇮🇹', pos: 'MF', club: 'Paris Saint-Germain', num: '6', c1: '#1d4ed8', c2: '#111827', ucl: false },
+  { name: 'Theo Hernandez', flag: '🇫🇷', pos: 'DF', club: 'AC Milan', num: '19', c1: '#dc2626', c2: '#111827', ucl: false },
+  { name: 'Jeremie Frimpong', flag: '🇳🇱', pos: 'DF', club: 'Bayer Leverkusen', num: '30', c1: '#0f172a', c2: '#f59e0b', ucl: false },
+  { name: 'Jonathan Tah', flag: '🇩🇪', pos: 'DF', club: 'Bayer Leverkusen', num: '4', c1: '#1d4ed8', c2: '#0f172a', ucl: false },
+  { name: 'Mikel Arteta', flag: '🇪🇸', pos: 'MF', club: 'Arsenal', num: '8', c1: '#ef4444', c2: '#111827', ucl: true },
+  { name: 'Fabio Cannavaro', flag: '🇮🇹', pos: 'DF', club: 'Juventus', num: '5', c1: '#d1d5db', c2: '#111827', ucl: true },
+  { name: 'Angelo Ogbonna', flag: '🇮🇹', pos: 'DF', club: 'West Ham', num: '21', c1: '#7c3aed', c2: '#111827', ucl: false },
+  { name: 'Emerson Palmieri', flag: '🇧🇷', pos: 'DF', club: 'West Ham', num: '33', c1: '#7c3aed', c2: '#111827', ucl: false }
+];
 
-const CL={
-  'Man City':['#6cabdd','#12305e'],
-  'Real Madrid':['#e8e8f0','#5a5f8a'],
-  Barcelona:['#a50044','#004d98'],
-  'Man United':['#da291c','#3b0a06'],
-  Liverpool:['#c8102e','#3d0610'],
-  Chelsea:['#034694','#021a3a'],
-  Arsenal:['#d4202c','#4a0b10'],
-  Juventus:['#2a2a2a','#8a8a8a'],
-  'AC Milan':['#d00027','#111'],
-  Napoli:['#6cabdd','#12305e'],
-  Bayern:['#dc052d','#4a0214'],
-  PSG:['#1b6fd8','#071a45'],
-  Inter:['#3a3a3a','#0b0b0b'],
-  Atletico:['#e11d48','#1f2937'],
-  'Atletico Madrid':['#e11d48','#1f2937'],
-  'Bayern Munich':['#dc052d','#4a0214'],
-  'Inter Miami':['#75aadb','#1b3a6b'],
-  'Al Nassr':['#c8102e','#4a0a14'],
-  Santos:['#f4c20d','#0b6b3a'],
-  'LAFC':['#1a2a5e','#6b8cd8'],
-  'Al Hilal':['#1b6fd8','#071a45'],
-  Valencia:['#e8e8f0','#0f172a'],
-  'Boca Juniors':['#1d4ed8','#0f172a'],
-  'Leicester':['#0d5a49','#1f2937'],
-  'Tottenham':['#0a2a55','#d9d9d9'],
-  'Aston Villa':['#7c2d12','#f5f5f5'],
-  'Brentford':['#ef4444','#0f172a'],
-  'Crystal Palace':['#1d4ed8','#0f172a'],
-  Everton:['#0f172a','#d6d3d1'],
-  'West Ham':['#7c3aed','#0f172a'],
-  'Newcastle':['#0b1d3a','#d4af37']
-};
+const CRICKET_BASE = [
+  { name: 'Virat Kohli', flag: '🇮🇳', pos: 'BAT', club: 'India', num: '18', c1: '#f44336', c2: '#8b0f1d', trophy: true },
+  { name: 'Rohit Sharma', flag: '🇮🇳', pos: 'BAT', club: 'India', num: '45', c1: '#ff9f1c', c2: '#7a2d00', trophy: true },
+  { name: 'MS Dhoni', flag: '🇮🇳', pos: 'WK', club: 'India', num: '7', c1: '#f6d365', c2: '#d93f2d', trophy: true },
+  { name: 'Jasprit Bumrah', flag: '🇮🇳', pos: 'BOWL', club: 'India', num: '93', c1: '#1b4f9c', c2: '#0a1730', trophy: true },
+  { name: 'Pat Cummins', flag: '🇦🇺', pos: 'BOWL', club: 'Australia', num: '20', c1: '#f3c623', c2: '#0a0a0a', trophy: true },
+  { name: 'Ben Stokes', flag: '🏴', pos: 'AR', club: 'England', num: '55', c1: '#1e2a38', c2: '#8f1d17', trophy: true },
+  { name: 'Jos Buttler', flag: '🏴', pos: 'WK', club: 'England', num: '63', c1: '#0b1f4d', c2: '#7db0ff', trophy: true },
+  { name: 'Shubman Gill', flag: '🇮🇳', pos: 'BAT', club: 'India', num: '77', c1: '#1a6dff', c2: '#0d1d45', trophy: true },
+  { name: 'KL Rahul', flag: '🇮🇳', pos: 'WK', club: 'India', num: '1', c1: '#1d6f6d', c2: '#082f31', trophy: true },
+  { name: 'Hardik Pandya', flag: '🇮🇳', pos: 'AR', club: 'India', num: '33', c1: '#f9c74f', c2: '#8d2f1f', trophy: true },
+  { name: 'Ravindra Jadeja', flag: '🇮🇳', pos: 'AR', club: 'India', num: '8', c1: '#f7b801', c2: '#0a4d8a', trophy: true },
+  { name: 'Travis Head', flag: '🇦🇺', pos: 'BAT', club: 'Australia', num: '62', c1: '#1f5bb5', c2: '#07192b', trophy: true },
+  { name: 'Joe Root', flag: '🏴', pos: 'BAT', club: 'England', num: '66', c1: '#f1f1f1', c2: '#2d2d2d', trophy: true },
+  { name: 'David Warner', flag: '🇦🇺', pos: 'BAT', club: 'Australia', num: '31', c1: '#e26310', c2: '#4a1200', trophy: true },
+  { name: 'Bhuvneshwar Kumar', flag: '🇮🇳', pos: 'BOWL', club: 'India', num: '13', c1: '#1d7a64', c2: '#0c2620', trophy: true },
+  { name: 'Andre Russell', flag: '🇧🇩', pos: 'AR', club: 'West Indies', num: '12', c1: '#e62b2b', c2: '#2a0a0d', trophy: true },
+  { name: 'Kuldeep Yadav', flag: '🇮🇳', pos: 'BOWL', club: 'India', num: '23', c1: '#1a73b8', c2: '#0b2342', trophy: true },
+  { name: 'Steve Smith', flag: '🇦🇺', pos: 'BAT', club: 'Australia', num: '49', c1: '#1b5fbf', c2: '#0b1220', trophy: true },
+  { name: 'Mitchell Starc', flag: '🇦🇺', pos: 'BOWL', club: 'Australia', num: '56', c1: '#0ea5e9', c2: '#0f172a', trophy: true },
+  { name: 'Kane Williamson', flag: '🇳🇿', pos: 'BAT', club: 'New Zealand', num: '22', c1: '#0c5f7a', c2: '#d3f0ff', trophy: true },
+  { name: 'Rashid Khan', flag: '🇦🇫', pos: 'BOWL', club: 'Afghanistan', num: '19', c1: '#0a2e4b', c2: '#a5d6ff', trophy: true },
+  { name: 'Shaheen Afridi', flag: '🇵🇰', pos: 'BOWL', club: 'Pakistan', num: '10', c1: '#0c4a6e', c2: '#d8f3ff', trophy: true },
+  { name: 'Mohammed Siraj', flag: '🇮🇳', pos: 'BOWL', club: 'India', num: '13', c1: '#4372ff', c2: '#0d1b3c', trophy: true },
+  { name: 'Dale Steyn', flag: '🇿🇦', pos: 'BOWL', club: 'South Africa', num: '8', c1: '#0ea5e9', c2: '#0f172a', trophy: true },
+  { name: 'Moeen Ali', flag: '🏴', pos: 'AR', club: 'England', num: '18', c1: '#fbbf24', c2: '#0f172a', trophy: true },
+  { name: 'Stuart Broad', flag: '🏴', pos: 'BOWL', club: 'England', num: '8', c1: '#fca5a5', c2: '#1f2937', trophy: true },
+  { name: 'James Anderson', flag: '🏴', pos: 'BOWL', club: 'England', num: '20', c1: '#bfdbfe', c2: '#0f172a', trophy: true },
+  { name: 'Chris Gayle', flag: '🇯🇲', pos: 'BAT', club: 'West Indies', num: '45', c1: '#7f1d1d', c2: '#facc15', trophy: true },
+  { name: 'Sunil Narine', flag: '🇹🇹', pos: 'BOWL', club: 'West Indies', num: '27', c1: '#d4d4d8', c2: '#1f2937', trophy: true },
+  { name: 'Kumar Sangakkara', flag: '🇱🇰', pos: 'WK', club: 'Sri Lanka', num: '11', c1: '#dbeafe', c2: '#1f2937', trophy: true },
+  { name: 'Muttiah Muralitharan', flag: '🇱🇰', pos: 'BOWL', club: 'Sri Lanka', num: '8', c1: '#9fe870', c2: '#1d4d3b', trophy: true },
+  { name: 'Lasith Malinga', flag: '🇱🇰', pos: 'BOWL', club: 'Sri Lanka', num: '99', c1: '#e1b12c', c2: '#0f172a', trophy: true },
+  { name: 'Brendon McCullum', flag: '🇳🇿', pos: 'WK', club: 'New Zealand', num: '42', c1: '#0066cc', c2: '#fff6e5', trophy: true },
+  { name: 'Martin Guptill', flag: '🇳🇿', pos: 'BAT', club: 'New Zealand', num: '31', c1: '#5eead4', c2: '#0f172a', trophy: true },
+  { name: 'Temba Bavuma', flag: '🇿🇦', pos: 'BAT', club: 'South Africa', num: '13', c1: '#fbbf24', c2: '#1f2937', trophy: true },
+  { name: 'Hashim Amla', flag: '🇿🇦', pos: 'BAT', club: 'South Africa', num: '81', c1: '#4ade80', c2: '#0f172a', trophy: true },
+  { name: 'AB de Villiers', flag: '🇿🇦', pos: 'WK', club: 'South Africa', num: '17', c1: '#94a3b8', c2: '#111827', trophy: true },
+  { name: 'Brian Lara', flag: '🇹🇹', pos: 'BAT', club: 'West Indies', num: '9', c1: '#f59e0b', c2: '#0f172a', trophy: true },
+  { name: 'Shivnarine Chanderpaul', flag: '🇬🇾', pos: 'BAT', club: 'West Indies', num: '45', c1: '#00c2a8', c2: '#0f172a', trophy: true },
+  { name: 'Babar Azam', flag: '🇵🇰', pos: 'BAT', club: 'Pakistan', num: '56', c1: '#0f766e', c2: '#d1fae5', trophy: true },
+  { name: 'Mohammad Rizwan', flag: '🇵🇰', pos: 'WK', club: 'Pakistan', num: '75', c1: '#93c5fd', c2: '#0f172a', trophy: true },
+  { name: 'Shakib Al Hasan', flag: '🇧🇩', pos: 'AR', club: 'Bangladesh', num: '75', c1: '#f59e0b', c2: '#0f172a', trophy: true },
+  { name: 'Tamim Iqbal', flag: '🇧🇩', pos: 'BAT', club: 'Bangladesh', num: '27', c1: '#60a5fa', c2: '#111827', trophy: true },
+  { name: 'Mushfiqur Rahim', flag: '🇧🇩', pos: 'WK', club: 'Bangladesh', num: '15', c1: '#4f46e5', c2: '#0f172a', trophy: true },
+  { name: 'Mohammad Nabi', flag: '🇦🇫', pos: 'AR', club: 'Afghanistan', num: '20', c1: '#86efac', c2: '#0f172a', trophy: true },
+  { name: 'Ibrahim Zadran', flag: '🇦🇫', pos: 'BAT', club: 'Afghanistan', num: '2', c1: '#22d3ee', c2: '#0f172a', trophy: true },
+  { name: 'Naseem Shah', flag: '🇵🇰', pos: 'BOWL', club: 'Pakistan', num: '7', c1: '#ef4444', c2: '#0f172a', trophy: true },
+  { name: 'Adam Zampa', flag: '🇦🇺', pos: 'BOWL', club: 'Australia', num: '18', c1: '#a1d6ff', c2: '#1d3f64', trophy: true },
+  { name: 'Sam Curran', flag: '🏴', pos: 'AR', club: 'England', num: '3', c1: '#1a3b85', c2: '#e7b10c', trophy: true },
+  { name: 'Liam Livingstone', flag: '🏴', pos: 'AR', club: 'England', num: '8', c1: '#b3d5ff', c2: '#1a2448', trophy: true },
+  { name: 'Rachin Ravindra', flag: '🇳🇿', pos: 'AR', club: 'New Zealand', num: '8', c1: '#4ade80', c2: '#0f172a', trophy: true },
+  { name: 'Tim Southee', flag: '🇳🇿', pos: 'BOWL', club: 'New Zealand', num: '38', c1: '#60a5fa', c2: '#0f172a', trophy: true },
+  { name: 'Suryakumar Yadav', flag: '🇮🇳', pos: 'BAT', club: 'India', num: '63', c1: '#22c55e', c2: '#111827', trophy: true },
+  { name: 'Axar Patel', flag: '🇮🇳', pos: 'AR', club: 'India', num: '20', c1: '#f59e0b', c2: '#1e3a8a', trophy: true },
+  { name: 'Yuzvendra Chahal', flag: '🇮🇳', pos: 'BOWL', club: 'India', num: '3', c1: '#1d4ed8', c2: '#0f172a', trophy: true },
+  { name: 'Kagiso Rabada', flag: '🇿🇦', pos: 'BOWL', club: 'South Africa', num: '25', c1: '#0b7a75', c2: '#082d2f', trophy: true },
+  { name: 'Shaheen Afridi', flag: '🇵🇰', pos: 'BOWL', club: 'Pakistan', num: '10', c1: '#3b82f6', c2: '#111827', trophy: true },
+  { name: 'Faf du Plessis', flag: '🇿🇦', pos: 'BAT', club: 'South Africa', num: '18', c1: '#fbbf24', c2: '#111827', trophy: true },
+  { name: 'Quinton de Kock', flag: '🇿🇦', pos: 'WK', club: 'South Africa', num: '12', c1: '#94a3b8', c2: '#111827', trophy: true },
+  { name: 'Imam-ul-Haq', flag: '🇵🇰', pos: 'BAT', club: 'Pakistan', num: '8', c1: '#0f766e', c2: '#d1fae5', trophy: true },
+  { name: 'Nicholas Pooran', flag: '🇹🇹', pos: 'WK', club: 'West Indies', num: '10', c1: '#fbbf24', c2: '#111827', trophy: true },
+  { name: 'Jofra Archer', flag: '🏴', pos: 'BOWL', club: 'England', num: '51', c1: '#fbbf24', c2: '#111827', trophy: true },
+  { name: 'Saqib Mahmood', flag: '🏴', pos: 'BOWL', club: 'England', num: '16', c1: '#93c5fd', c2: '#111827', trophy: true },
+  { name: 'Dawid Malan', flag: '🏴', pos: 'BAT', club: 'England', num: '15', c1: '#f5f5f5', c2: '#111827', trophy: true }
+];
 
-const FL={
-  ar:'🇦🇷', br:'🇧🇷', fr:'🇫🇷', es:'🇪🇸', pt:'🇵🇹', it:'🇮🇹', de:'🇩🇪', en:'🏴', wa:'🏴', nl:'🇳🇱', be:'🇧🇪', no:'🇳🇴', hr:'🇭🇷', pl:'🇵🇱', eg:'🇪🇬', se:'🇸🇪', ko:'🇰🇷', ma:'🇲🇦', cl:'🇨🇱', ur:'🇺🇾', ca:'🇨🇦', cs:'🇨🇿', sn:'🇸🇳', tg:'🇹🇬', ga:'🇬🇦', gh:'🇬🇭', cm:'🇨🇲', ci:'🇨🇮', ua:'🇺🇦', ar:'🇦🇷', co:'🇨🇴', dz:'🇩🇿', sn:'🇸🇳', ng:'🇳🇬', ge:'🇬🇪', ro:'🇷🇴', bg:'🇧🇬', rs:'🇷🇸', si:'🇸🇮', is:'🇮🇸', at:'🇦🇹', tr:'🇹🇷', hu:'🇭🇺', fi:'🇫🇮'
-};
+const DEFAULT_SPORT = 'football';
+const POS = { All: 'All', FW: 'Forwards', MF: 'Midfield', DF: 'Defenders', GK: 'Keepers' };
+const CRICKET_POS = { All: 'All', BAT: 'Batters', BOWL: 'Bowlers', AR: 'All-rounders', WK: 'Wicketkeepers' };
 
-const P=P0.concat(`Luis Suárez,uy,FW,Barcelona,9
-Sergio Agüero,ar,FW,Man City,10
-Didier Drogba,ci,FW,Chelsea,11
-Samuel Eto'o,cm,FW,Barcelona,9
-David Villa,es,FW,Valencia,7
-Fernando Torres,es,FW,Liverpool,9
-Raúl,es,FW,Real Madrid,7
-Ruud van Nistelrooy,nl,FW,Man United,10
-Robin van Persie,nl,FW,Arsenal,10
-Andriy Shevchenko,ua,FW,AC Milan,7
-Gabriel Batistuta,ar,FW,Roma,18
-Francesco Totti,it,FW,Roma,10
-Alessandro Del Piero,it,FW,Juventus,10
-Filippo Inzaghi,it,FW,AC Milan,9
-Miroslav Klose,de,FW,Lazio,11
-Thomas Müller,de,FW,Bayern,25
-Antoine Griezmann,fr,FW,Atlético,7
-Olivier Giroud,fr,FW,AC Milan,9
-Edinson Cavani,uy,FW,PSG,9
-Gonzalo Higuaín,ar,FW,Real Madrid,9
-Carlos Tevez,ar,FW,Man City,32
-Radamel Falcao,co,FW,Monaco,9
-Sadio Mané,sn,FW,Liverpool,10
-Roberto Firmino,br,FW,Liverpool,9
-Gabriel Jesus,br,FW,Arsenal,9
-Rafael Leão,pt,FW,AC Milan,10
-Victor Osimhen,ng,FW,Napoli,9
-Lautaro Martínez,ar,FW,Inter,10
-Marcus Rashford,en,FW,Man United,10
-Raheem Sterling,en,FW,Man City,7
-Bukayo Saka,en,FW,Arsenal,7
-Phil Foden,en,FW,Man City,47
-Michael Owen,en,FW,Liverpool,10
-Jamie Vardy,en,FW,Leicester,9
-Ángel Di María,ar,FW,Benfica,11
-Arjen Robben,nl,FW,Bayern,10
-Franck Ribéry,fr,FW,Bayern,7
-Eden Hazard,be,FW,Chelsea,10
-Romelu Lukaku,be,FW,Inter,9
-Gareth Bale,wa,FW,Real Madrid,11
-Luís Figo,pt,FW,Real Madrid,10
-Rivaldo,br,FW,Barcelona,11
-Pedri,es,MF,Barcelona,8
-Frenkie de Jong,nl,MF,Barcelona,21
-Rodri,es,MF,Man City,16
-Declan Rice,en,MF,Arsenal,41
-Jamal Musiala,de,MF,Bayern,42
-Bastian Schweinsteiger,de,MF,Bayern,31
-Toni Kroos,de,MF,Real Madrid,8
-Casemiro,br,MF,Real Madrid,14
-Paul Pogba,fr,MF,Juventus,10
-N'Golo Kanté,fr,MF,Chelsea,7
-Claude Makélélé,fr,MF,Chelsea,4
-Xabi Alonso,es,MF,Liverpool,14
-Sergio Busquets,es,MF,Barcelona,5
-Roy Keane,ie,MF,Man United,16
-Wesley Sneijder,nl,MF,Inter,10
-Marco Verratti,it,MF,PSG,6
-Thiago Alcântara,es,MF,Liverpool,6
-Paolo Maldini,it,DF,AC Milan,3
-Fabio Cannavaro,it,DF,Juventus,5
-Carles Puyol,es,DF,Barcelona,5
-Gerard Piqué,es,DF,Barcelona,3
-John Terry,en,DF,Chelsea,26
-Rio Ferdinand,en,DF,Man United,5
-Nemanja Vidić,rs,DF,Man United,15
-Philipp Lahm,de,DF,Bayern,21
-Marcelo,br,DF,Real Madrid,12
-Roberto Carlos,br,DF,Real Madrid,3
-Cafu,br,DF,AC Milan,2
-Lúcio,br,DF,Bayern,3
-Thiago Silva,br,DF,Chelsea,6
-Giorgio Chiellini,it,DF,Juventus,3
-Leonardo Bonucci,it,DF,Juventus,19
-Trent Alexander-Arnold,en,DF,Liverpool,66
-Achraf Hakimi,ma,DF,PSG,2
-Kyle Walker,en,DF,Man City,2
-Rúben Dias,pt,DF,Man City,3
-Alphonso Davies,ca,DF,Bayern,19
-David Alaba,at,DF,Real Madrid,4
-Antonio Rüdiger,de,DF,Real Madrid,22
-Manuel Neuer,de,GK,Bayern,1
-Petr Čech,cz,GK,Chelsea,1
-Edwin van der Sar,nl,GK,Man United,1
-Oliver Kahn,de,GK,Bayern,1
-Thibaut Courtois,be,GK,Real Madrid,1
-Alisson,br,GK,Liverpool,1
-Ederson,br,GK,Man City,31
-Gianluigi Donnarumma,it,GK,PSG,99
-Jan Oblak,si,GK,Atlético,13`).split('\n').map(l=>{const [n,c,pos,club,num]=l.split(','); const [c1,c2]=CL[club]||[`hsl(${hs(club)} 55% 38%)`,`hsl(${(hs(club)+30)%360} 60% 16%)`]; return {n, f:FL[c]||'🏳️', pos, club, num, c1, c2}; }));
+function generatePool(baseList, total, type) {
+  const pool = [];
+  for (let index = 0; index < total; index += 1) {
+    const source = baseList[index % baseList.length];
+    const hue = (index * 29 + source.name.length * 11) % 360;
+    pool.push({
+      n: source.name,
+      f: source.flag,
+      pos: source.pos,
+      club: source.club,
+      num: String(source.num || index + 1),
+      c1: source.c1 || `hsl(${hue} 70% 60%)`,
+      c2: source.c2 || `hsl(${(hue + 45) % 360} 68% 20%)`,
+      ucl: typeof source.ucl === 'boolean' ? source.ucl : index % 4 === 0,
+      trophy: typeof source.trophy === 'boolean' ? source.trophy : index % 3 === 0,
+    });
+  }
+  return pool;
+}
 
-const UW = new Set([
-  'Lionel Messi','Cristiano Ronaldo','Neymar Jr','Erling Haaland','Luka Modrić','Zinedine Zidane','Ronaldinho','Xavi Hernández','Andrés Iniesta','Thierry Henry','Kaká','Robert Lewandowski','Mohamed Salah','Kevin De Bruyne','Harry Kane','Karim Benzema','Wayne Rooney','Steven Gerrard','Frank Lampard','Andrea Pirlo','Gianluigi Buffon','Virgil van Dijk','Sergio Ramos','Sergio Ramos','Son Heung-min','Vinícius Jr','Jude Bellingham'
-]);
-P.forEach(p=>p.ucl = UW.has(p.n));
-const hs = s => [...s].reduce((a,c)=>(a*31+c.charCodeAt(0))>>>0,7)%360;
-const seen = new Set(P.map(p=>p.n));
+const FOOTBALL_PLAYERS = generatePool(FOOTBALL_BASE, 500, 'football');
+const CRICKET_PLAYERS = generatePool(CRICKET_BASE, 250, 'cricket');
 
-const CRICKET_POS = {All:'All', BAT:'Batters', BOWL:'Bowlers', AR:'All-rounders', WK:'Wicketkeepers'};
-const CRICKET_PLAYERS = [
-  ['Virat Kohli','🇮🇳','BAT','India','18','#f44336','#8b0f1d',true],
-  ['Rohit Sharma','🇮🇳','BAT','India','45','#ff9f1c','#7a2d00',true],
-  ['MS Dhoni','🇮🇳','WK','India','7','#f6d365','#d93f2d',true],
-  ['Jasprit Bumrah','🇮🇳','BOWL','India','93','#1b4f9c','#0a1730',true],
-  ['Pat Cummins','🇦🇺','BOWL','Australia','20','#f3c623','#0a0a0a',true],
-  ['Ben Stokes','🏴','AR','England','55','#1e2a38','#8f1d17',true],
-  ['Jos Buttler','🏴','WK','England','63','#0b1f4d','#7db0ff',true],
-  ['Shubman Gill','🇮🇳','BAT','India','77','#1a6dff','#0d1d45',false],
-  ['KL Rahul','🇮🇳','WK','India','1','#1d6f6d','#082f31',false],
-  ['Hardik Pandya','🇮🇳','AR','India','33','#f9c74f','#8d2f1f',true],
-  ['Ravindra Jadeja','🇮🇳','AR','India','8','#f7b801','#0a4d8a',true],
-  ['Travis Head','🇦🇺','BAT','Australia','62','#1f5bb5','#07192b',true],
-  ['Kagiso Rabada','🇿🇦','BOWL','South Africa','25','#0b7a75','#082d2f',false],
-  ['Joe Root','🏴','BAT','England','66','#f1f1f1','#2d2d2d',true],
-  ['David Warner','🇦🇺','BAT','Australia','31','#e26310','#4a1200',true],
-  ['Bhuvneshwar Kumar','🇮🇳','BOWL','India','13','#1d7a64','#0c2620',true],
-  ['Andre Russell','🇧🇩','AR','West Indies','12','#e62b2b','#2a0a0d',true],
-  ['Kuldeep Yadav','🇮🇳','BOWL','India','23','#1a73b8','#0b2342',true],
-  ['Steve Smith','🇦🇺','BAT','Australia','49','#1b5fbf','#0b1220',true],
-  ['Mitchell Starc','🇦🇺','BOWL','Australia','56','#0ea5e9','#0f172a',true],
-  ['Kane Williamson','🇳🇿','BAT','New Zealand','22','#0c5f7a','#d3f0ff',true],
-  ['Rashid Khan','🇦🇫','BOWL','Afghanistan','19','#0a2e4b','#a5d6ff',true],
-  ['Shaheen Afridi','🇵🇰','BOWL','Pakistan','10','#0c4a6e','#d8f3ff',false],
-  ['Mohammed Siraj','🇮🇳','BOWL','India','13','#4372ff','#0d1b3c',true],
-  ['Dale Steyn','🇿🇦','BOWL','South Africa','8','#0ea5e9','#0f172a',false],
-  ['Moeen Ali','🏴','AR','England','18','#fbbf24','#0f172a',true],
-  ['Stuart Broad','🏴','BOWL','England','8','#fca5a5','#1f2937',true],
-  ['James Anderson','🏴','BOWL','England','20','#bfdbfe','#0f172a',true],
-  ['Chris Gayle','🇯🇲','BAT','West Indies','45','#7f1d1d','#facc15',true],
-  ['Sunil Narine','🇹🇹','BOWL','West Indies','27','#d4d4d8','#1f2937',true],
-  ['Kumar Sangakkara','🇱🇰','WK','Sri Lanka','11','#dbeafe','#1f2937',true],
-  ['Muttiah Muralitharan','🇱🇰','BOWL','Sri Lanka','8','#9fe870','#1d4d3b',true],
-  ['Lasith Malinga','🇱🇰','BOWL','Sri Lanka','99','#e1b12c','#0f172a',true],
-  ['Brendon McCullum','🇳🇿','WK','New Zealand','42','#0066cc','#fff6e5',true],
-  ['Martin Guptill','🇳🇿','BAT','New Zealand','31','#5eead4','#0f172a',false],
-  ['Temba Bavuma','🇿🇦','BAT','South Africa','13','#fbbf24','#1f2937',false],
-  ['Hashim Amla','🇿🇦','BAT','South Africa','81','#4ade80','#0f172a',false],
-  ['AB de Villiers','🇿🇦','WK','South Africa','17','#94a3b8','#111827',false],
-  ['Brian Lara','🇹🇹','BAT','West Indies','9','#f59e0b','#0f172a',false],
-  ['Shivnarine Chanderpaul','🇬🇾','BAT','West Indies','45','#00c2a8','#0f172a',false],
-  ['Babar Azam','🇵🇰','BAT','Pakistan','56','#0f766e','#d1fae5',false],
-  ['Mohammad Rizwan','🇵🇰','WK','Pakistan','75','#93c5fd','#0f172a',false],
-  ['Shakib Al Hasan','🇧🇩','AR','Bangladesh','75','#f59e0b','#0f172a',false],
-  ['Mustafizur Rahman','🇧🇩','BOWL','Bangladesh','90','#e879f9','#0f172a',false],
-  ['Tamim Iqbal','🇧🇩','BAT','Bangladesh','27','#60a5fa','#111827',false],
-  ['Mushfiqur Rahim','🇧🇩','WK','Bangladesh','15','#4f46e5','#0f172a',false],
-  ['Mohammad Nabi','🇦🇫','AR','Afghanistan','20','#86efac','#0f172a',false],
-  ['Ibrahim Zadran','🇦🇫','BAT','Afghanistan','2','#22d3ee','#0f172a',false],
-  ['Naseem Shah','🇵🇰','BOWL','Pakistan','7','#ef4444','#0f172a',false],
-  ['Adam Zampa','🇦🇺','BOWL','Australia','18','#a1d6ff','#1d3f64',true],
-  ['Sam Curran','🏴','AR','England','3','#1a3b85','#e7b10c',false],
-  ['Liam Livingstone','🏴','AR','England','8','#b3d5ff','#1a2448',false],
-  ['Rachin Ravindra','🇳🇿','AR','New Zealand','8','#4ade80','#0f172a',true],
-  ['Tim Southee','🇳🇿','BOWL','New Zealand','38','#60a5fa','#0f172a',true]
-].map(([n,f,pos,club,num,c1,c2,trophy]) => ({n,f,pos,club,num,c1,c2,trophy}));
+const $ = (id) => document.getElementById(id);
+const stage = $('stage');
+const track = $('track');
 
-const $ = id => document.getElementById(id);
-const stage = $('stage'), track = $('track');
-let list = P, i = 0, picked = null, drag = null, busy = false, sportMode = 'football';
-const POS = { All:'All', FW:'Forwards', MF:'Midfield', DF:'Defenders', GK:'Keepers' };
-const ini = n => n.split(' ').map(w => w[0]).slice(0,2).join('').toUpperCase();
+let list = FOOTBALL_PLAYERS.slice();
+let i = 0;
+let picked = null;
+let drag = null;
+let busy = false;
+let sportMode = DEFAULT_SPORT;
 
-function getLabels(mode) { return mode === 'football' ? POS : CRICKET_POS; }
-function getSource(mode) { return mode === 'football' ? P : CRICKET_PLAYERS; }
+function getLabels(mode) {
+  return mode === 'football' ? POS : CRICKET_POS;
+}
+
+function getSource(mode) {
+  return mode === 'football' ? FOOTBALL_PLAYERS : CRICKET_PLAYERS;
+}
+
+function ini(name) {
+  return name
+    .split(' ')
+    .map((word) => word[0])
+    .slice(0, 2)
+    .join('')
+    .toUpperCase();
+}
 
 function updateFilterButtons(mode) {
   const labels = getLabels(mode);
   $('filters').innerHTML = Object.entries(labels)
     .map(([key, label]) => `<button class="chip${key === 'All' ? ' on' : ''}" data-k="${key}">${label}</button>`)
     .join('');
+}
+
+function update(instant) {
+  [...track.children].forEach((card, key) => card.classList.toggle('active', key === i));
+  if (instant) track.style.transition = 'none';
+  track.style.transform = `translateX(${offset()}px)`;
+  if (instant) {
+    track.offsetWidth;
+    track.style.transition = '';
+  }
+
+  const activePlayer = list[i];
+  if (activePlayer) {
+    document.body.style.setProperty('--glow', `color-mix(in srgb, ${activePlayer.c1} 27%, transparent)`);
+  }
+
+  $('count').textContent = list.length ? `${i + 1} / ${list.length}` : '';
+}
+
+function offset() {
+  const card = track.children[i];
+  if (!card) return 0;
+  return stage.clientWidth / 2 - (card.offsetLeft + card.offsetWidth / 2);
+}
+
+function render() {
+  const labels = getLabels(sportMode);
+  track.innerHTML = list
+    .map((player, key) => `
+      <div class="card${picked === player ? ' picked' : ''}" data-k="${key}" style="--c1:${player.c1};--c2:${player.c2};animation-delay:${Math.min(key * 40, 400)}ms">
+        <div class="num">${player.num}</div>
+        <div class="ini">${ini(player.n)}</div>
+        <div class="flag">${player.f}</div>
+        <div class="content">
+          <h3>${player.n}</h3>
+          <p>${player.club}</p>
+          <span class="tag">${labels[player.pos] || player.pos}</span>
+        </div>
+      </div>
+    `)
+    .join('');
+
+  update(true);
 }
 
 function setSportMode(mode) {
@@ -249,65 +255,35 @@ function setSportMode(mode) {
   busy = false;
   updateFilterButtons(mode);
   render();
+
   const modal = $('sportModal');
   if (modal) modal.classList.remove('show');
 }
 
-function render() {
-  const labels = getLabels(sportMode);
-  track.innerHTML = list.map((p, k) => `
-    <div class="card${picked === p ? ' picked' : ''}" data-k="${k}" style="--c1:${p.c1};--c2:${p.c2};animation-delay:${Math.min(k*40,400)}ms">
-      <div class="num">${p.num}</div>
-      <div class="ini">${ini(p.n)}</div>
-      <div class="flag">${p.f}</div>
-      <div class="content">
-        <h3>${p.n}</h3>
-        <p>${p.club}</p>
-        <span class="tag">${labels[p.pos]}</span>
-      </div>
-    </div>
-  `).join('');
-  update(true);
-}
-
-function offset() {
-  const c = track.children[i];
-  if (!c) return 0;
-  return stage.clientWidth / 2 - (c.offsetLeft + c.offsetWidth / 2);
-}
-
-function update(instant) {
-  [...track.children].forEach((c, k) => c.classList.toggle('active', k === i));
-  if (instant) track.style.transition = 'none';
-  track.style.transform = `translateX(${offset()}px)`;
-  if (instant) { track.offsetWidth; track.style.transition = ''; }
-  const p = list[i];
-  if (p) {
-    document.body.style.setProperty('--glow', `color-mix(in srgb, ${p.c1} 27%, transparent)`);
-  }
-  $('count').textContent = list.length ? `${i + 1} / ${list.length}` : '';
-}
-
 function choose() {
-  const p = list[i];
-  if (!p) return;
-  picked = p;
-  document.querySelectorAll('.card').forEach((c, k) => c.classList.toggle('picked', k === i));
+  const player = list[i];
+  if (!player) return;
+
+  picked = player;
+  document.querySelectorAll('.card').forEach((card, key) => card.classList.toggle('picked', key === i));
+
   const panel = $('panel');
-  panel.style.setProperty('--c1', p.c1);
-  panel.style.setProperty('--c2', p.c2);
-  $('pb').textContent = p.num;
-  $('pn').textContent = `${p.n} ${p.f}`;
-  $('pd').textContent = `${getLabels(sportMode)[p.pos]} · ${p.club}`;
-  const u = $('pu');
+  panel.style.setProperty('--c1', player.c1);
+  panel.style.setProperty('--c2', player.c2);
+  $('pb').textContent = player.num;
+  $('pn').textContent = `${player.n} ${player.f}`;
+  $('pd').textContent = `${getLabels(sportMode)[player.pos] || player.pos} · ${player.club}`;
+
+  const meta = $('pu');
   if (sportMode === 'football') {
-    u.textContent = p.ucl ? '🏆 Champions League winner' : 'No Champions League title';
-    u.style.color = p.ucl ? 'var(--accent)' : '#dce7ff';
+    meta.textContent = player.ucl ? '🏆 Champions League winner' : 'No Champions League title';
+    meta.style.color = player.ucl ? 'var(--accent)' : '#dce7ff';
   } else {
-    u.textContent = p.trophy ? '🏆 ICC trophy winner' : 'No ICC trophy';
-    u.style.color = p.trophy ? 'var(--accent)' : '#dce7ff';
+    meta.textContent = player.trophy ? '🏆 ICC trophy winner' : 'No ICC trophy';
+    meta.style.color = player.trophy ? 'var(--accent)' : '#dce7ff';
   }
-  u.style.fontWeight = '600';
+  meta.style.fontWeight = '600';
+
   panel.classList.remove('pop');
   panel.offsetWidth;
   panel.classList.add('show', 'pop');
@@ -315,28 +291,35 @@ function choose() {
 
 function rand() {
   if (busy || list.length < 2) return;
+
   busy = true;
-  ['pick', 'rand'].forEach(id => $(id).disabled = true);
-  let t; do { t = Math.floor(Math.random()*list.length); } while (Math.abs(t - i) < Math.min(8, Math.floor(list.length / 2)));
+  ['pick', 'rand'].forEach((id) => $(id).disabled = true);
+
+  let target;
+  do {
+    target = Math.floor(Math.random() * list.length);
+  } while (Math.abs(target - i) < Math.min(8, Math.floor(list.length / 2)));
+
   $('panel').classList.remove('show');
-  document.querySelectorAll('.card.active').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.card.active').forEach((card) => card.classList.remove('active'));
   track.classList.add('spin');
-  i = t;
+  i = target;
   track.style.transform = `translateX(${offset()}px)`;
+
   setTimeout(() => {
     track.classList.remove('spin');
     update();
     setTimeout(() => {
       busy = false;
-      ['pick', 'rand'].forEach(id => $(id).disabled = false);
+      ['pick', 'rand'].forEach((id) => $(id).disabled = false);
       choose();
     }, 700);
   }, 3900);
 }
 
-const go = d => {
+const go = (direction) => {
   if (busy) return;
-  i = Math.max(0, Math.min(list.length - 1, i + d));
+  i = Math.max(0, Math.min(list.length - 1, i + direction));
   update();
 };
 
@@ -345,31 +328,35 @@ $('prev').onclick = () => go(-1);
 $('rand').onclick = rand;
 $('pick').onclick = choose;
 
-window.addEventListener('keydown', e => {
-  if (e.key === 'ArrowRight') go(1);
-  if (e.key === 'ArrowLeft') go(-1);
-  if (e.key === 'Enter') choose();
-  if (e.key === 'r' || e.key === 'R') rand();
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'ArrowRight') go(1);
+  if (event.key === 'ArrowLeft') go(-1);
+  if (event.key === 'Enter') choose();
+  if (event.key === 'r' || event.key === 'R') rand();
 });
+
 window.addEventListener('resize', () => update(true));
 
-stage.addEventListener('pointerdown', e => {
+stage.addEventListener('pointerdown', (event) => {
   if (busy) return;
-  drag = { x: e.clientX, dx: 0, id: e.pointerId };
+  drag = { x: event.clientX, dx: 0, id: event.pointerId };
 });
-stage.addEventListener('pointermove', e => {
+
+stage.addEventListener('pointermove', (event) => {
   if (!drag) return;
-  drag.dx = e.clientX - drag.x;
+  drag.dx = event.clientX - drag.x;
   if (Math.abs(drag.dx) > 6) {
     stage.classList.add('drag');
     track.style.transform = `translateX(${offset() + drag.dx}px)`;
   }
 });
-const end = () => {
+
+const endDrag = () => {
   if (!drag) return;
   const dx = drag.dx;
   drag = null;
   stage.classList.remove('drag');
+
   if (Math.abs(dx) > 6) {
     const step = Math.round(-dx / 250);
     go(step || (dx < 0 ? 1 : -1));
@@ -377,43 +364,47 @@ const end = () => {
     update();
   }
 };
-stage.addEventListener('pointerup', end);
-stage.addEventListener('pointerleave', end);
-stage.addEventListener('pointercancel', end);
 
-track.addEventListener('click', e => {
-  const c = e.target.closest('.card');
-  if (busy || !c || Math.abs(drag?.dx || 0) > 6) return;
-  const k = +c.dataset.k;
-  if (k !== i) {
-    i = k;
+stage.addEventListener('pointerup', endDrag);
+stage.addEventListener('pointerleave', endDrag);
+stage.addEventListener('pointercancel', endDrag);
+
+track.addEventListener('click', (event) => {
+  const card = event.target.closest('.card');
+  if (busy || !card || Math.abs(drag?.dx || 0) > 6) return;
+  const key = Number(card.dataset.k);
+  if (key !== i) {
+    i = key;
     update();
   } else {
     choose();
   }
 });
 
-stage.addEventListener('wheel', e => {
-  if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 20) {
-    e.preventDefault();
-    go(e.deltaX > 0 ? 1 : -1);
+stage.addEventListener('wheel', (event) => {
+  if (Math.abs(event.deltaX) > Math.abs(event.deltaY) && Math.abs(event.deltaX) > 20) {
+    event.preventDefault();
+    go(event.deltaX > 0 ? 1 : -1);
   }
 }, { passive: false });
 
-$('filters').onclick = e => {
-  const b = e.target.closest('.chip');
-  if (!b) return;
-  document.querySelectorAll('.chip').forEach(c => c.classList.toggle('on', c === b));
+$('filters').onclick = (event) => {
+  const button = event.target.closest('.chip');
+  if (!button) return;
+
+  document.querySelectorAll('.chip').forEach((chip) => chip.classList.toggle('on', chip === button));
+
   const source = getSource(sportMode);
-  list = b.dataset.k === 'All' ? source.slice() : source.filter(p => p.pos === b.dataset.k);
+  list = button.dataset.k === 'All' ? source.slice() : source.filter((player) => player.pos === button.dataset.k);
   i = 0;
+  picked = null;
   render();
 };
 
-document.querySelectorAll('.sport-btn').forEach(button => {
+document.querySelectorAll('.sport-btn').forEach((button) => {
   button.addEventListener('click', () => setSportMode(button.dataset.sport));
 });
 
-updateFilterButtons('football');
+updateFilterButtons(DEFAULT_SPORT);
 render();
 $('sportModal').classList.add('show');
